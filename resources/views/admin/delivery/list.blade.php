@@ -17,8 +17,12 @@
                             <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                 <thead>
                                     <tr>
-                                        <th>Employer</th>
+                                        <th>Employee</th>
+                                        <th>Customer</th>
                                         <th>Product</th>
+                                        <th>Address_delivery</th>
+                                        <th>Phone_receiver</th>
+                                        <th>Name_receiver</th>
                                         <th>Status</th>
                                         <th>Create</th>
                                         <th>Action</th>
@@ -26,8 +30,12 @@
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        <th>Employer</th>
+                                        <th>Employee</th>
+                                        <th>Customer</th>
                                         <th>Product</th>
+                                        <th>Address_delivery</th>
+                                        <th>Phone_receiver</th>
+                                        <th>Name_receiver</th>
                                         <th>Status</th>
                                         <th>Create</th>
                                         <th>Action</th>
@@ -38,14 +46,18 @@
                                     @foreach($listDelivery as $delivery)
                                     <tr>
                                         <td>{!! $delivery->uName !!}</td>
+                                        <td>{!! $delivery->cName !!}</td>
                                         <td>{!! $delivery->pName !!}</td>
+                                        <td>{!! $delivery->address_delivery !!}</td>
+                                        <td>{!! $delivery->phone_receiver !!}</td>
+                                        <td>{!! $delivery->name_receiver !!}</td>
                                         <td>
                                             @if($delivery->status == 1)
-                                            Chưa xong
-                                            @elseif($delivery->status == 2)
                                             Đã giao
+                                            @elseif($delivery->status == 2)
+                                            Chưa giao
                                             @else
-                                            Không xác định
+                                            Đang giao
                                             @endif
                                         </td>
                                         <td>{!! Carbon\Carbon::parse($delivery->created_at)->format('d-m-Y H:m:s') !!}</td>

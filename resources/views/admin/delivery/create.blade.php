@@ -16,9 +16,9 @@
                         <div class="body">
                             <form method="post" action="{!! url('quan-ly-giao-hang/them-moi') !!}">
                             <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                                <label for="email_address">Chọn Nhân Viên</label>
+                                <label for="user_id">Chọn Nhân Viên</label>
                                 <div class="form-group">
-                                    <select class="form-control show-tick" id="email_address" name="user_id">
+                                    <select class="form-control show-tick" id="user_id" name="user_id">
                                         <option>-- Chọn Nhân Viên --</option>
                                         @foreach($listUser as $user)
                                         <option value="{!! $user->id !!}" 
@@ -29,9 +29,9 @@
                                     </select>
                                     <span class="has-error">{!! $errors->first('user_id') !!}</span>
                                 </div>
-                                <label for="email_address">Product quanlity</label>
+                                <label for="product_id">Product quanlity</label>
                                 <div class="form-group">
-                                    <select class="form-control show-tick" id="email_address" name="product_id">
+                                    <select class="form-control show-tick" id="product_id" name="product_id">
                                         <option>-- Chọn Sản Phẩm --</option>
                                         @foreach($listProduct as $product)
                                         <option value="{!! $product->id !!}" 
@@ -42,7 +42,41 @@
                                     </select>
                                     <span class="has-error">{!! $errors->first('product_id') !!}</span>
                                 </div>
-                                <label for="email_address">Note</label>
+                                <label for="customer_id">Chọn khách hàng</label>
+                                <div class="form-group">
+                                    <select class="form-control show-tick" id="customer_id" name="customer_id">
+                                        <option>-- Chọn Khách hàng --</option>
+                                        @foreach($listCustomer as $customer)
+                                        <option value="{!! $customer->id !!}" 
+                                        @if(old('customer_id') == $customer->id) selected @endif>
+                                        -- {!! $customer->fullname !!} --
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                    <span class="has-error">{!! $errors->first('customer_id') !!}</span>
+                                </div>
+                                <label for="name_receiver">Name receiver</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" id="name_receiver" class="form-control" placeholder="Enter your name receiver" name="name_receiver" value="{!! old('name_receiver') !!}">
+                                    </div>
+                                    <span class="has-error">{!! $errors->first('note') !!}</span>
+                                </div>
+                                <label for="phone_receiver">Phone receiver</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" id="phone_receiver" class="form-control" placeholder="Enter your phone receiver" name="phone_receiver" value="{!! old('phone_receiver') !!}">
+                                    </div>
+                                    <span class="has-error">{!! $errors->first('note') !!}</span>
+                                </div>
+                                <label for="address_delivery">Address delivery</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" id="address_delivery" class="form-control" placeholder="Enter your address delivery" name="address_delivery" value="{!! old('address_delivery') !!}">
+                                    </div>
+                                    <span class="has-error">{!! $errors->first('note') !!}</span>
+                                </div>
+                                <label for="note">Note</label>
                                 <div class="form-group">
                                     <div class="form-line">
                                         <input type="text" id="email_address" class="form-control" placeholder="Enter your note" name="note" value="{!! old('note') !!}">

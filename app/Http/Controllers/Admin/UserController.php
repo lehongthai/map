@@ -74,7 +74,7 @@ class UserController extends Controller
             if ($user->save()){
                 $message = ['level' => 'success', 'flash_message' => 'Cập nhật thành công thành viên'];
             }else{
-                $message = ['level' => 'danger', 'flash_message' => 'Cập nhật thành công thành viên'];
+                $message = ['level' => 'danger', 'flash_message' => 'Cập nhật không thành công thành viên'];
             }
         }else{
             $message = ['level' => 'danger', 'flash_message' => 'Không tìm thấy thành viên'];

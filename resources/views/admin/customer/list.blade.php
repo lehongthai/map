@@ -11,57 +11,51 @@
                             <h2>
                                 {!! $title !!}
                             </h2>
-                            <a href="{!! url('quan-ly-nhan-vien/them-moi') !!}" class="btn btn-success header-dropdown m-r--5">Create</a>
+                            <a href="{!! url('quan-ly-khach-hang/them-moi') !!}" class="btn btn-success header-dropdown m-r--5">Tạo mới</a>
                         </div>
                         <div class="body">
                             <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
+                                        <th>Tên</th>
                                         <th>Email</th>
-                                        <th>Birthday</th>
-                                        <th>Address</th>
-                                        <th>Image</th>
-                                        <th>Level</th>
-                                        <th>Create</th>
-                                        <th>Action</th>
+                                        <th>Số điện thoại</th>
+                                        <th>Đại chỉ</th>
+                                        <th>Mã sản phẩm</th>
+                                        <th>Ghi chú</th>
+                                        <th>Ngày tạo</th>
+                                        <th>Hành động</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        <th>Name</th>
+                                        <th>Tên</th>
                                         <th>Email</th>
-                                        <th>Birthday</th>
-                                        <th>Address</th>
-                                        <th>Image</th>
-                                        <th>Level</th>
-                                        <th>Create</th>
-                                        <th>Action</th>
+                                        <th>Số điện thoại</th>
+                                        <th>Đại chỉ</th>
+                                        <th>Mã sản phẩm</th>
+                                        <th>Ghi chú</th>
+                                        <th>Ngày tạo</th>
+                                        <th>Hành động</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                @if($listUser != NULL)
-                                    @foreach($listUser as $user)
+                                @if($listCustomer != NULL)
+                                    @foreach($listCustomer as $customer)
                                     <tr>
-                                        <td>{!! $user->name !!}</td>
-                                        <td>{!! $user->email !!}</td>
-                                        <td>{!! Carbon\Carbon::parse($user->birthday)->format('d-m-Y') !!}</td>
-                                        <td>{!! $user->address !!}</td>
-                                        <td>{!! $user->image !!}</td>
-                                        <td>
-                                        @if($user->level == 1)
-                                            {{"Admin"}}
-                                        @else
-                                            {{"Nhân viên"}}
-                                        @endif
-                                        </td>
-                                        <td>{!! Carbon\Carbon::parse($user->created_at)->format('d-m-Y H:m:s') !!}</td>
+                                        <td>{!! $customer->fullname !!}</td>
+                                        <td>{!! $customer->email !!}</td>
+                                        <td>{!! $customer->phone !!}</td>
+                                        <td>{!! $customer->address !!}</td>
+                                        <td>{!! $customer->product_code !!}</td>
+                                        <td>{!! $customer->note !!}</td>
+                                        <td>{!! Carbon\Carbon::parse($customer->created_at)->format('d-m-Y H:m:s') !!}</td>
                                         <td>
                                             <div class="demo-google-material-icon">
-                                                <a onclick="return confirm_delete('Bạn chắc chắn xóa !')" href="{!! url('quan-ly-nhan-vien/xoa/' . $user->id) !!}">
+                                                <a onclick="return confirm_delete('Bạn chắc chắn xóa !')" href="{!! url('quan-ly-khach-hang/xoa/' . $customer->id) !!}">
                                                     <i class="material-icons">delete</i>
                                                 </a>
-                                                <a href="{!! url('quan-ly-nhan-vien/cap-nhat/' . $user->id) !!}" class="pull-right">
+                                                <a href="{!! url('quan-ly-khach-hang/cap-nhat/' . $customer->id) !!}" class="pull-right">
                                                     <i class="material-icons">mode_edit</i>
                                                 </a>
                                                 

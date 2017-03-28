@@ -11,10 +11,10 @@
                             <h2>
                                 {!! $title !!}
                             </h2>
-                            <a href="{!! url('quan-ly-nhan-vien/danh-sach') !!}" class="btn btn-success header-dropdown m-r--5">Back</a>
+                            <a href="{!! url('quan-ly-khach-hang/danh-sach') !!}" class="btn btn-success header-dropdown m-r--5">Back</a>
                         </div>
                         <div class="body">
-                            <form method="post" action="{!! url('quan-ly-nhan-vien/them-moi') !!}">
+                            <form method="post" action="{!! url('quan-ly-khach-hang/them-moi') !!}">
                             <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                                 <label for="fullname">Full Name</label>
                                 <div class="form-group">
@@ -23,41 +23,37 @@
                                     </div>
                                     <span class="has-error">{!! $errors->first('fullname') !!}</span>
                                 </div>
-                                <label for="email_address">Email Address</label>
+                                <label for="email">Email Address</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" id="email_address" class="form-control" placeholder="Enter your email address" name="email" value="{!! old('email') !!}">
+                                        <input type="email" id="email" class="form-control" placeholder="Enter your email address" name="email" value="{!! old('email') !!}">
                                     </div>
                                     <span class="has-error">{!! $errors->first('email') !!}</span>
                                 </div>
-                                <label for="password">Password</label>
+                                <label for="phone">Phone</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="password" id="password" class="form-control" placeholder="Enter your password" name="password">
+                                        <input type="text" id="phone" class="form-control" placeholder="Enter your phone number" name="phone" value="{!! old('phone') !!}">
                                     </div>
                                 </div>
-                                <label for="email_address">Address</label>
+                                <label for="address">Address</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" id="email_address" class="form-control" placeholder="Enter your email address" name="address" value="{!! old('address') !!}">
+                                        <input type="text" id="address" class="form-control" placeholder="Enter your address" name="address" value="{!! old('address') !!}">
                                     </div>
                                 </div>
-                                <label for="email_address">Birthday</label>
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" class="datepicker form-control" placeholder="Please choose a date..." name="birthday" value="{!! old('birthday') !!}">
-                                        </div>
+                                <label for="product_code">Product_code</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" id="product_code" class="form-control" placeholder="Enter your product_code" name="product_code" value="{!! old('product_code') !!}">
                                     </div>
-                             
-                              <!--   <label>Level</label>
-                                <label class="radio-inline">
-                                    <input name="level" value="0" type="radio" checked="">Nhân viên
-                                </label>
-                                <label class="radio-inline">
-                                    <input name="level" value="1"  type="radio">Admin
-                                </label> -->
-                                
-                            </div>
+                                </div>
+                                <label for="note">Note</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" id="note" class="form-control" placeholder="Enter your note" name="note" value="{!! old('note') !!}">
+                                    </div>
+                                </div>
                                 <br>
                                 <button type="submit" class="btn btn-primary m-t-15 waves-effect">Create</button>
                             </form>
@@ -65,7 +61,8 @@
                     </div>
                 </div>
             </div>
-      @endsection
+        </div>
+@endsection
 
 @section('javascript-admin')
 <script src="{{ asset('public/minovate/plugins/momentjs/moment.js') }}"></script>

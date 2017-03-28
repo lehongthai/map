@@ -43,6 +43,40 @@
                                     </select>
                                     <span class="has-error">{!! $errors->first('product_id') !!}</span>
                                 </div>
+                                <label for="customer_id">Chọn khách hàng</label>
+                                <div class="form-group">
+                                    <select class="form-control show-tick" id="customer_id" name="customer_id">
+                                        <option>-- Chọn Khách hàng --</option>
+                                        @foreach($listCustomer as $customer)
+                                        <option value="{!! $customer->id !!}" 
+                                        @if(old('customer_id') == $customer->id || $infoDelivery['customer_id'] == $customer->id) selected @endif>
+                                        -- {!! $customer->fullname !!} --
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                    <span class="has-error">{!! $errors->first('customer_id') !!}</span>
+                                </div>
+                                <label for="name_receiver">Name receiver</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" id="name_receiver" class="form-control" placeholder="Enter your name receiver" name="name_receiver" value="{!! old('name_receiver', $infoDelivery['name_receiver']) !!}">
+                                    </div>
+                                    <span class="has-error">{!! $errors->first('note') !!}</span>
+                                </div>
+                                <label for="phone_receiver">Phone receiver</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" id="phone_receiver" class="form-control" placeholder="Enter your phone receiver" name="phone_receiver" value="{!! old('phone_receiver', $infoDelivery['phone_receiver']) !!}">
+                                    </div>
+                                    <span class="has-error">{!! $errors->first('note') !!}</span>
+                                </div>
+                                <label for="address_delivery">Address delivery</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" id="address_delivery" class="form-control" placeholder="Enter your address delivery" name="address_delivery" value="{!! old('address_delivery', $infoDelivery['address_delivery']) !!}">
+                                    </div>
+                                    <span class="has-error">{!! $errors->first('note') !!}</span>
+                                </div>
                                 <label for="email_address">Note</label>
                                 <div class="form-group">
                                     <div class="form-line">

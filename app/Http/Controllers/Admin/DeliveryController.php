@@ -25,18 +25,24 @@ class DeliveryController extends Controller
         $title = 'Thêm mới giao hàng';
         $listUser = Delivery::getListUser();
         $listProduct = Delivery::getListProduct();
-        return view('admin.delivery.create', compact('title', 'listUser', 'listProduct'));
+        $listCustomer = Delivery::getListCustomer();
+        return view('admin.delivery.create', compact('title', 'listUser', 'listProduct', 'listCustomer'));
     }
 
     public function postCreate(Request $request){
         $this->validate($request, [
             'user_id' => 'required|exists:users,id',
-            'product_id' => 'required|exists:products,id'
+            'product_id' => 'required|exists:products,id',
+            'customer_id' => 'required|exists:customers,id'
         ]);
 
         $delivery = new Delivery();
         $delivery->user_id = $request->user_id;
         $delivery->product_id = $request->product_id;
+        $delivery->customer_id = $request->customer_id;
+        $delivery->name_receiver = $request->name_receiver;
+        $delivery->phone_receiver = $request->phone_receiver;
+        $delivery->address_delivery = $request->address_delivery;
         $delivery->note = $request->note;
 
         if ($delivery->save()){
@@ -51,9 +57,10 @@ class DeliveryController extends Controller
         if ($id != NULL){
             $listUser = Delivery::getListUser();
             $listProduct = Delivery::getListProduct();
+            $listCustomer = Delivery::getListCustomer();
             $infoDelivery = Delivery::find($id);
             $title = 'Cập nhật nhân viên';
-            return view('admin.delivery.update', compact('infoDelivery', 'title', 'listProduct', 'listUser'));
+            return view('admin.delivery.update', compact('infoDelivery', 'title', 'listProduct', 'listUser', 'listCustomer'));
         }else{
             $message = ['level' => 'danger', 'flash_message' => 'Không tìm thấy giao hàng'];
         }
@@ -71,6 +78,10 @@ class DeliveryController extends Controller
         if ($delivery){
             $delivery->user_id = $request->user_id;
             $delivery->product_id = $request->product_id;
+            $delivery->customer_id = $request->customer_id;
+            $delivery->name_receiver = $request->name_receiver;
+            $delivery->phone_receiver = $request->phone_receiver;
+            $delivery->address_delivery = $request->address_delivery;
             $delivery->note = $request->note;
             if ($request->status != NULL && $request->status == 2){
                 $delivery->status = 2;
