@@ -16,24 +16,24 @@
                         <div class="body">
                             <form method="post" action="{!! url('quan-ly-san-pham/them-moi') !!}">
                             <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                                <label for="fullname">Product Name</label>
+                                <label for="fullname">Tên sản phẩm</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" id="fullname" class="form-control" placeholder="Enter your product name" name="name" value="{!! old('name') !!}">
+                                        <input type="text" id="fullname" class="form-control" placeholder="Nhập tên sản phẩm" name="name" value="{!! old('name') !!}">
                                     </div>
                                     <span class="has-error">{!! $errors->first('name') !!}</span>
                                 </div>
-                                <label for="email_address">Product Code</label>
+                                <label for="email_address">Mã sản phẩm</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" id="email_address" class="form-control" placeholder="Enter your product code" name="code" value="{!! old('code') !!}">
+                                        <input type="text" id="email_address" class="form-control" placeholder="Nhập mã sản phẩm" name="code" value="{!! old('code') !!}">
                                     </div>
                                     <span class="has-error">{!! $errors->first('code') !!}</span>
                                 </div>
-                                <label for="email_address">Product quanlity</label>
+                                <label for="email_address">Số lượng</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" id="email_address" class="form-control" placeholder="Enter your product quanlity" name="quanlity" value="{!! old('quanlity') !!}">
+                                        <input type="text" id="email_address" class="form-control" placeholder="Nhập số lượng sản phẩm" name="quanlity" value="{!! old('quanlity') !!}">
                                     </div>
                                     <span class="has-error">{!! $errors->first('quanlity') !!}</span>
                                 </div>

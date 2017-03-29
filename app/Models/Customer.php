@@ -12,22 +12,22 @@ use DB;
 class Customer extends \Illuminate\Database\Eloquent\Model
 {
     protected $table = 'customers';
-    protected $fillable = ['fullname', 'email', 'phone', 'address', 'product_code', 'note'];
+    protected $fillable = ['fullname', 'email', 'phone', 'address', 'product_code', 'note', 'status'];
 
     public function productCustomer(){
         return $this->belongTo('App\Models\Product');
     }
 
     public static function getListDelivery(){
-        $sql = 'SELECT c.fullname, c.email, c.phone, c.address, c.product_code, c.note, c.created_at, p.code as uName
+        $sql = 'SELECT c.fullname, c.email, c.phone, c.address, c.product_code, c.status, c.note, c.created_at, p.code as pName
                     FROM customers as c 
                     LEFT JOIN products as p 
-                      ON c.id = p.id ';
+                      ON c.product_code = p.code ';
 
         return DB::select($sql);
     }
 
     public static function getListProduct(){
-        return Product::select('id', 'code')->get();
+        return Product::select('id', 'code', 'name')->get();
     }
 }

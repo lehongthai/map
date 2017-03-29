@@ -11,34 +11,30 @@
                             <h2>
                                 {!! $title !!}
                             </h2>
-                            <a href="{!! url('quan-ly-giao-hang/them-moi') !!}" class="btn btn-success header-dropdown m-r--5">Create</a>
+                            <a href="{!! url('quan-ly-giao-hang/them-moi') !!}" class="btn btn-success header-dropdown m-r--5">Tạo mới</a>
                         </div>
                         <div class="body">
                             <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                 <thead>
                                     <tr>
-                                        <th>Employee</th>
-                                        <th>Customer</th>
-                                        <th>Product</th>
-                                        <th>Address_delivery</th>
-                                        <th>Phone_receiver</th>
-                                        <th>Name_receiver</th>
-                                        <th>Status</th>
-                                        <th>Create</th>
-                                        <th>Action</th>
+                                        <th>Nhân viên</th>                           
+                                        <th>Khách hàng</th>
+                                        <th>Địa chỉ giao hàng</th>
+                                        <th>Số điện thoại</th>
+                                        <th>Trạng thái</th>
+                                        <th>Ngày tạo</th>
+                                        <th>Hành động</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        <th>Employee</th>
-                                        <th>Customer</th>
-                                        <th>Product</th>
-                                        <th>Address_delivery</th>
-                                        <th>Phone_receiver</th>
-                                        <th>Name_receiver</th>
-                                        <th>Status</th>
-                                        <th>Create</th>
-                                        <th>Action</th>
+                                        <th>Nhân viên</th>                           
+                                        <th>Khách hàng</th>
+                                        <th>Địa chỉ giao hàng</th>
+                                        <th>Số điện thoại</th>
+                                        <th>Trạng thái</th>
+                                        <th>Ngày tạo</th>
+                                        <th>Hành động</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
@@ -46,18 +42,16 @@
                                     @foreach($listDelivery as $delivery)
                                     <tr>
                                         <td>{!! $delivery->uName !!}</td>
-                                        <td>{!! $delivery->cName !!}</td>
-                                        <td>{!! $delivery->pName !!}</td>
-                                        <td>{!! $delivery->address_delivery !!}</td>
-                                        <td>{!! $delivery->phone_receiver !!}</td>
-                                        <td>{!! $delivery->name_receiver !!}</td>
+                                        <td>{!! $delivery->cName !!}</td>                                       
+                                        <td>{!! $delivery->cAddress !!}</td>
+                                        <td>{!! $delivery->cPhone !!}</td>
                                         <td>
-                                            @if($delivery->status == 1)
-                                            Đã giao
-                                            @elseif($delivery->status == 2)
+                                            @if($delivery->status == 0)
                                             Chưa giao
-                                            @else
+                                            @elseif($delivery->status == 1)
                                             Đang giao
+                                            @else
+                                            Đã giao
                                             @endif
                                         </td>
                                         <td>{!! Carbon\Carbon::parse($delivery->created_at)->format('d-m-Y H:m:s') !!}</td>

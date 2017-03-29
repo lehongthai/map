@@ -17,27 +17,27 @@
                             <form method="post" action="{!! url('quan-ly-nhan-vien/cap-nhat') !!}">
                             <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                             <input type="hidden" name="id" value="{!! $infoUser['id'] !!}">
-                                <label for="fullname">Full Name</label>
+                                <label for="fullname">Tên</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" id="fullname" class="form-control" placeholder="Enter your full name" name="fullname" value="{!! old('fullname', $infoUser['name']) !!}">
+                                        <input type="text" id="fullname" class="form-control" placeholder="Nhập họ và tên" name="fullname" value="{!! old('fullname', $infoUser['name']) !!}">
                                     </div>
                                     <span class="has-error">{!! $errors->first('fullname') !!}</span>
                                 </div>
-                                <label for="email_address">Address</label>
+                                <label for="email_address">Địa chỉ email</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" id="email_address" class="form-control" placeholder="Enter your email address" name="address" value="{!! old('address', $infoUser['address']) !!}">
+                                        <input type="text" id="email_address" class="form-control" placeholder="Nhập địa chỉ email" name="address" value="{!! old('address', $infoUser['address']) !!}">
                                     </div>
                                 </div>
-                                <label for="email_address">Birthday</label>
+                                <label for="email_address">Ngày sinh</label>
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <input type="text" class="datepicker form-control" placeholder="Please choose a date..." name="birthday" value="{!! old('birthday', Carbon\Carbon::parse($infoUser['birthday'])->format('d/m/Y')) !!}">
+                                            <input type="text" class="datepicker form-control" placeholder="Chọn ngày..." name="birthday" value="{!! old('birthday', Carbon\Carbon::parse($infoUser['birthday'])->format('d/m/Y')) !!}">
                                         </div>
                                     </div>
                                 <br>
-                                <button type="submit" class="btn btn-primary m-t-15 waves-effect">Update</button>
+                                <button type="submit" class="btn btn-primary m-t-15 waves-effect">Cập nhật</button>
                             </form>
                         </div>
                     </div>

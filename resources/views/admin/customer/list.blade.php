@@ -18,11 +18,12 @@
                                 <thead>
                                     <tr>
                                         <th>Tên</th>
-                                        <th>Email</th>
+                                        <th>Địa chỉ email</th>
                                         <th>Số điện thoại</th>
-                                        <th>Đại chỉ</th>
+                                        <th>Địa chỉ</th>
                                         <th>Mã sản phẩm</th>
-                                        <th>Ghi chú</th>
+                                        {{-- <th>Ghi chú</th> --}}
+                                        <th>Trạng thái</th>
                                         <th>Ngày tạo</th>
                                         <th>Hành động</th>
                                     </tr>
@@ -30,11 +31,12 @@
                                 <tfoot>
                                     <tr>
                                         <th>Tên</th>
-                                        <th>Email</th>
+                                        <th>Địa chỉ email</th>
                                         <th>Số điện thoại</th>
-                                        <th>Đại chỉ</th>
+                                        <th>Địa chỉ</th>
                                         <th>Mã sản phẩm</th>
-                                        <th>Ghi chú</th>
+                                        {{-- <th>Ghi chú</th> --}}
+                                        <th>Trạng thái</th>
                                         <th>Ngày tạo</th>
                                         <th>Hành động</th>
                                     </tr>
@@ -48,7 +50,14 @@
                                         <td>{!! $customer->phone !!}</td>
                                         <td>{!! $customer->address !!}</td>
                                         <td>{!! $customer->product_code !!}</td>
-                                        <td>{!! $customer->note !!}</td>
+                                        {{-- <td>{!! $customer->note !!}</td> --}}
+                                        <td>@if($customer->status == 0)
+                                            {{"Chưa giao"}}
+                                        @elseif($customer->status == 1)
+                                            {{"Đang giao"}}
+                                        @else($customer->status == 2)
+                                            {{"Đã giao"}}
+                                        @endif</td>
                                         <td>{!! Carbon\Carbon::parse($customer->created_at)->format('d-m-Y H:m:s') !!}</td>
                                         <td>
                                             <div class="demo-google-material-icon">

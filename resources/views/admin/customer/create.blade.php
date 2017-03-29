@@ -16,42 +16,49 @@
                         <div class="body">
                             <form method="post" action="{!! url('quan-ly-khach-hang/them-moi') !!}">
                             <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                                <label for="fullname">Full Name</label>
+                                <label for="fullname">Tên</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" id="fullname" class="form-control" placeholder="Enter your full name" name="fullname" value="{!! old('fullname') !!}">
+                                        <input type="text" id="fullname" class="form-control" placeholder="Nhập họ tên" name="fullname" value="{!! old('fullname') !!}">
                                     </div>
                                     <span class="has-error">{!! $errors->first('fullname') !!}</span>
                                 </div>
-                                <label for="email">Email Address</label>
+                                <label for="email">Địa chỉ email</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="email" id="email" class="form-control" placeholder="Enter your email address" name="email" value="{!! old('email') !!}">
+                                        <input type="email" id="email" class="form-control" placeholder="Nhập địa chỉ email" name="email" value="{!! old('email') !!}">
                                     </div>
                                     <span class="has-error">{!! $errors->first('email') !!}</span>
                                 </div>
-                                <label for="phone">Phone</label>
+                                <label for="phone">Số điện thoại</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" id="phone" class="form-control" placeholder="Enter your phone number" name="phone" value="{!! old('phone') !!}">
+                                        <input type="text" id="phone" class="form-control" placeholder="Nhập số điện thoại" name="phone" value="{!! old('phone') !!}">
                                     </div>
                                 </div>
-                                <label for="address">Address</label>
+                                <label for="address">Địa chỉ</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" id="address" class="form-control" placeholder="Enter your address" name="address" value="{!! old('address') !!}">
+                                        <input type="text" id="address" class="form-control" placeholder="Nhập địa chỉ" name="address" value="{!! old('address') !!}">
                                     </div>
                                 </div>
-                                <label for="product_code">Product_code</label>
+                                <label for="product_code">Sản phẩm</label>
                                 <div class="form-group">
-                                    <div class="form-line">
-                                        <input type="text" id="product_code" class="form-control" placeholder="Enter your product_code" name="product_code" value="{!! old('product_code') !!}">
-                                    </div>
+                                    <select class="form-control show-tick" id="product_code" name="product_code">
+                                        <option>-- Chọn sản phẩm --</option>
+                                        @foreach($listProduct as $product)
+                                        <option value="{!! $product->code !!}" 
+                                        @if(old('product_code') == $product->code) selected @endif>
+                                        -- {!! $product->name !!} --
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                    <span class="has-error">{!! $errors->first('product_code') !!}</span>
                                 </div>
-                                <label for="note">Note</label>
+                                <label for="note">Ghi chú</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" id="note" class="form-control" placeholder="Enter your note" name="note" value="{!! old('note') !!}">
+                                        <input type="text" id="note" class="form-control" placeholder="Nhập ghi chú" name="note" value="{!! old('note') !!}">
                                     </div>
                                 </div>
                                 <br>

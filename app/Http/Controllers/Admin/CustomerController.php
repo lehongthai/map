@@ -23,7 +23,8 @@ class CustomerController extends Controller
 
     public function getCreate(){
         $title = 'Thêm mới khách hàng';
-        return view('admin.customer.create', compact('title'));
+        $listProduct = Customer::getListProduct();
+        return view('admin.customer.create', compact('title','listProduct'));
     }
 
     public function postCreate(Request $request){
@@ -59,9 +60,10 @@ class CustomerController extends Controller
 
     public function getUpdate($id=null){
         if ($id != NULL){
-            $infoCustomer = customer::find($id);
+            $listProduct = Customer::getListProduct();
+            $infoCustomer = Customer::find($id);
             $title = 'Cập nhật khách hàng';
-            return view('admin.customer.update', compact('infoCustomer', 'title'));
+            return view('admin.customer.update', compact('infoCustomer', 'title', 'listProduct'));
         }else{
             $message = ['level' => 'danger', 'flash_message' => 'Không tìm thấy khách hàng'];
         }
@@ -71,6 +73,7 @@ class CustomerController extends Controller
     public function postUpdate(Request $request){
        	$this->validate($request,
 			[
+                'product_code' => 'required|exists:products,code',
 				'fullname' => 'required|min:3',
 			],
 			[
@@ -86,6 +89,7 @@ class CustomerController extends Controller
 	        $customer->phone = $request->phone;
 	        $customer->address = $request->address;
 	        $customer->note = $request->note;
+            $customer->product_code = $request->product_code;
 
             if ($customer->save()){
                 $message = ['level' => 'success', 'flash_message' => 'Cập nhật thành công khách hàng'];

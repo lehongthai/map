@@ -371,7 +371,7 @@
                                 <a href="{!! url('quan-ly-khach-hang/danh-sach') !!}">Danh sách khách hàng</a>
                             </li>
                             <li>
-                                <a href="{!! url('quan-ly-khach-hang/them-moi') !!}">Thêm khách hàngr</a>
+                                <a href="{!! url('quan-ly-khach-hang/them-moi') !!}">Thêm khách hàng</a>
                             </li>
                         </ul>
                     </li>

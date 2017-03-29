@@ -11,32 +11,32 @@
                             <h2>
                                 {!! $title !!}
                             </h2>
-                            <a href="{!! url('quan-ly-nhan-vien/them-moi') !!}" class="btn btn-success header-dropdown m-r--5">Create</a>
+                            <a href="{!! url('quan-ly-nhan-vien/them-moi') !!}" class="btn btn-success header-dropdown m-r--5">Tạo mới</a>
                         </div>
                         <div class="body">
                             <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Birthday</th>
-                                        <th>Address</th>
-                                        <th>Image</th>
-                                        <th>Level</th>
-                                        <th>Create</th>
-                                        <th>Action</th>
+                                        <th>Tên</th>
+                                        <th>Địa chỉ email</th>
+                                        <th>Ngày sinh</th>
+                                        <th>Địa chỉ</th>
+                                        <th>Ảnh</th>
+                                        <th>Quyền</th>
+                                        <th>Ngày tạo</th>
+                                        <th>Hành động</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Birthday</th>
-                                        <th>Address</th>
-                                        <th>Image</th>
-                                        <th>Level</th>
-                                        <th>Create</th>
-                                        <th>Action</th>
+                                        <th>Tên</th>
+                                        <th>Địa chỉ email</th>
+                                        <th>Ngày sinh</th>
+                                        <th>Địa chỉ</th>
+                                        <th>Ảnh</th>
+                                        <th>Quyền</th>
+                                        <th>Ngày tạo</th>
+                                        <th>Hành động</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
