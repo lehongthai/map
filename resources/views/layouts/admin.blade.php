@@ -375,6 +375,20 @@
                             </li>
                         </ul>
                     </li>
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">view_list</i>
+                            <span>Công ty</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="{!! url('quan-ly-cong-ty/danh-sach') !!}">Danh sách công ty</a>
+                            </li>
+                            <li>
+                                <a href="{!! url('quan-ly-cong-ty/them-moi') !!}">Thêm công ty</a>
+                            </li>
+                        </ul>
+                    </li>
 
                 </ul>
             </div>

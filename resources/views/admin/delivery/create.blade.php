@@ -52,7 +52,7 @@
                                     <span class="has-error">{!! $errors->first('note') !!}</span>
                                 </div>
                                 
-                                <button type="submit" class="btn btn-primary m-t-15 waves-effect">Create</button>
+                                <button type="submit" class="btn btn-primary m-t-15 waves-effect">Tạo mới</button>
                             </form>
                         </div>
                     </div>
