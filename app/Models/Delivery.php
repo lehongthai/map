@@ -51,4 +51,41 @@ class Delivery extends \Illuminate\Database\Eloquent\Model
     public static function getListCustomer(){
         return Customer::select('id', 'fullname', 'phone', 'address')->get();
     }
+
+    public static function getDistance($uid, $pid, $date){
+            $sql = 'SELECT routes FROM deliverys as d 
+                      LEFT JOIN users as u 
+                        ON u.id = d.user_id 
+                      LEFT JOIN products as p 
+                        ON d.product_id = p.id 
+                      WHERE d.user_id = ' . $uid . ' 
+                      AND d.product_id = ' . $pid . ' 
+                      AND d.date = "' . $date . '"';
+        $arrRoutes = [];
+        $listRoutes = DB::select($sql);
+        if (count($listRoutes) > 0){
+            foreach ($listRoutes as $v){
+                array_push($arrRoutes, $v->routes);
+            }
+        }
+        return $arrRoutes;
+    }
+
+    public function updateRoutes($did, $lng, $lat){
+        $data = "{lat: $lat, lng: $lng},";
+        $oldData = $this->getRouteById($did);
+        if ($oldData || $oldData == NULL){
+            $dataUpdate = $oldData . $data;
+            return Delivery::where('id', $did)->update(['routes' => $dataUpdate]);
+        }
+        return false;
+    }
+
+    private function getRouteById($id){
+        $route = Delivery::find($id);
+        if ($route){
+            return $route->routes;
+        }
+        return false;
+    }
 }

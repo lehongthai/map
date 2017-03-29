@@ -389,7 +389,20 @@
                             </li>
                         </ul>
                     </li>
-
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">view_list</i>
+                            <span>Nâng Cao</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="{!! url('quan-ly-nang-cao/nhan-vien') !!}">Nhân Viên</a>
+                            </li>
+                            <li>
+                                <a href="{!! url('quan-ly-khach-hang/them-moi') !!}">Thêm khách hàngr</a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
             <!-- #Menu -->
