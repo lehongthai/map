@@ -99,7 +99,7 @@ class DeliveryController extends Controller
         return redirect('quan-ly-giao-hang/danh-sach')->with($message);
     }
 
-    public function getDelete($id=0)
+    public static function getDelete($id=0)
     {
         $message = ['level' => 'danger', 'flash_message' => 'Không tìm thấy giao hàng'];
         $delivery = Delivery::find($id);
