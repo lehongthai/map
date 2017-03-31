@@ -12,7 +12,7 @@ use DB;
 class Delivery extends \Illuminate\Database\Eloquent\Model
 {
     protected $table = 'deliverys';
-    protected $fillable = ['user_id', 'product_id', 'note', 'status','address_delivery','phone_receiver'];
+    protected $fillable = ['user_id', 'customer_id', 'product_id', 'note', 'status','address_delivery','phone_receiver'];
 
     public function userDelivery()
     {
@@ -88,4 +88,29 @@ class Delivery extends \Illuminate\Database\Eloquent\Model
         }
         return false;
     }
+
+    public static function getOrder($uid){
+        $sql = 'SELECT d.id, c.address, c.phone, d.status, d.time_get, d.time_over, d.note
+                    FROM deliverys as d 
+                    LEFT JOIN customers as c 
+                      ON d.customer_id = c.id 
+                      WHERE d.user_id = ' . $uid . ' ';
+
+        return DB::select($sql);
+    }
+
+    public static function getupdateOrder($user,$id){
+        $sql = 'SELECT d.id, c.address, c.phone, d.status, d.time_get, d.time_over, d.note
+                    FROM deliverys as d 
+                    LEFT JOIN customers as c 
+                      ON d.customer_id = c.id 
+                      WHERE d.user_id = ' . $user . ' AND d.id = ' . $id . '  ';
+
+        return DB::select($sql);
+    }
+
+    public function updateStatus($id,$status){
+        return Delivery::where('id',$id)->update(['status' => $status]);
+    }
+
 }

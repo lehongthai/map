@@ -73,4 +73,8 @@ class User extends Authenticatable
         }
         return false;
     }
+
+    public function updateStatus($mobile_token,$online){
+        return User::where('mobile_token',$mobile_token)->update(['status' => $online]);
+    }
 }

@@ -66,6 +66,7 @@ Route::group(['prefix' => 'quan-ly-cong-ty', 'middleware' => 'auth'], function (
     Route::get('/cap-nhat/{id?}', 'Admin\CompanyController@getUpdate');
     Route::post('/cap-nhat/{id?}', 'Admin\CompanyController@postUpdate');
     Route::get('/xoa/{id?}', 'Admin\CompanyController@getDelete');
+});
 
 Route::group(['prefix' => 'quan-ly-nang-cao', 'middleware' => 'auth'], function (){
     Route::get('/nhan-vien', 'Admin\AdvancedController@getStreet');
@@ -79,3 +80,4 @@ Route::group(['prefix' => 'quan-ly-nang-cao', 'middleware' => 'auth'], function 
 
 Route::get('/vi-tri-nhan-vien', 'Web\MapController@display');
 Route::get('/json-nhan-vien', 'Web\MapController@getListUserJson');
+

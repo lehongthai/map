@@ -19,3 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/login', 'Api\UserController@login');
 Route::post('/update', 'Api\UserController@updateLocal');
+
+Route::get('/order','Api\UserController@getOrder');
+Route::post('/online', 'Api\UserController@postOnline');
+Route::get('/update_order','Api\UserController@update_order');
