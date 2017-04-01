@@ -62,12 +62,12 @@ Route::group(['prefix' => 'quan-ly-khach-hang', 'middleware' => 'auth'], functio
 Route::group(['prefix' => 'quan-ly-nang-cao', 'middleware' => 'auth'], function (){
     Route::get('/nhan-vien', 'Admin\AdvancedController@getStreet');
     Route::post('/nhan-vien', 'Admin\AdvancedController@postStreet');
-    Route::post('/them-moi', 'Admin\CustomerController@postCreate');
-    Route::get('/cap-nhat/{id?}', 'Admin\CustomerController@getUpdate');
-    Route::post('/cap-nhat/{id?}', 'Admin\CustomerController@postUpdate');
-    Route::get('/xoa/{id?}', 'Admin\CustomerController@getDelete');
-});
 
+    Route::post('/on-off', 'Admin\AdvancedController@postOnOffEmployer');
+    Route::get('/on-off', 'Admin\AdvancedController@viewOnOffEmployer');
+});
+Route::get('/xem-vi-tri', 'Admin\AdvancedController@advancedViewLocal');
+Route::post('/xem-vi-tri', 'Admin\AdvancedController@postViewLocal');
 
 Route::get('/vi-tri-nhan-vien', 'Web\MapController@display');
 Route::get('/json-nhan-vien', 'Web\MapController@getListUserJson');

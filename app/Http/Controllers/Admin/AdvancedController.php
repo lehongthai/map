@@ -11,15 +11,18 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Delivery;
+use App\Models\StatusUser;
+use App\User;
 use Illuminate\Http\Request;
 
 class AdvancedController extends Controller
 {
-    public function getStreet(Request $request){
+    public function getStreet(){
         $title = 'Xem Đường Đi Nhân Viên';
         $listUser = Delivery::getListUser();
         $listProduct = Delivery::getListProduct();
-        return view('admin.advanced.street', compact('title', 'listUser', 'listProduct', 'listCustomer'));
+        $listDistance = $uid = $date = $pid = null;
+        return view('admin.advanced.test', compact('listDistance', 'title', 'listUser', 'listProduct', 'listCustomer', 'uid', 'date', 'pid'));
     }
 
     public function postStreet(Request $request){
@@ -35,7 +38,62 @@ class AdvancedController extends Controller
         $listDistance = Delivery::getDistance($uid,$pid,$date);
         if ($listDistance){
             $title = "Vị trí nhân viên";
+            $listDistance = $listDistance[0];
+        }else{
+            $listDistance = NULL;
         }
-        return view('admin.advanced.view_street', compact('listDistance', 'title'));
+
+        $listUser = Delivery::getListUser();
+        $listProduct = Delivery::getListProduct();
+        return view('admin.advanced.test', compact('listDistance', 'title', 'listUser', 'listProduct', 'uid', 'date', 'pid'));
+    }
+
+    public function advancedViewLocal(){
+        $title = 'Xem vị trí nhân viên';
+        $listUser = Delivery::getListUser();
+        $listProduct = Delivery::getListProduct();
+        $uid = $pid = null;
+        $local = NULL;
+        return view('admin.advanced.employer', compact('title', 'listUser', 'listProduct', 'uid', 'pid', 'local'));
+    }
+
+    public function postViewLocal(Request $request){
+        $this->validate($request,[
+            'user_id' => 'required|exists:users,id',
+            'product_id' => 'required|exists:products,id',
+        ]);
+        $uid = $request->user_id;
+        $pid = $request->product_id;
+        $local = User::getAdvancedEmployer($uid,$pid);
+        $title = "Vị trí nhân viên";
+        if (empty($local)){
+            $local = NULL;
+            $title = "Không tìm thấy dữ liệu";
+        }
+        $listUser = Delivery::getListUser();
+        $listProduct = Delivery::getListProduct();
+        return view('admin.advanced.employer', compact('local', 'title', 'listUser', 'listProduct', 'uid', 'pid'));
+    }
+
+    public function viewOnOffEmployer(){
+        $title = 'Trạng thái nhân viên';
+        $listUser = Delivery::getListUser();
+        $listStatus = $user_id = $start = $end = null;
+        return view('admin.advanced.onoff', compact('listStatus', 'title', 'listUser', 'user_id', 'start', 'end'));
+    }
+
+    public function postOnOffEmployer(Request $request){
+        $this->validate($request,[
+            'user_id' => 'required|exists:users,id',
+            'start' => 'required|date',
+            'end' => 'required|date'
+        ]);
+        $user_id = $request->user_id;
+        $start = $request->start;
+        $end = $request->end;
+        $title = 'Trạng thái nhân viên';
+        $listUser = Delivery::getListUser();
+        $listStatus = StatusUser::getStatusUser($user_id, $start,$end);
+        return view('admin.advanced.onoff', compact('listStatus', 'title', 'listUser', 'user_id', 'start', 'end'));
     }
 }
