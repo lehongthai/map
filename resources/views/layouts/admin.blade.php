@@ -399,7 +399,10 @@
                                 <a href="{!! url('quan-ly-nang-cao/nhan-vien') !!}">Nhân Viên</a>
                             </li>
                             <li>
-                                <a href="{!! url('quan-ly-khach-hang/them-moi') !!}">Thêm khách hàngr</a>
+                                <a href="{!! url('xem-vi-tri') !!}">Xem vị trí</a>
+                            </li>
+                            <li>
+                                <a href="{!! url('quan-ly-nang-cao/on-off') !!}">Trạng thái On-Off</a>
                             </li>
                         </ul>
                     </li>
