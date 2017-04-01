@@ -59,13 +59,14 @@ Route::group(['prefix' => 'quan-ly-khach-hang', 'middleware' => 'auth'], functio
     Route::get('/xoa/{id?}', 'Admin\CustomerController@getDelete');
 });
 
-Route::group(['prefix' => 'quan-ly-cong-ty', 'middleware' => 'auth'], function (){
+Route::group(['prefix' => 'quan-ly-cong-ty', 'middleware' => 'auth'], function () {
     Route::get('/danh-sach', 'Admin\CompanyController@getList');
     Route::get('/them-moi', 'Admin\CompanyController@getCreate');
     Route::post('/them-moi', 'Admin\CompanyController@postCreate');
     Route::get('/cap-nhat/{id?}', 'Admin\CompanyController@getUpdate');
     Route::post('/cap-nhat/{id?}', 'Admin\CompanyController@postUpdate');
     Route::get('/xoa/{id?}', 'Admin\CompanyController@getDelete');
+});
 
 Route::group(['prefix' => 'quan-ly-nang-cao', 'middleware' => 'auth'], function (){
     Route::get('/nhan-vien', 'Admin\AdvancedController@getStreet');
