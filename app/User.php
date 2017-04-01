@@ -28,13 +28,15 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public static function getListUserJson(){
+    public static function getListUserJson()
+    {
         $listUser = User::select('id', 'name', 'lng', 'lat', 'address', 'phone')->get()->toJson();
         $listUser = User::all()->toJson();
         return $listUser;
     }
 
-    public static function getInfoEmployer(){
+    public static function getInfoEmployer()
+    {
         $sql = 'SELECT u.address, u.lat, u.lng, u.name, p.name as delivery 
                     FROM users as u 
                     LEFT JOIN deliverys as d 
@@ -44,16 +46,18 @@ class User extends Authenticatable
         return json_encode(DB::select($sql));
     }
 
-    public function updateLocal($mobile_token, $lat, $lng){
+    public function updateLocal($mobile_token, $lat, $lng)
+    {
         $checkAddress = $this->callApiGoogleMap($lng, $lat);
         $dataUpdate = ['lat' => $lat, 'lng' => $lng];
-        if ($checkAddress){
+        if ($checkAddress) {
             $dataUpdate['address'] = $checkAddress;
         }
         return User::where('mobile_token', $mobile_token)->update($dataUpdate);
     }
 
-    private function callApiGoogleMap($lng, $lat){
+    private function callApiGoogleMap($lng, $lat)
+    {
         $curl = curl_init();
         $http = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' . $lat . ',' . $lng . '&sensor=false';
         curl_setopt_array(
@@ -66,20 +70,24 @@ class User extends Authenticatable
         $resp = curl_exec($curl);
         curl_close($curl);
         $json_result = json_decode($resp);
-        if (isset($json_result) && $json_result->status == 'OK'){
-            if ($json_result->results[0]->formatted_address){
+        if (isset($json_result) && $json_result->status == 'OK') {
+            if ($json_result->results[0]->formatted_address) {
                 return $json_result->results[0]->formatted_address;
             }
         }
         return false;
     }
-    /*updat status user 
-    */
-    public function updateStatus($mobile_token,$online){
-        return User::where('mobile_token',$mobile_token)->update(['status' => $online]);
 
-    public static function getAdvancedEmployer($uid, $pid){
-        $sql = 'SELECT u.address, u.lat, u.lng, u.name, p.name as delivery 
+    /*updat status user
+    */
+    public function updateStatus($mobile_token, $online)
+    {
+        return User::where('mobile_token', $mobile_token)->update(['status' => $online]);
+    }
+
+    public static function getAdvancedEmployer($uid, $pid)
+    {
+            $sql = 'SELECT u.address, u.lat, u.lng, u.name, p.name as delivery 
                     FROM users as u 
                     LEFT JOIN deliverys as d 
                         ON u.id = d.user_id 
@@ -87,10 +95,10 @@ class User extends Authenticatable
                         ON p.id = d.product_id 
                     WHERE u.id = ' . $uid . ' 
                      AND d.product_id = ' . $pid;
-        $result = DB::select($sql);
-        if ($result){
-            return json_encode($result);
-        }
-        return false;
+            $result = DB::select($sql);
+            if ($result) {
+                return json_encode($result);
+            }
+            return false;
     }
 }
