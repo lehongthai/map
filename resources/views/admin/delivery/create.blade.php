@@ -47,7 +47,7 @@
                                 <label for="note">Ghi chú</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" id="email_address" class="form-control" placeholder="Nhập ghi chú" name="note" value="{!! old('note') !!}">
+                                        <input type="text" id="note" class="form-control" placeholder="Nhập ghi chú" name="note" value="{!! old('note') !!}">
                                     </div>
                                     <span class="has-error">{!! $errors->first('note') !!}</span>
                                 </div>

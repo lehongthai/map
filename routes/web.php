@@ -80,3 +80,4 @@ Route::post('/xem-vi-tri', 'Admin\AdvancedController@postViewLocal');
 
 Route::get('/vi-tri-nhan-vien', 'Web\MapController@display');
 Route::get('/json-nhan-vien', 'Web\MapController@getListUserJson');
+

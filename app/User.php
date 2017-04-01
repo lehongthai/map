@@ -73,6 +73,10 @@ class User extends Authenticatable
         }
         return false;
     }
+    /*updat status user 
+    */
+    public function updateStatus($mobile_token,$online){
+        return User::where('mobile_token',$mobile_token)->update(['status' => $online]);
 
     public static function getAdvancedEmployer($uid, $pid){
         $sql = 'SELECT u.address, u.lat, u.lng, u.name, p.name as delivery 
