@@ -59,7 +59,7 @@ class ProductController extends Controller
     public function postUpdate(Request $request){
         $this->validate($request, [
             'name' => 'required',
-            'code' => 'required|unique:products,code,id'
+            'code' => 'required'
         ]);
 
         $id = $request->id;

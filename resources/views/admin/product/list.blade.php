@@ -11,26 +11,26 @@
                             <h2>
                                 {!! $title !!}
                             </h2>
-                            <a href="{!! url('quan-ly-san-pham/them-moi') !!}" class="btn btn-success header-dropdown m-r--5">Create</a>
+                            <a href="{!! url('quan-ly-san-pham/them-moi') !!}" class="btn btn-success header-dropdown m-r--5">Tạo mới</a>
                         </div>
                         <div class="body">
                             <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Code</th>
-                                        <th>Quanlity</th>
-                                        <th>Create</th>
-                                        <th>Action</th>
+                                        <th>Tên sản phẩm</th>
+                                        <th>Mã sản phẩm</th>
+                                        <th>Số lượng</th>
+                                        <th>Ngày tạo</th>
+                                        <th>Hành động</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Code</th>
-                                        <th>Quanlity</th>
-                                        <th>Create</th>
-                                        <th>Action</th>
+                                         <th>Tên sản phẩm</th>
+                                        <th>Mã sản phẩm</th>
+                                        <th>Số lượng</th>
+                                        <th>Ngày tạo</th>
+                                        <th>Hành động</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>

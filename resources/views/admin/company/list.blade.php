@@ -11,19 +11,16 @@
                             <h2>
                                 {!! $title !!}
                             </h2>
-                            <a href="{!! url('quan-ly-khach-hang/them-moi') !!}" class="btn btn-success header-dropdown m-r--5">Tạo mới</a>
+                            <a href="{!! url('quan-ly-cong-ty/them-moi') !!}" class="btn btn-success header-dropdown m-r--5">Tạo mới</a>
                         </div>
                         <div class="body">
                             <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                 <thead>
                                     <tr>
                                         <th>Tên</th>
-                                        <th>Địa chỉ email</th>
+                                        <th>Trang web</th>
                                         <th>Số điện thoại</th>
                                         <th>Địa chỉ</th>
-                                        <th>Mã sản phẩm</th>
-                                        {{-- <th>Ghi chú</th> --}}
-                                        <th>Trạng thái</th>
                                         <th>Ngày tạo</th>
                                         <th>Hành động</th>
                                     </tr>
@@ -31,40 +28,29 @@
                                 <tfoot>
                                     <tr>
                                         <th>Tên</th>
-                                        <th>Địa chỉ email</th>
+                                        <th>Trang web</th>
                                         <th>Số điện thoại</th>
                                         <th>Địa chỉ</th>
-                                        <th>Mã sản phẩm</th>
-                                        {{-- <th>Ghi chú</th> --}}
-                                        <th>Trạng thái</th>
                                         <th>Ngày tạo</th>
                                         <th>Hành động</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                @if($listCustomer != NULL)
-                                    @foreach($listCustomer as $customer)
+                                @if($listCompany != NULL)
+                                    @foreach($listCompany as $company)
                                     <tr>
-                                        <td>{!! $customer->fullname !!}</td>
-                                        <td>{!! $customer->email !!}</td>
-                                        <td>{!! $customer->phone !!}</td>
-                                        <td>{!! $customer->address !!}</td>
-                                        <td>{!! $customer->product_code !!}</td>
-                                        {{-- <td>{!! $customer->note !!}</td> --}}
-                                        <td>@if($customer->status == 0)
-                                            {{"Chưa giao"}}
-                                        @elseif($customer->status == 1)
-                                            {{"Đang giao"}}
-                                        @else($customer->status == 2)
-                                            {{"Đã giao"}}
-                                        @endif</td>
-                                        <td>{!! Carbon\Carbon::parse($customer->created_at)->format('d-m-Y H:m:s') !!}</td>
+                                        <td>{!! $company->name !!}</td>
+                                        <td>{!! $company->website !!}</td>
+                                        <td>{!! $company->phone !!}</td>
+                                        <td>{!! $company->address !!}</td>
+
+                                        <td>{!! Carbon\Carbon::parse($company->created_at)->format('d-m-Y H:m:s') !!}</td>
                                         <td>
                                             <div class="demo-google-material-icon">
-                                                <a onclick="return confirm_delete('Bạn chắc chắn xóa !')" href="{!! url('quan-ly-khach-hang/xoa/' . $customer->id) !!}">
+                                                <a onclick="return confirm_delete('Bạn chắc chắn xóa !')" href="{!! url('quan-ly-cong-ty/xoa/' . $company->id) !!}">
                                                     <i class="material-icons">delete</i>
                                                 </a>
-                                                <a href="{!! url('quan-ly-khach-hang/cap-nhat/' . $customer->id) !!}" class="pull-right">
+                                                <a href="{!! url('quan-ly-cong-ty/cap-nhat/' . $company->id) !!}" class="pull-right">
                                                     <i class="material-icons">mode_edit</i>
                                                 </a>
                                                 

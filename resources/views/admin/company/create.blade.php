@@ -11,24 +11,24 @@
                             <h2>
                                 {!! $title !!}
                             </h2>
-                            <a href="{!! url('quan-ly-khach-hang/danh-sach') !!}" class="btn btn-success header-dropdown m-r--5">Back</a>
+                            <a href="{!! url('quan-ly-cong-ty/danh-sach') !!}" class="btn btn-success header-dropdown m-r--5">Back</a>
                         </div>
                         <div class="body">
-                            <form method="post" action="{!! url('quan-ly-khach-hang/them-moi') !!}">
+                            <form method="post" action="{!! url('quan-ly-cong-ty/them-moi') !!}">
                             <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                                <label for="fullname">Tên</label>
+                                <label for="name">Tên công ty</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" id="fullname" class="form-control" placeholder="Nhập họ tên" name="fullname" value="{!! old('fullname') !!}">
+                                        <input type="text" id="name" class="form-control" placeholder="Nhập tên công ty" name="name" value="{!! old('name') !!}">
                                     </div>
-                                    <span class="has-error">{!! $errors->first('fullname') !!}</span>
+                                    <span class="has-error">{!! $errors->first('name') !!}</span>
                                 </div>
-                                <label for="email">Địa chỉ email</label>
+                                <label for="website">Địa chỉ website</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="email" id="email" class="form-control" placeholder="Nhập địa chỉ email" name="email" value="{!! old('email') !!}">
+                                        <input type="text" id="website" class="form-control" placeholder="Nhập địa chỉ website" name="website" value="{!! old('website') !!}">
                                     </div>
-                                    <span class="has-error">{!! $errors->first('email') !!}</span>
+                                    <span class="has-error">{!! $errors->first('website') !!}</span>
                                 </div>
                                 <label for="phone">Số điện thoại</label>
                                 <div class="form-group">
@@ -42,24 +42,19 @@
                                         <input type="text" id="address" class="form-control" placeholder="Nhập địa chỉ" name="address" value="{!! old('address') !!}">
                                     </div>
                                 </div>
-                                <label for="product_code">Sản phẩm</label>
-                                <div class="form-group">
-                                    <select class="form-control show-tick" id="product_code" name="product_code">
-                                        <option>-- Chọn sản phẩm --</option>
-                                        @foreach($listProduct as $product)
-                                        <option value="{!! $product->code !!}" 
-                                        @if(old('product_code') == $product->code) selected @endif>
-                                        -- {!! $product->name !!} --
-                                        </option>
-                                        @endforeach
-                                    </select>
-                                    <span class="has-error">{!! $errors->first('product_code') !!}</span>
-                                </div>
-                                <label for="note">Ghi chú</label>
+                                <label for="lng">Kinh độ</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" id="note" class="form-control" placeholder="Nhập ghi chú" name="note" value="{!! old('note') !!}">
+                                        <input type="text" id="lng" class="form-control" placeholder="Nhập kinh độ" name="lng" value="{!! old('lng') !!}">
                                     </div>
+                                    <span class="has-error">{!! $errors->first('lng') !!}</span>
+                                </div>
+                               <label for="lat">Vĩ độ</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" id="lat" class="form-control" placeholder="Nhập vĩ độ" name="lat" value="{!! old('lat') !!}">
+                                    </div>
+                                    <span class="has-error">{!! $errors->first('lat') !!}</span>
                                 </div>
                                 <br>
                                 <button type="submit" class="btn btn-primary m-t-15 waves-effect">Tạo mới</button>

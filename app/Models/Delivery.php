@@ -12,7 +12,7 @@ use DB;
 class Delivery extends \Illuminate\Database\Eloquent\Model
 {
     protected $table = 'deliverys';
-    protected $fillable = ['user_id', 'product_id', 'note', 'status','address_delivery','phone_receiver','name_receiver'];
+    protected $fillable = ['user_id', 'product_id', 'note', 'status','address_delivery','phone_receiver'];
 
     public function userDelivery()
     {
@@ -28,7 +28,7 @@ class Delivery extends \Illuminate\Database\Eloquent\Model
     }
 
     public static function getListDelivery(){
-        $sql = 'SELECT d.status, d.name_receiver, d.address_delivery, d.phone_receiver, d.note, d.id, d.created_at, u.name as uName, p.name as pName, c.fullname as cName 
+        $sql = 'SELECT d.status, d.address_delivery, d.phone_receiver, d.note, d.id, d.created_at, u.name as uName, p.name as pName, c.fullname as cName, c.phone as cPhone, c.address as cAddress
                     FROM deliverys as d 
                     LEFT JOIN users as u 
                       ON d.user_id =u.id 
@@ -49,7 +49,7 @@ class Delivery extends \Illuminate\Database\Eloquent\Model
     }
 
     public static function getListCustomer(){
-        return Customer::select('id', 'fullname')->get();
+        return Customer::select('id', 'fullname', 'phone', 'address')->get();
     }
 
     public static function getDistance($uid, $pid, $date){
