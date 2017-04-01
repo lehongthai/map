@@ -37,7 +37,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->birthday = convertStringDate2String($request->birthday, 'd/m/Y', 'Y-m-d');
-        $user->mobile_token = md5(time());
+        $user->mobile_token = csrf_token();
         $user->address = $request->address;
         $user->active = md5(uniqid());
 

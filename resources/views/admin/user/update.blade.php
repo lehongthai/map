@@ -33,7 +33,7 @@
                                 <label for="email_address">Ngày sinh</label>
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <input type="text" class="datepicker form-control" placeholder="Chọn ngày..." name="birthday" value="{!! old('birthday', Carbon\Carbon::parse($infoUser['birthday'])->format('d/m/Y')) !!}">
+                                            <input type="date" class="datepicker form-control" placeholder="Chọn ngày..." name="birthday" value="{!! old('birthday', $infoUser['birthday']) !!}">
                                         </div>
                                     </div>
                                 <br>

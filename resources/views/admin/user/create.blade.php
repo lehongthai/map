@@ -45,25 +45,16 @@
                                 <label for="email_address">Ngày sinh</label>
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <input type="text" class="datepicker form-control" placeholder="Chọn ngày..." name="birthday" value="{!! old('birthday') !!}">
+                                            <input type="date" class="datepicker form-control" placeholder="Chọn ngày..." name="birthday" value="{!! old('birthday') !!}">
                                         </div>
                                     </div>
-                             
-                              <!--   <label>Level</label>
-                                <label class="radio-inline">
-                                    <input name="level" value="0" type="radio" checked="">Nhân viên
-                                </label>
-                                <label class="radio-inline">
-                                    <input name="level" value="1"  type="radio">Admin
-                                </label> -->
-                                
-                            </div>
                                 <br>
                                 <button type="submit" class="btn btn-primary m-t-15 waves-effect">Tạo mới</button>
                             </form>
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
       @endsection
 
