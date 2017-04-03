@@ -20,7 +20,7 @@
         ]) !!};
     </script>
 </head>
-<body>
+<body style="background-image: url('http://localhost:8080/Laravel/map/1.jpg')">
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">

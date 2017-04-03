@@ -64,7 +64,7 @@
             }
         </style>
     </head>
-    <body>
+    <body style="background-image: url('http://localhost:8080/Laravel/map/1.jpg'); margin:auto;">
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">

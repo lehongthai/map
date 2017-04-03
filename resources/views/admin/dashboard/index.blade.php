@@ -312,8 +312,19 @@
         </div>
 @endsection
 
-@section('javascript-admin')
-    <!-- Jquery CountTo Plugin Js -->
+@section('javascript')
+    <!-- Select Plugin Js -->
+    <script src="{{ asset('public/minovate/plugins/bootstrap-select/js/bootstrap-select.js') }}"></script>
+
+    <!-- Slimscroll Plugin Js -->
+    <script src="{{ asset('public/minovate/plugins/jquery-slimscroll/jquery.slimscroll.js') }}"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="{{ asset('public/minovate/plugins/node-waves/waves.js') }}"></script>
+
+    
+    <!-- Custom Js -->
+        <!-- Jquery CountTo Plugin Js -->
     <script src="{{ asset('public/minovate/plugins/jquery-countto/jquery.countTo.js') }}"></script>
 
     <!-- Morris Plugin Js -->
@@ -321,7 +332,7 @@
     <script src="{{ asset('public/minovate/plugins/morrisjs/morris.js') }}"></script>
 
     <!-- ChartJs -->
-    <script src="{{ asset('public/minovate/plugins/chartjs/Chart.bundle.js') }}"></script>
+    <script src="{{ asset('public/minovate//plugins/chartjs/Chart.bundle.js') }}"></script>
 
     <!-- Flot Charts Plugin Js -->
     <script src="{{ asset('public/minovate/plugins/flot-charts/jquery.flot.js') }}"></script>
@@ -332,8 +343,8 @@
 
     <!-- Sparkline Chart Plugin Js -->
     <script src="{{ asset('public/minovate/plugins/jquery-sparkline/jquery.sparkline.js') }}"></script>
-@endsection
 
-@section('javascript')
+    <script src="{{ asset('public/minovate/js/admin.js') }}"></script>
+
 <script src="{{ asset('public/minovate/js/pages/index.js') }}"></script>
 @endsection
