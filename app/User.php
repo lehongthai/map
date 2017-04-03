@@ -3,6 +3,8 @@
 namespace App;
 
 use App\Models\Company;
+use GuzzleHttp\Client;
+use GuzzleHttp\Promise\RejectionException;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use DB;
@@ -111,29 +113,31 @@ class User extends Authenticatable
     private function callApiGetDistance($lat, $lng)
     {
         $infoCompany = Company::getLngLat();
-        $curl = curl_init();
-        $url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=';
-        $url .= $lat . ',' . $lng . '&destinations=' . $infoCompany->lat . ',' . $infoCompany->lng . '&key=' . $this->keyApi;
-        curl_setopt_array(
-            $curl, array(
-                CURLOPT_RETURNTRANSFER => 1,
-                CURLOPT_URL => $url,
-                CURLOPT_USERAGENT => 'API GET DISTANCE GOOGLE MAP',
-            )
+        $client = new Client(
+            [
+                'base_uri' => 'https://maps.googleapis.com/maps/api/distancematrix/json'
+            ]
         );
-        if(!curl_exec($curl)){
-            die('Error: "' . curl_error($curl) . '" - Code: ' . curl_errno($curl));
-        }
-        $resp = curl_exec($curl);
-        curl_close($curl);
+        $body = [
+            'query' => [
+                'origins' => $lat . ',' . $lng,
+                'destinations' => $infoCompany->lat . ',' . $infoCompany->lng,
+                'key' => $this->keyApi
+            ]
+        ];
 
-        $json_result = json_decode($resp);
-        pre($json_result);
-        if (isset($json_result) && $json_result->status == 'OK') {
-            if ($json_result->rows->elements->status == 'OK') {
-                return $json_result->rows->elements->distance->text;
+
+        try {
+            $response = $client->request('GET', null, $body);
+            if ($response->getStatusCode() != 200) {
+                return false;
+            } else {
+                $dataPoint = \GuzzleHttp\json_decode($response->getBody(), true);
+                pre($dataPoint);
             }
+        } catch (RejectionException $e) {
+            print_r($e->getMessage());
+            return false;
         }
-        return false;
     }
 }
