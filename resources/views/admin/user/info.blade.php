@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.custommer')
 @section('title', $title)
 
 @section('content')
