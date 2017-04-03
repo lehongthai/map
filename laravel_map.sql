@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2017 at 02:21 PM
--- Server version: 10.1.10-MariaDB
--- PHP Version: 7.0.2
+-- Generation Time: Apr 03, 2017 at 10:59 AM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -43,37 +43,7 @@ CREATE TABLE `company` (
 --
 
 INSERT INTO `company` (`id`, `name`, `website`, `phone`, `address`, `lng`, `lat`, `created_at`, `updated_at`) VALUES
-(1, 'Chuyển phát nhanh', 'giaohang.com', '180011', 'Khu du lịch Suối Tiên', '10.868540', '106.802953', '2017-03-29 16:16:53', '2017-03-29 09:00:58');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `customers`
---
-
-CREATE TABLE `customers` (
-  `id` int(11) NOT NULL,
-  `fullname` varchar(100) DEFAULT NULL,
-  `email` varchar(60) DEFAULT NULL,
-  `phone` varchar(12) DEFAULT NULL,
-  `address` varchar(200) DEFAULT NULL,
-  `product_code` varchar(20) DEFAULT NULL,
-  `note` varchar(250) DEFAULT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT '0',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `customers`
---
-
-INSERT INTO `customers` (`id`, `fullname`, `email`, `phone`, `address`, `product_code`, `note`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'ngoc dung', 'phamngocdung0211@gmail.com', '0962982067', 'KTX khu B', 'Asus 1234', 'good', 0, '2017-03-15 23:11:11', '2017-03-28 21:16:38'),
-(3, 'thuy kieu', 'thuykieu@gmai.com', '113', 'ktx khu a', 'dell 123', 'great', 0, '2017-03-27 21:33:07', '2017-03-28 18:35:33'),
-(6, 'ngoc duy', 'ngocduy@gmail.com', '115', 'dong nai', 'dell 123', 'hot', 0, '2017-03-28 19:01:35', '2017-03-28 22:06:01'),
-(5, 'ngoc man', 'ngocman@gmail.com', '116', 'ben tre', 'Asus 1234', 'tt', 0, '2017-03-28 18:11:45', '2017-03-29 05:08:16'),
-(7, 'van anh', 'vananh@gmail.com', '117', 'thanh hoa', 'HP12', 'great', 0, '2017-03-28 21:24:38', '2017-03-28 21:24:38');
+(1, 'Chuyển phát nhanh', 'giaohang.com', '180011', 'Khu du lịch Suối Tiên', '106.802953', '10.868540', '2017-04-03 00:44:47', '2017-04-03 07:44:47');
 
 -- --------------------------------------------------------
 
@@ -84,17 +54,15 @@ INSERT INTO `customers` (`id`, `fullname`, `email`, `phone`, `address`, `product
 CREATE TABLE `deliverys` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `customer_id` int(11) NOT NULL,
-  `product_id` int(11) DEFAULT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT '1',
+  `order_code` varchar(12) NOT NULL,
+  `status` tinyint(2) NOT NULL DEFAULT '0',
   `note` varchar(300) DEFAULT NULL,
   `distance` varchar(15) DEFAULT NULL,
   `routes` text,
-  `address_delivery` varchar(200) DEFAULT NULL,
-  `phone_receiver` varchar(12) DEFAULT NULL,
   `time_get` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `time_over` timestamp NULL DEFAULT NULL,
   `image` varchar(200) DEFAULT NULL,
+  `date` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -103,12 +71,9 @@ CREATE TABLE `deliverys` (
 -- Dumping data for table `deliverys`
 --
 
-INSERT INTO `deliverys` (`id`, `user_id`, `customer_id`, `product_id`, `status`, `note`, `distance`, `routes`, `address_delivery`, `phone_receiver`, `time_get`, `time_over`, `image`, `created_at`, `updated_at`) VALUES
-(2, 1, 1, 2, 1, 'Nhanh', NULL, '', 'KTX khu B', '0962982067', '2017-03-31 12:18:52', '0000-00-00 00:00:00', '', '2017-03-27 00:50:53', '2017-03-31 05:18:52'),
-(3, 10, 7, 3, 2, 'Không', NULL, '', 'ktx khu a', '113', '2017-03-31 00:54:47', '0000-00-00 00:00:00', '', '2017-03-27 00:51:26', '2017-03-31 00:54:47'),
-(5, 9, 1, 3, 1, 'hot', NULL, NULL, 'KTX khu B', '0962982067', '2017-03-31 10:04:29', '0000-00-00 00:00:00', '', '2017-03-28 02:47:43', '2017-03-31 03:04:29'),
-(7, 9, 6, 4, 2, 'cool', NULL, NULL, 'dong nai', '115', '2017-03-31 10:05:51', NULL, NULL, '2017-03-28 20:04:47', '2017-03-31 03:05:51'),
-(8, 10, 6, 2, 1, 'hot', NULL, NULL, NULL, NULL, '2017-03-29 04:27:05', NULL, NULL, '2017-03-28 20:58:23', '2017-03-28 21:27:05');
+INSERT INTO `deliverys` (`id`, `user_id`, `order_code`, `status`, `note`, `distance`, `routes`, `time_get`, `time_over`, `image`, `date`, `created_at`, `updated_at`) VALUES
+(2, 3, 'IALSQJD6X931', 1, 'Nhanh', '123', '{lat: 10.802662, lng: 106.696442},\n    {lat: 10.803489, lng:106.689815},\n    {lat: 10.803879, lng: 106.686736},\n    {lat: 10.801413, lng: 106.682616}{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},', '2017-04-03 01:43:34', '0000-00-00 00:00:00', '', '2017-03-01', '2017-03-27 00:50:53', '2017-04-03 08:43:34'),
+(9, 3, 'ialsqjd6x1', 0, 'Không có', NULL, NULL, NULL, NULL, NULL, NULL, '2017-04-03 03:51:58', '2017-04-03 03:51:58');
 
 -- --------------------------------------------------------
 
@@ -121,6 +86,37 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `phone` varchar(12) DEFAULT NULL,
+  `product` varchar(200) DEFAULT NULL,
+  `address` varchar(150) DEFAULT NULL,
+  `status` tinyint(2) NOT NULL DEFAULT '0',
+  `code` varchar(20) DEFAULT NULL,
+  `note` varchar(250) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `user_id`, `name`, `phone`, `product`, `address`, `status`, `code`, `note`, `created_at`, `updated_at`) VALUES
+(6, 31, 'Lê Thái', '0963256096', '2', 'kí túc xá', 1, 'IALSQJD6X931', 'Không có', '2017-04-03 02:35:40', '2017-04-02 20:13:40'),
+(5, 30, 'Nguyễn Phước', NULL, '2,3', NULL, 1, 'ialsqjd6x9', 'ssss', '2017-04-03 01:04:56', '2017-04-03 03:31:42'),
+(13, 37, 'NetVis Comany', '09632560961', '2,3', 'Khu Công Nghệ Phần Mềm', 0, 'IALSQJD6X937', 'Không có', '2017-04-03 05:31:43', '2017-04-03 05:31:43'),
+(14, 37, 'NetVis Comany', '09632560961', '3', 'Khu Công Nghệ Phần Mềm', 0, 'IALSQJD6X937', 'sssss', '2017-04-03 05:32:07', '2017-04-03 05:32:07'),
+(15, 40, 'NetVis Comany', '09632560961', '2,3', 'Khu Công Nghệ Phần Mềm', 0, 'FBBAAC2F5A40', 'sssss', '2017-04-03 06:53:53', '2017-04-03 06:53:53');
 
 -- --------------------------------------------------------
 
@@ -144,9 +140,8 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `code`, `keyword`, `description`, `quanlity`, `created_at`, `updated_at`) VALUES
-(2, 'Dell', 'dell 123', NULL, NULL, 10, '2017-03-26 22:55:50', '2017-03-26 22:55:50'),
-(3, 'Laptop Asus', 'Asus 1234', NULL, NULL, 10, '2017-03-26 22:59:54', '2017-03-26 23:05:08'),
-(4, 'HP', 'HP12', NULL, NULL, 10, '2017-03-28 18:49:24', '2017-03-28 18:49:24');
+(2, 'Dell', 'Asus 123', NULL, NULL, 10, '2017-03-26 22:55:50', '2017-03-26 22:55:50'),
+(3, 'Laptop Asus', 'Asus 1234', NULL, NULL, 10, '2017-03-26 22:59:54', '2017-03-26 23:05:08');
 
 -- --------------------------------------------------------
 
@@ -162,16 +157,16 @@ CREATE TABLE `users` (
   `birthday` date DEFAULT NULL,
   `address` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `level` int(11) NOT NULL,
-  `status` int(11) NOT NULL,
+  `level` tinyint(2) NOT NULL DEFAULT '3',
+  `status` tinyint(2) DEFAULT NULL,
   `active` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `banded` tinyint(4) DEFAULT '0',
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `mobile_token` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mobile_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `image` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `lng` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `lat` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `distance` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `distance` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -181,10 +176,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `birthday`, `address`, `password`, `level`, `status`, `active`, `banded`, `remember_token`, `mobile_token`, `image`, `lng`, `lat`, `distance`, `created_at`, `updated_at`) VALUES
-(1, 'Lê Hồng Thái', 'a@gmail.com', '1', '2017-03-23', 'NR6, Krong Stueng Saen, Cambodia', '$2y$10$Y/kiX/Ga.1lrtl6FTYhiduZFDzyVac5ClHVVqqV2lobgbiUxpYCxm', 0, 0, NULL, NULL, 'tSSD7cepP2NtGTOU5CPHR49l6WrkdBqs1EIX5UG3aqIQaijEdfWHwfxuFylC', '8VVJ4hY7aHrUwlN0z7pnn5a01WNH6JsnDPGGd1mfiKPE65GccSW5LAyi4wH1', NULL, '104.89195300', '12.69890200', '', '2017-03-22 06:49:54', '2017-03-31 01:55:00'),
-(3, 'Lê Hồng Quốc', 'lethai.dev02@gmail.com', '2', '1994-01-01', 'Hà Lam - Thăng Bình', '$2y$10$p.XEJm49QFpKUApSziFHqe85UfZZBadFbm3T/A2sKlP4DKldzHdJO', 0, 0, '9dae7fd95389eca10fbfc8096198c556', 0, NULL, '5027cbf4a619b6c7d03b2504d075bb27', NULL, '105.59846100', '11.92253000', '', '2017-03-24 07:07:42', '2017-03-24 07:07:42'),
-(9, 'Lê Hồng Tiến', 'lethai.dev03@gmail.com', '3', '1994-01-01', 'Hà Lam - Thăng Bình', '$2y$10$p.XEJm49QFpKUApSziFHqe85UfZZBadFbA2sKlP4DKldzHdJO', 0, 0, '5027cbf4a619b6c7d03b4d075bb27', 0, NULL, '5027cbf4a619b6c7d2504d075bb27', NULL, '104.89195300', '12.69890200', '', '2017-03-24 07:07:42', '2017-03-24 07:07:42'),
-(10, 'Test Map', 'b@gmail.com', NULL, '1993-11-13', 'Florida, USA', '$2y$10$Hk74DCJy3nDBTPd.u8gvEugW40cr6vjjBLnoIc0lOM.Ro3tzRuAfu', 1, 0, 'd3cf446d4d83c347f50d5b68ab39fdeb', 0, NULL, '3fb946589052f211a2340bffd04f86c2', NULL, '10.797097', '106.689973', '', '2017-03-25 16:55:08', '2017-03-30 17:53:36');
+(1, 'Lê Hồng Thái', 'lethai.dev01@gmail.com', '1', '2017-03-23', 'Thăng Bình - Quảng Nam', '$2y$10$Y/kiX/Ga.1lrtl6FTYhiduZFDzyVac5ClHVVqqV2lobgbiUxpYCxm', 1, 0, NULL, NULL, 'kNg8FD3zQVn12ffbIqlEV0VoB70lj9Dct0vZpl6uctpogRyWXwf7u2Sex8eP', '8VVJ4hY7aHrUwlN0z7pnn5a01WNH6JsnDPGGd1mfiKPE65GccSW5LAyi4wH1', NULL, '104.89195300', '12.69890200', NULL, '2017-03-22 06:49:54', '2017-03-25 23:30:22'),
+(3, 'Lê Hồng Quốc', 'lethai.dev02@gmail.com', '2', '1994-01-01', '54-75 Hoa Lan, phường 2, Phú Nhuận, Hồ Chí Minh, Vietnam', '$2y$10$p.XEJm49QFpKUApSziFHqe85UfZZBadFbm3T/A2sKlP4DKldzHdJO', 0, 0, '9dae7fd95389eca10fbfc8096198c556', 0, 'O4cIZk7FjXKgqV9HnWLepqovG9vUAOgLoby2kmO0BuMPolexgTPMTHmLVw4x', '5027cbf4a619b6c7d03b2504d075bb27', NULL, '106.689973', '10.797097', NULL, '2017-03-24 07:07:42', '2017-04-03 08:26:39'),
+(30, 'NetVis Comany', 'lethai.dev01@gmail.co', '0963256096', NULL, 'Khu Công Nghệ Phần Mềm', '$2y$10$KqKyG8SSElSF7kJsp7yS6.6gayXzF4mkjnKP342KRMFtWcAQlzGri', 3, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, '2017-04-03 01:04:56', '2017-04-03 02:33:27'),
+(31, 'Lê Hồng Thái', 'teamchich26@gmail.com', '1234567890', NULL, 'Kí Túc Xá', '$2y$10$Mhy8DJAZ2XV5dYzMZammOeG6bHEbCDHsxU8z34KylFIE34vlbS4Ea', 3, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, '2017-04-03 02:35:40', '2017-04-03 02:35:40'),
+(37, 'NetVis Comany', 'hongthai0101@gmail.com', '09632560961', NULL, 'Khu Công Nghệ Phần Mềm', '$2y$10$BrkHNFvO27mEY2KkItYgu.J9uM.vTLpQPzIRkv5kyZxWKYw4jKKU.', 3, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, '2017-04-03 05:30:49', '2017-04-03 05:30:49'),
+(40, 'NetVis Comany', 'admin@gmail.com', '09632560961', NULL, 'Khu Công Nghệ Phần Mềm', '$2y$10$ptiw7opWPPgswiwcji3d8.9dCFIjlgkNDTlQIzsJoEOQJ3YkekFcm', 3, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, '2017-04-03 06:53:53', '2017-04-03 06:53:53');
 
 -- --------------------------------------------------------
 
@@ -196,37 +193,41 @@ CREATE TABLE `user_status` (
   `id` int(11) NOT NULL,
   `user_id` tinyint(4) DEFAULT NULL,
   `status` text,
+  `date` date DEFAULT NULL,
   `created_at` date DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `user_status`
+--
+
+INSERT INTO `user_status` (`id`, `user_id`, `status`, `date`, `created_at`) VALUES
+(1, 3, '[{\"on\":{\"start\":\"16:04:10\",\"end\":\"20:30:50\"}},{\"off\":{\"start\":\"21:04:10\",\"end\":\"23:30:50\"}},{\"on\":{\"start\":\"16:04:10\",\"end\":\"20:30:50\"}}]', '2017-04-01', '2017-04-01'),
+(2, 3, '[{\"on\":{\"start\":\"16:04:10\",\"end\":\"20:30:50\"}},{\"off\":{\"start\":\"21:04:10\",\"end\":\"23:30:50\"}}]', '2017-04-02', '2017-04-01'),
+(3, 3, '[{\"start\":\"16:04:10\",\"end\":\"20:30:50\"},{\"start\":\"21:04:10\",\"end\":\"23:30:50\"}]', '2017-04-03', '2017-04-01'),
+(4, 3, '[{\"start\":\"16:04:10\",\"end\":\"20:30:50\"},{\"start\":\"21:04:10\",\"end\":\"23:30:50\"}]', '2017-04-04', '2017-04-01');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `company`
---
-ALTER TABLE `company`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `customers`
---
-ALTER TABLE `customers`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `deliverys`
 --
 ALTER TABLE `deliverys`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `product_id` (`product_id`);
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -253,40 +254,35 @@ ALTER TABLE `user_status`
 --
 
 --
--- AUTO_INCREMENT for table `company`
---
-ALTER TABLE `company`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `customers`
---
-ALTER TABLE `customers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
---
 -- AUTO_INCREMENT for table `deliverys`
 --
 ALTER TABLE `deliverys`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+--
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 --
 -- AUTO_INCREMENT for table `user_status`
 --
 ALTER TABLE `user_status`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

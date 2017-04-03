@@ -114,14 +114,13 @@ class User extends Authenticatable
         $curl = curl_init();
         $url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=';
         $url .= $lat . ',' . $lng . '&destinations=' . $infoCompany->lat . ',' . $infoCompany->lng . '&key=' . $this->keyApi;
-        /*curl_setopt_array(
+        curl_setopt_array(
             $curl, array(
                 CURLOPT_RETURNTRANSFER => 1,
                 CURLOPT_URL => $url,
                 CURLOPT_USERAGENT => 'API GET DISTANCE GOOGLE MAP',
             )
-        );*/
-        curl_setopt($curl, CURLOPT_URL, $url);
+        );
         if(!curl_exec($curl)){
             die('Error: "' . curl_error($curl) . '" - Code: ' . curl_errno($curl));
         }
