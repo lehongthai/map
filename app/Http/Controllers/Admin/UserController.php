@@ -12,6 +12,10 @@ use App\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
+use App\Models\Order;
+use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
+
 
 class UserController extends Controller
 {
@@ -92,5 +96,13 @@ class UserController extends Controller
             }
         }
         return redirect('quan-ly-nhan-vien/danh-sach')->with($message);
+    }
+
+    public function getInfo()
+    {
+        $title = 'info';
+        $infoOrder = Order::where('user_id',Auth::user()->id)->get();
+        
+        return view('admin.user.info', compact('infoOrder', 'title'));
     }
 }

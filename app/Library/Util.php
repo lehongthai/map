@@ -1,4 +1,5 @@
 <?php 
+use Illuminate\Support\Facades\DB;
 function convert_vi_to_en($str)
 {
 	$unicode = array(
@@ -105,11 +106,17 @@ function pre($value='')
 function getStatus($status){
     $arrStatus = json_decode($status);
     foreach ($arrStatus as $k => $status){
-        //pre($status->on->start);
         if (!empty($status->on)){
             echo '<span style="color:green;">From ' . $status->on->start . ' To ' . $status->on->end . ' is On</span><br>';
         }elseif(!empty($status->off)){
             echo '<span style="color:red;">From ' . $status->off->start . ' To ' . $status->off->end . ' is Off</span><br>';
         }
     }
+}
+
+function getProduct($strId){
+  $listProduct = DB::select('select name from products where id in (' . $strId . ')');
+  foreach ($listProduct as $key => $v) {
+    echo $v->name . '<br>';
+  }
 }

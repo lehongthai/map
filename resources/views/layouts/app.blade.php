@@ -19,8 +19,19 @@
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
+    <!-- Styles -->
+        <style>
+
+            body {
+                background-image: url('http://localhost/laravel/map/1.jpg'); 
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-position: center;
+            }
+
+        </style>
 </head>
-<body style="background-image: url('http://localhost:8080/Laravel/map/1.jpg')">
+<body>
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
@@ -35,9 +46,9 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    {{-- <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Laravel') }}
-                    </a>
+                    </a> --}}
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -50,20 +61,22 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
+                            <li><a href="{{ route('login') }}">Đăng nhập</a></li>
+                            <li><a href="{{ route('register') }}">Đăng ký</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-
+                                
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
+                                        <a href="{!! url('quan-ly-nhan-vien/info') !!}">info</a>
+
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            Đăng xuất
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
