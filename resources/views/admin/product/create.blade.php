@@ -46,11 +46,19 @@
         </div>
 @endsection
 
-@section('javascript-admin')
+@section('javascript')
+<!-- Select Plugin Js -->
+    <script src="{{ asset('public/minovate/plugins/bootstrap-select/js/bootstrap-select.js') }}"></script>
+    <!-- Slimscroll Plugin Js -->
+    <script src="{{ asset('public/minovate/plugins//jquery-slimscroll/jquery.slimscroll.js') }}"></script>
+
+<script src="{{ asset('public/minovate/plugins/autosize/autosize.js') }}"></script>
 <script src="{{ asset('public/minovate/plugins/momentjs/moment.js') }}"></script>
 <script src="{{ asset('public/minovate/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script>
-@endsection
+ 
+    <script src="{{ asset('public/minovate/plugins/node-waves/waves.js') }}"></script>
+    <script src="{{ asset('public/minovate/js/admin.js') }}"></script>
+    <script src="{{ asset('public/minovate/js/pages/forms/basic-form-elements.js') }}"></script>
+ <!-- Waves Effect Plugin Js -->
 
-@section('javascript')
- <script src="{{ asset('public/minovate/js/pages/forms/basic-form-elements.js') }}"></script>
 @endsection

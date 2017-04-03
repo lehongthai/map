@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Models\Company;
 use App\Models\Delivery;
 use App\Models\StatusUser;
 use App\User;
@@ -20,7 +21,7 @@ class AdvancedController extends Controller
     public function getStreet(){
         $title = 'Xem Đường Đi Nhân Viên';
         $listUser = Delivery::getListUser();
-        $listProduct = Delivery::getListProduct();
+        $listProduct = Delivery::getListOrderViewLocal();
         $listDistance = $uid = $date = $pid = null;
         return view('admin.advanced.test', compact('listDistance', 'title', 'listUser', 'listProduct', 'listCustomer', 'uid', 'date', 'pid'));
     }
@@ -28,7 +29,7 @@ class AdvancedController extends Controller
     public function postStreet(Request $request){
         $this->validate($request,[
             'user_id' => 'required|exists:users,id',
-            'product_id' => 'required|exists:products,id',
+            'product_id' => 'required|exists:orders,code',
             'date' => 'required|date'
         ]);
         $title = "Không tìm thấy dữ liệu";
@@ -44,23 +45,24 @@ class AdvancedController extends Controller
         }
 
         $listUser = Delivery::getListUser();
-        $listProduct = Delivery::getListProduct();
+        $listProduct = Delivery::getListOrderViewLocal();
         return view('admin.advanced.test', compact('listDistance', 'title', 'listUser', 'listProduct', 'uid', 'date', 'pid'));
     }
 
     public function advancedViewLocal(){
         $title = 'Xem vị trí nhân viên';
         $listUser = Delivery::getListUser();
-        $listProduct = Delivery::getListProduct();
+        $listProduct = Delivery::getListOrderViewLocal();
+        $infoCompany = Company::getLngLat();
         $uid = $pid = null;
         $local = NULL;
-        return view('admin.advanced.employer', compact('title', 'listUser', 'listProduct', 'uid', 'pid', 'local'));
+        return view('admin.advanced.employer', compact('title', 'listUser', 'listProduct', 'uid', 'pid', 'local', 'infoCompany'));
     }
 
     public function postViewLocal(Request $request){
         $this->validate($request,[
             'user_id' => 'required|exists:users,id',
-            'product_id' => 'required|exists:products,id',
+            'product_id' => 'required|exists:orders,code',
         ]);
         $uid = $request->user_id;
         $pid = $request->product_id;
@@ -71,8 +73,9 @@ class AdvancedController extends Controller
             $title = "Không tìm thấy dữ liệu";
         }
         $listUser = Delivery::getListUser();
-        $listProduct = Delivery::getListProduct();
-        return view('admin.advanced.employer', compact('local', 'title', 'listUser', 'listProduct', 'uid', 'pid'));
+        $listProduct = Delivery::getListOrderViewLocal();
+        $infoCompany = Company::getLngLat();
+        return view('admin.advanced.employer', compact('local', 'title', 'listUser', 'listProduct', 'uid', 'pid', 'infoCompany'));
     }
 
     public function viewOnOffEmployer(){

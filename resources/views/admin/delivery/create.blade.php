@@ -23,25 +23,25 @@
                                         @foreach($listUser as $user)
                                         <option value="{!! $user->id !!}" 
                                         @if(old('user_id') == $user->id) selected @endif>
-                                        -- {!! $user->name !!} --
+                                        {!! $user->name !!}
                                         </option>
                                         @endforeach
                                     </select>
                                     <span class="has-error">{!! $errors->first('user_id') !!}</span>
                                 </div>
                 
-                                <label for="customer_id">Khách hàng</label>
+                                <label for="order_code"></label>
                                 <div class="form-group">
-                                    <select class="form-control show-tick" id="customer_id" name="customer_id">
-                                        <option>-- Chọn Khách hàng --</option>
-                                        @foreach($listCustomer as $customer)
-                                        <option value="{!! $customer->id !!}" 
-                                        @if(old('customer_id') == $customer->id) selected @endif>
-                                        -- {!! $customer->fullname !!} --
+                                    <select class="form-control show-tick" id="order_code" name="order_code">
+                                        <option>-- Chọn Đơn Hàng --</option>
+                                        @foreach($listOrder as $order)
+                                        <option value="{!! $order->code !!}" 
+                                        @if(old('order_code') == $order->code) selected @endif>
+                                        {!! $order->name !!}
                                         </option>
                                         @endforeach
                                     </select>
-                                    <span class="has-error">{!! $errors->first('customer_id') !!}</span>
+                                    <span class="has-error">{!! $errors->first('order_code') !!}</span>
                                 </div>
                             
                                 <label for="note">Ghi chú</label>
@@ -61,12 +61,19 @@
         </div>
 @endsection
 
-@section('javascript-admin')
+@section('javascript')
+<!-- Select Plugin Js -->
+    <script src="{{ asset('public/minovate/plugins/bootstrap-select/js/bootstrap-select.js') }}"></script>
+    <!-- Slimscroll Plugin Js -->
+    <script src="{{ asset('public/minovate/plugins//jquery-slimscroll/jquery.slimscroll.js') }}"></script>
+
 <script src="{{ asset('public/minovate/plugins/autosize/autosize.js') }}"></script>
 <script src="{{ asset('public/minovate/plugins/momentjs/moment.js') }}"></script>
 <script src="{{ asset('public/minovate/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script>
-@endsection
+ 
+    <script src="{{ asset('public/minovate/plugins/node-waves/waves.js') }}"></script>
+    <script src="{{ asset('public/minovate/js/admin.js') }}"></script>
+    <script src="{{ asset('public/minovate/js/pages/forms/basic-form-elements.js') }}"></script>
+ <!-- Waves Effect Plugin Js -->
 
-@section('javascript')
- <script src="{{ asset('public/minovate/js/pages/forms/basic-form-elements.js') }}"></script>
 @endsection

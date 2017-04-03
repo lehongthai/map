@@ -18,33 +18,36 @@
                                 <thead>
                                     <tr>
                                         <th>Nhân viên</th>                           
+                                        <th>SDT nhân viên</th>
                                         <th>Khách hàng</th>
+                                        <th>SDT khách</th>
                                         <th>Địa chỉ giao hàng</th>
-                                        <th>Số điện thoại</th>
                                         <th>Trạng thái</th>
                                         <th>Ngày tạo</th>
-                                        <th>Hành động</th>
+                                        <th style="width: 6%">Hành động</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
                                         <th>Nhân viên</th>                           
+                                        <th>SDT nhân viên</th>
                                         <th>Khách hàng</th>
+                                        <th>SDT khách</th>
                                         <th>Địa chỉ giao hàng</th>
-                                        <th>Số điện thoại</th>
                                         <th>Trạng thái</th>
                                         <th>Ngày tạo</th>
-                                        <th>Hành động</th>
+                                        <th style="width: 6%">Hành động</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
                                 @if($listDelivery != NULL)
                                     @foreach($listDelivery as $delivery)
                                     <tr>
-                                        <td>{!! $delivery->uName !!}</td>
-                                        <td>{!! $delivery->cName !!}</td>                                       
-                                        <td>{!! $delivery->cAddress !!}</td>
-                                        <td>{!! $delivery->cPhone !!}</td>
+                                        <td>{!! $delivery->name !!}</td>
+                                        <td>{!! $delivery->phone !!}</td>
+                                        <td>{!! $delivery->oName !!}</td>
+                                        <td>{!! $delivery->oPhone !!}</td>              
+                                        <td>{!! $delivery->address !!}</td>
                                         <td>
                                             @if($delivery->status == 0)
                                             Chưa giao
@@ -79,8 +82,15 @@
 @endsection
 
 @section('javascript')
+    <!-- Select Plugin Js -->
+    <script src="{{ asset('public/minovate/plugins/bootstrap-select/js/bootstrap-select.js') }}"></script>
+    <!-- Slimscroll Plugin Js -->
+    <script src="{{ asset('public/minovate/plugins/jquery-slimscroll/jquery.slimscroll.js') }}"></script>
+    <!-- Waves Effect Plugin Js -->
+    <script src="{{ asset('public/minovate/plugins/node-waves/waves.js') }}"></script>
     <script src="{{ asset('public/minovate/plugins/jquery-datatable/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('public/minovate/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js') }}"></script>
     <script src="{{ asset('public/minovate/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js') }}"></script>
     <script src="{{ asset('public/minovate/js/pages/tables/jquery-datatable.js') }}"></script>
+    <script src="{{ asset('public/minovate/js/admin.js') }}"></script>
 @endsection

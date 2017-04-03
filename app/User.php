@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Company;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use DB;
@@ -9,7 +10,7 @@ use DB;
 class User extends Authenticatable
 {
     use Notifiable;
-
+    private $keyApi = 'AIzaSyCoYHFhB9SbbUGXJ9jzhmSMihCJOOoQFyY';
     /**
      * The attributes that are mass assignable.
      *
@@ -30,19 +31,19 @@ class User extends Authenticatable
 
     public static function getListUserJson()
     {
-        $listUser = User::select('id', 'name', 'lng', 'lat', 'address', 'phone')->get()->toJson();
-        $listUser = User::all()->toJson();
+        $listUser = User::where('level', '<>', 3)->toJson();
         return $listUser;
     }
 
     public static function getInfoEmployer()
     {
-        $sql = 'SELECT u.address, u.lat, u.lng, u.name, p.name as delivery 
+        $sql = 'SELECT u.address, u.lat, u.lng, u.name, o.name as delivery 
                     FROM users as u 
                     LEFT JOIN deliverys as d 
                         ON u.id = d.user_id 
-                    LEFT JOIN products as p 
-                        ON p.id = d.product_id ';
+                    LEFT JOIN orders as o 
+                        ON d.order_code = o.code 
+                    WHERE u.level <> 3';
         return json_encode(DB::select($sql));
     }
 
@@ -50,8 +51,12 @@ class User extends Authenticatable
     {
         $checkAddress = $this->callApiGoogleMap($lng, $lat);
         $dataUpdate = ['lat' => $lat, 'lng' => $lng];
+        $getDistance = $this->callApiGetDistance($lat, $lng);
         if ($checkAddress) {
             $dataUpdate['address'] = $checkAddress;
+        }
+        if ($getDistance) {
+            $dataUpdate['distance'] = $getDistance;
         }
         return User::where('mobile_token', $mobile_token)->update($dataUpdate);
     }
@@ -87,18 +92,49 @@ class User extends Authenticatable
 
     public static function getAdvancedEmployer($uid, $pid)
     {
-            $sql = 'SELECT u.address, u.lat, u.lng, u.name, p.name as delivery 
+        $sql = 'SELECT u.address, u.lat, u.lng, u.name, o.name as delivery 
                     FROM users as u 
                     LEFT JOIN deliverys as d 
                         ON u.id = d.user_id 
-                    LEFT JOIN products as p 
-                        ON p.id = d.product_id 
+                    LEFT JOIN orders as o 
+                        ON o.code = d.order_code 
                     WHERE u.id = ' . $uid . ' 
-                     AND d.product_id = ' . $pid;
-            $result = DB::select($sql);
-            if ($result) {
-                return json_encode($result);
+                     AND o.code = "' . $pid . '" 
+                      AND d.status = 1 ';
+        $result = DB::select($sql);
+        if ($result) {
+            return json_encode($result);
+        }
+        return false;
+    }
+
+    private function callApiGetDistance($lat, $lng)
+    {
+        $infoCompany = Company::getLngLat();
+        $curl = curl_init();
+        $url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=';
+        $url .= $lat . ',' . $lng . '&destinations=' . $infoCompany->lat . ',' . $infoCompany->lng . '&key=' . $this->keyApi;
+        /*curl_setopt_array(
+            $curl, array(
+                CURLOPT_RETURNTRANSFER => 1,
+                CURLOPT_URL => $url,
+                CURLOPT_USERAGENT => 'API GET DISTANCE GOOGLE MAP',
+            )
+        );*/
+        curl_setopt($curl, CURLOPT_URL, $url);
+        if(!curl_exec($curl)){
+            die('Error: "' . curl_error($curl) . '" - Code: ' . curl_errno($curl));
+        }
+        $resp = curl_exec($curl);
+        curl_close($curl);
+
+        $json_result = json_decode($resp);
+        pre($json_result);
+        if (isset($json_result) && $json_result->status == 'OK') {
+            if ($json_result->rows->elements->status == 'OK') {
+                return $json_result->rows->elements->distance->text;
             }
-            return false;
+        }
+        return false;
     }
 }

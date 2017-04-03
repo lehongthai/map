@@ -16,7 +16,7 @@ use Carbon\Carbon;
 class UserController extends Controller
 {
     public function getList(){
-        $listUser = User::all();
+        $listUser = User::where('level', '<>', 3)->get();
         $title = 'Danh sách thành viên';
         return view('admin.user.list', compact('listUser', 'title'));
     }

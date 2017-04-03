@@ -2,20 +2,29 @@
 namespace App\Models;
 
 use App\User;
-use DB;
+use Illuminate\Support\Facades\DB;
+
 /**
  * Created by PhpStorm.
  * User: PC
  * Date: 3/26/2017
  * Time: 7:48 AM
  */
-class Customer extends \Illuminate\Database\Eloquent\Model
+class Order extends \Illuminate\Database\Eloquent\Model
 {
-    protected $table = 'customers';
-    protected $fillable = ['fullname', 'email', 'phone', 'address', 'product_code', 'note', 'status'];
+    protected $table = 'orders';
+    protected $fillable = ['name', 'phone', 'address', 'user_id', 'note', 'status', 'code'];
 
     public function productCustomer(){
         return $this->belongTo('App\Models\Product');
+    }
+
+    public static function getListOrder(){
+        $sql = 'SELECT u.name, u.email, u.phone, u.address, o.code, o.status, o.note, o.created_at, o.id 
+                    FROM orders as o 
+                    LEFT JOIN users as u 
+                      ON o.user_id = u.id ';
+        return DB ::select($sql);
     }
 
     public static function getListDelivery(){
@@ -29,5 +38,10 @@ class Customer extends \Illuminate\Database\Eloquent\Model
 
     public static function getListProduct(){
         return Product::select('id', 'code', 'name')->get();
+    }
+
+    public static function updateStatus($code){
+        Order::where('code', $code)->update(['status' => 1]);
+        return true;
     }
 }

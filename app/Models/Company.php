@@ -11,4 +11,8 @@ class Company extends \Illuminate\Database\Eloquent\Model
 {
     protected $table = 'company';
     protected $fillable = ['name', 'website', 'phone', 'address', 'lng', 'lat'];
+
+    public static function getLngLat(){
+        return Company::select('lng', 'lat')->first();
+    }
 }

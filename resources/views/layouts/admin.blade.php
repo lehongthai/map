@@ -28,6 +28,8 @@
     <link href="{{ asset('public/minovate/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('public/minovate/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css') }}" rel="stylesheet" />
     <link href="{{ asset('public/minovate/plugins/waitme/waitMe.css') }}" rel="stylesheet" />
+    <!-- Multi Select Css -->
+    <link href="{{ asset('public/minovate/plugins/multi-select/css/multi-select.css') }}" rel="stylesheet">
     <!-- Bootstrap Select Css -->
     <link href="{{ asset('public/minovate/plugins/bootstrap-select/css/bootstrap-select.css') }}" rel="stylesheet" />
     <!-- Custom Css -->
@@ -66,16 +68,6 @@
     <!-- Overlay For Sidebars -->
     <div class="overlay"></div>
     <!-- #END# Overlay For Sidebars -->
-    <!-- Search Bar -->
-    <div class="search-bar">
-        <div class="search-icon">
-            <i class="material-icons">search</i>
-        </div>
-        <input type="text" placeholder="START TYPING...">
-        <div class="close-search">
-            <i class="material-icons">close</i>
-        </div>
-    </div>
     <!-- #END# Search Bar -->
     <!-- Top Bar -->
     <nav class="navbar" style="background-color: #f1c40f">
@@ -83,7 +75,7 @@
             <div class="navbar-header">
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
-                <a class="navbar-brand" href="{!! url('trang-quan-tri/dashboard') !!}">Admin - Lê Thái</a>
+                <a class="navbar-brand" href="{!! url('trang-quan-tri/dashboard') !!}">Admin - Hệ thống quản lý giao hàng</a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -324,7 +316,7 @@
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">view_list</i>
-                            <span>Đơn hàng</span>
+                            <span>Giao hàng</span>
                         </a>
                         <ul class="ml-menu">
                             <li>
@@ -332,6 +324,20 @@
                             </li>
                             <li>
                                 <a href="{!! url('quan-ly-giao-hang/them-moi') !!}">Thêm đơn hàng</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">view_list</i>
+                            <span>Đơn hàng</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="{!! url('quan-ly-don-hang/danh-sach') !!}">Danh sách đơn hàng</a>
+                            </li>
+                            <li>
+                                <a href="{!! url('quan-ly-don-hang/them-moi') !!}">Thêm đơn hàng</a>
                             </li>
                         </ul>
                     </li>
@@ -404,30 +410,15 @@
             @yield('content')
         </div>
     </section>
-        <!-- ============================================
-        ============== Vendor JavaScripts ===============
-        ============================================= -->
+
+     <!-- Jquery Core Js -->
     <script src="{{ asset('public/minovate/plugins/jquery/jquery.min.js') }}"></script>
-
-    <!-- Bootstrap Core Js -->
+        <!-- Bootstrap Core Js -->
     <script src="{{ asset('public/minovate/plugins/bootstrap/js/bootstrap.js') }}"></script>
-
-    <!-- Select Plugin Js -->
-    <script src="{{ asset('public/minovate/plugins/bootstrap-select/js/bootstrap-select.js') }}"></script>
-
-    <!-- Slimscroll Plugin Js -->
-    <script src="{{ asset('public/minovate/plugins/jquery-slimscroll/jquery.slimscroll.js') }}"></script>
-
-    <!-- Waves Effect Plugin Js -->
-    <script src="{{ asset('public/minovate/plugins/node-waves/waves.js') }}"></script>
-
     
-    <!-- Custom Js -->
-    @yield('javascript-admin')
-
-    <script src="{{ asset('public/minovate/js/admin.js') }}"></script>
 
     @yield('javascript')
+
 
     <!-- Demo Js -->
     <script src="{{ asset('public/minovate/js/demo.js') }}"></script>

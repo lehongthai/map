@@ -56,11 +56,11 @@
                                 <label for="product_id">Chọn Sản Phẩm</label>
                                 <div class="form-group">
                                     <select class="form-control show-tick" id="product_id" name="product_id">
-                                        <option>-- Chọn Sản Phẩm --</option>
+                                        <option>-- Chọn Đơn Hàng --</option>
                                         @foreach($listProduct as $product)
-                                        <option value="{!! $product->id !!}" 
-                                        @if(old('product_id') == $product->id || $pid == $product->id) selected @endif>
-                                        -- {!! $product->name !!} --
+                                        <option value="{!! $product->code !!}" 
+                                        @if(old('product_id') == $product->code || $pid == $product->code) selected @endif>
+                                        {!! $product->name !!}
                                         </option>
                                         @endforeach
                                     </select>

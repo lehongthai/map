@@ -19,34 +19,6 @@
 
 </head>
 <body>
-<div class="row topBar" id="topbar">
-  <div class="col-lg-7 col-md-6 col-xs-12 col-sm-4 logo"><a href="lottery.html"><img src="images/logo.png" width="123" height="31"  alt=""/></a></div>
-  <div class="col-lg-5 col-md-6 col-xs-12 col-sm-8">
-    <div class="dateTime">Tuesday. Apr 1, 2016<br>
-      08:45 PM</div>
-    
-    <div class="social pull-right"> 
-    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a> 
-    <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a> 
-    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a> 
-    </div>
-  </div>
-</div>
-<div class="row">
-  <nav class="navbar navbar-inverse">
-    <div class="container fullWidth">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-      </div>
-      <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-          <li><a href="{!! url('vi-tri-nhan-vien') !!}"><span class="icon-agency"></span>Vị Trí</a></li>
-        </ul>
-      </div>
-      <!--/.nav-collapse --> 
-    </div>
-  </nav>
-</div>
 
 @yield('content')
 

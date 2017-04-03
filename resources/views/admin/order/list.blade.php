@@ -11,18 +11,18 @@
                             <h2>
                                 {!! $title !!}
                             </h2>
-                            <a href="{!! url('quan-ly-nhan-vien/them-moi') !!}" class="btn btn-success header-dropdown m-r--5">Tạo mới</a>
+                            <a href="{!! url('quan-ly-don-hang/them-moi') !!}" class="btn btn-success header-dropdown m-r--5">Tạo mới</a>
                         </div>
                         <div class="body">
                             <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                 <thead>
                                     <tr>
                                         <th>Tên</th>
-                                        <th>Địa chỉ email</th>
-                                        <th>Ngày sinh</th>
-                                        <th>Địa chỉ</th>
-                                        <th>Ảnh</th>
-                                        <th>Quyền</th>
+                                        <th>Email</th>
+                                        <th>Số Điện Thoại</th>
+                                        <th>Địa Chỉ</th>
+                                        <th>Mã Đơn Hàng</th>
+                                        <th>Trạng Thái</th>
                                         <th>Ngày tạo</th>
                                         <th>Hành động</th>
                                     </tr>
@@ -30,38 +30,38 @@
                                 <tfoot>
                                     <tr>
                                         <th>Tên</th>
-                                        <th>Địa chỉ email</th>
-                                        <th>Ngày sinh</th>
-                                        <th>Địa chỉ</th>
-                                        <th>Ảnh</th>
-                                        <th>Quyền</th>
+                                        <th>Email</th>
+                                        <th>Số Điện Thoại</th>
+                                        <th>Địa Chỉ</th>
+                                        <th>Mã Đơn Hàng</th>
+                                        <th>Trạng Thái</th>
                                         <th>Ngày tạo</th>
                                         <th>Hành động</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                @if($listUser != NULL)
-                                    @foreach($listUser as $user)
+                                @if($listOrder != NULL)
+                                    @foreach($listOrder as $order)
                                     <tr>
-                                        <td>{!! $user->name !!}</td>
-                                        <td>{!! $user->email !!}</td>
-                                        <td>{!! Carbon\Carbon::parse($user->birthday)->format('d-m-Y') !!}</td>
-                                        <td>{!! $user->address !!}</td>
-                                        <td>{!! $user->image !!}</td>
-                                        <td>
-                                        @if($user->level == 1)
-                                            {{"Admin"}}
-                                        @else
-                                            {{"Nhân viên"}}
-                                        @endif
-                                        </td>
-                                        <td>{!! Carbon\Carbon::parse($user->created_at)->format('d-m-Y H:m:s') !!}</td>
+                                        <td>{!! $order->name !!}</td>
+                                        <td>{!! $order->email !!}</td>
+                                        <td>{!! $order->phone !!}</td>
+                                        <td>{!! $order->address !!}</td>
+                                        <td>{!! $order->code !!}</td>
+                                        <td>@if($order->status == 0)
+                                            {{"Chưa giao"}}
+                                        @elseif($order->status == 1)
+                                            {{"Đang giao"}}
+                                        @else($order->status == 2)
+                                            {{"Đã giao"}}
+                                        @endif</td>
+                                        <td>{!! Carbon\Carbon::parse($order->created_at)->format('d-m-Y H:m:s') !!}</td>
                                         <td>
                                             <div class="demo-google-material-icon">
-                                                <a onclick="return confirm_delete('Bạn chắc chắn xóa !')" href="{!! url('quan-ly-nhan-vien/xoa/' . $user->id) !!}">
+                                                <a onclick="return confirm_delete('Bạn chắc chắn xóa !')" href="{!! url('quan-ly-don-hang/xoa/' . $order->id) !!}">
                                                     <i class="material-icons">delete</i>
                                                 </a>
-                                                <a href="{!! url('quan-ly-nhan-vien/cap-nhat/' . $user->id) !!}" class="pull-right">
+                                                <a href="{!! url('quan-ly-don-hang/cap-nhat/' . $order->id) !!}" class="pull-right">
                                                     <i class="material-icons">mode_edit</i>
                                                 </a>
                                                 

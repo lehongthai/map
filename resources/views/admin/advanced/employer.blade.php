@@ -18,20 +18,20 @@
                                         @foreach($listUser as $user)
                                         <option value="{!! $user->id !!}" 
                                         @if(old('user_id') == $user->id || $uid == $user->id) selected @endif>
-                                        -- {!! $user->name !!} --
+                                        {!! $user->name !!}
                                         </option>
                                         @endforeach
                                     </select><br>
                                     <span class="has-error">{!! $errors->first('user_id') !!}</span>
                                 </div>
-                                <label for="product_id">Chọn Sản Phẩm</label>
+                                <label for="product_id">Chọn Đơn Hàng</label>
                                 <div class="form-group">
                                     <select class="form-control show-tick" id="product_id" name="product_id">
-                                        <option>-- Chọn Sản Phẩm --</option>
+                                        <option>-- Chọn Đơn Hàng --</option>
                                         @foreach($listProduct as $product)
-                                        <option value="{!! $product->id !!}" 
-                                        @if(old('product_id') == $product->id || $pid == $product->id) selected @endif>
-                                        -- {!! $product->name !!} --
+                                        <option value="{!! $product->code !!}" 
+                                        @if(old(' ') == $product->code || $pid == $product->code) selected @endif>
+                                        {!! $product->name !!}
                                         </option>
                                         @endforeach
                                     </select>
@@ -76,8 +76,8 @@
         $('#bh-sl-map-container').storeLocator({
             'slideMap' : false,
             'defaultLoc': true,
-            'defaultLat': '10.955580',
-            'defaultLng' : '106.849762',
+            'defaultLat': '{!! $infoCompany->lat !!}',
+            'defaultLng' : '{!! $infoCompany->lng !!}',
             'mapSettings' : {
                 zoom : 12,
                 mapTypeId: google.maps.MapTypeId.ROADMAP,

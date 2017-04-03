@@ -11,84 +11,94 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Delivery;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class DeliveryController extends Controller
 {
-    public function getList(){
+    public function getList()
+    {
         $title = 'Danh sách giao hàng';
         $listDelivery = Delivery::getListDelivery();
         return view('admin.delivery.list', compact('listDelivery', 'title'));
     }
 
-    public function getCreate(){
+    public function getCreate()
+    {
         $title = 'Thêm mới đơn hàng';
         $listUser = Delivery::getListUser();
-        $listCustomer = Delivery::getListCustomer();
-        return view('admin.delivery.create', compact('title', 'listUser', 'listCustomer'));
+        $listOrder = Delivery::getListOrder();
+        return view('admin.delivery.create', compact('title', 'listUser', 'listOrder'));
     }
 
-    public function postCreate(Request $request){
+    public function postCreate(Request $request)
+    {
         $this->validate($request, [
             'user_id' => 'required|exists:users,id',
-            'customer_id' => 'required|exists:customers,id'
+            'order_code' => 'required|exists:orders,code'
         ]);
 
         $delivery = new Delivery();
         $delivery->user_id = $request->user_id;
-        $delivery->customer_id = $request->customer_id;
+        $delivery->order_code = $request->order_code;
         $delivery->note = $request->note;
 
-        if ($delivery->save()){
+        if ($delivery->save() && Order::updateStatus($request->order_code)) {
             $message = ['level' => 'success', 'flash_message' => 'Tạo thành công giao hàng'];
-        }else{
+        } else {
             $message = ['level' => 'danger', 'flash_message' => 'Tạo không thành công giao hàng'];
         }
         return redirect('quan-ly-giao-hang/danh-sach')->with($message);
     }
 
-    public function getUpdate($id=null){
-        if ($id != NULL){
+    public function getUpdate($id = null)
+    {
+        if ($id != NULL) {
             $listUser = Delivery::getListUser();
-            $listCustomer = Delivery::getListCustomer();
             $infoDelivery = Delivery::find($id);
-            $title = 'Cập nhật đơn hàng';
-            return view('admin.delivery.update', compact('infoDelivery', 'title', 'listUser', 'listCustomer'));
-        }else{
+            if ($infoDelivery->status == 0){
+                $listOrder = Delivery::getListOrder($infoDelivery->order_code);
+                $title = 'Cập nhật đơn hàng';
+                return view('admin.delivery.update', compact('infoDelivery', 'title', 'listUser', 'listOrder'));
+            }else{
+                $message = ['level' => 'danger', 'flash_message' => 'Đươn hàng đã được xác nhận giao, không thể thay đổi'];
+            }
+        } else {
             $message = ['level' => 'danger', 'flash_message' => 'Không tìm thấy giao hàng'];
         }
         return redirect('quan-ly-giao-hang/danh-sach')->with($message);
     }
 
-    public function postUpdate(Request $request){
+    public function postUpdate(Request $request)
+    {
         $this->validate($request, [
             'user_id' => 'required|exists:users,id',
-            'customer_id' => 'required|exists:customers,id'
+            'order_code' => 'required|exists:orders,code'
         ]);
 
         $id = $request->id;
         $delivery = Delivery::find($id);
-        if ($delivery){
+        if ($delivery) {
             $delivery->user_id = $request->user_id;
-            $delivery->customer_id = $request->customer_id;
+            $delivery->order_code = $request->order_code;
             $delivery->note = $request->note;
-            if ($request->status != NULL && $request->status == 2){
+            if ($request->status != NULL && $request->status == 2) {
                 $delivery->status = 2;
-            }else{
+            } else {
                 $delivery->status = 1;
             }
-            if ($delivery->save()){
+            if ($delivery->save() && Order::updateStatus($request->order_code)) {
                 $message = ['level' => 'success', 'flash_message' => 'Cập nhật thành công giao hàng'];
-            }else{
+            } else {
                 $message = ['level' => 'danger', 'flash_message' => 'Cập nhật thành công giao hàng'];
             }
-        }else{
+        } else {
             $message = ['level' => 'danger', 'flash_message' => 'Không tìm thấy giao hàng'];
         }
         return redirect('quan-ly-giao-hang/danh-sach')->with($message);
     }
 
-    public static function getDelete($id=0)
+    public static function getDelete($id = 0)
     {
         $message = ['level' => 'danger', 'flash_message' => 'Không tìm thấy giao hàng'];
         $delivery = Delivery::find($id);
