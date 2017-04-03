@@ -22,7 +22,7 @@
             }
 
             body {
-                background-image: url('http://localhost/laravel/map/1.jpg'); 
+                background-image: url('{!! url('') !!}/1.jpg'); 
                 background-repeat: no-repeat;
                 background-attachment: fixed;
                 background-position: center;
