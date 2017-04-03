@@ -21,6 +21,13 @@
                 margin: 0;
             }
 
+            body {
+                background-image: url('http://localhost/laravel/map/1.jpg'); 
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-position: center;
+            }
+
             .full-height {
                 height: 100vh;
             }
@@ -61,34 +68,35 @@
 
             .m-b-md {
                 margin-bottom: 30px;
+                color: #1C1C1C;
             }
         </style>
     </head>
-    <body style="background-image: url('http://localhost:8080/Laravel/map/1.jpg'); margin:auto;">
+    <body>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/home') }}">Trang chủ</a>
                     @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
+                        <a href="{{ url('/login') }}">Đăng nhập</a>
+                        <a href="{{ url('/register') }}">Đăng ký</a>
                     @endif
                 </div>
             @endif
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Hệ thống quản lý giao hàng
                 </div>
 
-                <div class="links">
+                {{-- <div class="links">
                     <a href="https://laravel.com/docs">Documentation</a>
                     <a href="https://laracasts.com">Laracasts</a>
                     <a href="https://laravel-news.com">News</a>
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+                </div> --}}
             </div>
         </div>
     </body>

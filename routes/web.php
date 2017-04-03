@@ -30,6 +30,8 @@ Route::group(['prefix' => 'quan-ly-nhan-vien', 'middleware' => 'auth'], function
     Route::get('/cap-nhat/{id?}', 'Admin\UserController@getUpdate');
     Route::post('/cap-nhat/{id?}', 'Admin\UserController@postUpdate');
     Route::get('/xoa/{id?}', 'Admin\UserController@getDelete');
+
+    Route::get('/info', 'Admin\UserController@getInfo');
 });
 
 Route::group(['prefix' => 'quan-ly-san-pham', 'middleware' => 'auth'], function (){
