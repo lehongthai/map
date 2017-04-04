@@ -11,7 +11,7 @@
                             <h2>
                                 {!! $title !!}
                             </h2>
-                            <a href="{!! url('quan-ly-khach-hang/them-moi') !!}" class="btn btn-success header-dropdown m-r--5">Tạo mới</a>
+                            
                         </div>
                         <div class="body">
                             <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
@@ -20,12 +20,10 @@
                                         <th>Tên</th>
                                         <th>Địa chỉ email</th>
                                         <th>Số điện thoại</th>
+                                        <th>Ngày sinh</th>
                                         <th>Địa chỉ</th>
-                                        <th>Mã sản phẩm</th>
-                                        {{-- <th>Ghi chú</th> --}}
-                                        <th>Trạng thái</th>
                                         <th>Ngày tạo</th>
-                                        <th>Hành động</th>
+                                        
                                     </tr>
                                 </thead>
                                 <tfoot>
@@ -33,43 +31,23 @@
                                         <th>Tên</th>
                                         <th>Địa chỉ email</th>
                                         <th>Số điện thoại</th>
+                                        <th>Ngày sinh</th>
                                         <th>Địa chỉ</th>
-                                        <th>Mã sản phẩm</th>
-                                        {{-- <th>Ghi chú</th> --}}
-                                        <th>Trạng thái</th>
                                         <th>Ngày tạo</th>
-                                        <th>Hành động</th>
+                                        
                                     </tr>
                                 </tfoot>
                                 <tbody>
                                 @if($listCustomer != NULL)
                                     @foreach($listCustomer as $customer)
                                     <tr>
-                                        <td>{!! $customer->fullname !!}</td>
+                                        <td>{!! $customer->name !!}</td>
                                         <td>{!! $customer->email !!}</td>
                                         <td>{!! $customer->phone !!}</td>
+                                        <td>{!! Carbon\Carbon::parse($customer->birthday)->format('d-m-Y') !!}</td>
                                         <td>{!! $customer->address !!}</td>
-                                        <td>{!! $customer->product_code !!}</td>
-                                        {{-- <td>{!! $customer->note !!}</td> --}}
-                                        <td>@if($customer->status == 0)
-                                            {{"Chưa giao"}}
-                                        @elseif($customer->status == 1)
-                                            {{"Đang giao"}}
-                                        @else($customer->status == 2)
-                                            {{"Đã giao"}}
-                                        @endif</td>
                                         <td>{!! Carbon\Carbon::parse($customer->created_at)->format('d-m-Y H:m:s') !!}</td>
-                                        <td>
-                                            <div class="demo-google-material-icon">
-                                                <a onclick="return confirm_delete('Bạn chắc chắn xóa !')" href="{!! url('quan-ly-khach-hang/xoa/' . $customer->id) !!}">
-                                                    <i class="material-icons">delete</i>
-                                                </a>
-                                                <a href="{!! url('quan-ly-khach-hang/cap-nhat/' . $customer->id) !!}" class="pull-right">
-                                                    <i class="material-icons">mode_edit</i>
-                                                </a>
-                                                
-                                            </div>
-                                        </td>
+                                        
                                     </tr>
                                     @endforeach
                                 @endif
@@ -83,8 +61,15 @@
 @endsection
 
 @section('javascript')
+    <!-- Select Plugin Js -->
+    <script src="{{ asset('public/minovate/plugins/bootstrap-select/js/bootstrap-select.js') }}"></script>
+    <!-- Slimscroll Plugin Js -->
+    <script src="{{ asset('public/minovate/plugins/jquery-slimscroll/jquery.slimscroll.js') }}"></script>
+    <!-- Waves Effect Plugin Js -->
+    <script src="{{ asset('public/minovate/plugins/node-waves/waves.js') }}"></script>
     <script src="{{ asset('public/minovate/plugins/jquery-datatable/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('public/minovate/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js') }}"></script>
     <script src="{{ asset('public/minovate/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js') }}"></script>
     <script src="{{ asset('public/minovate/js/pages/tables/jquery-datatable.js') }}"></script>
+    <script src="{{ asset('public/minovate/js/admin.js') }}"></script>
 @endsection

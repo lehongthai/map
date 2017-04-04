@@ -79,6 +79,28 @@
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            {{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
+                        
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+
+                                <a href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                    Đăng xuất
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+
                     <!-- Notifications -->
                     <li class="dropdown">
                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
@@ -349,9 +371,6 @@
                         <ul class="ml-menu">
                             <li>
                                 <a href="{!! url('quan-ly-khach-hang/danh-sach') !!}">Danh sách khách hàng</a>
-                            </li>
-                            <li>
-                                <a href="{!! url('quan-ly-khach-hang/them-moi') !!}">Thêm khách hàng</a>
                             </li>
                         </ul>
                     </li>

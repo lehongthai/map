@@ -98,11 +98,24 @@ class UserController extends Controller
         return redirect('quan-ly-nhan-vien/danh-sach')->with($message);
     }
 
-    public function getInfo()
+    public function getOrder()
     {
-        $title = 'info';
+        $title = 'Đơn hàng';
         $infoOrder = Order::where('user_id',Auth::user()->id)->get();
         
-        return view('admin.user.info', compact('infoOrder', 'title'));
+        return view('admin.customer.order', compact('infoOrder', 'title'));
+    }
+
+    public function getListcustomer()
+    {
+        $title = 'Danh sách khách hàng';
+        $listCustomer = User::where('level',3)->get();
+        return view('admin.customer.list', compact('title','listCustomer'));
+    }
+
+    public function getInfo()
+    {
+        $title = 'Thông tin';
+        return view('admin.customer.info', compact('title'));
     }
 }
