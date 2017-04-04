@@ -30,10 +30,6 @@ Route::group(['prefix' => 'quan-ly-nhan-vien', 'middleware' => 'auth'], function
     Route::get('/cap-nhat/{id?}', 'Admin\UserController@getUpdate');
     Route::post('/cap-nhat/{id?}', 'Admin\UserController@postUpdate');
     Route::get('/xoa/{id?}', 'Admin\UserController@getDelete');
-<<<<<<< HEAD
-=======
-
->>>>>>> 61bbd06073149b07c9745d5e2d5d7650abdd5c95
 });
 
 
@@ -95,14 +91,13 @@ Route::post('/xem-vi-tri', 'Admin\AdvancedController@postViewLocal');
 Route::get('/vi-tri-nhan-vien', 'Web\MapController@display');
 Route::get('/json-nhan-vien', 'Web\MapController@getListUserJson');
 
-<<<<<<< HEAD
+
 Route::group(['prefix' => '/thong-tin-khach-hang', 'middleware' => 'cutomer'], function () {
     Route::get('/don-hang', 'Admin\UserController@getInfo');
-=======
+
 Route::group(['prefix' => 'quan-ly-khach-hang', 'middleware' => 'auth'], function (){
     Route::get('/don-hang', 'Admin\UserController@getOrder');
     Route::get('/danh-sach', 'Admin\UserController@getListcustomer');
     Route::get('/thong-tin', 'Admin\UserController@getInfo');
->>>>>>> 61bbd06073149b07c9745d5e2d5d7650abdd5c95
 });
 
