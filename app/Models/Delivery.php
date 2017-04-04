@@ -112,22 +112,27 @@ class Delivery extends \Illuminate\Database\Eloquent\Model
 
     public static function getOrder($uid)
     {
-        $sql = 'SELECT d.id, c.address, c.phone, d.status, d.time_get, d.time_over, d.note
+        $sql = 'SELECT d.id, o.address, o.phone, d.status, d.time_get, d.time_over, d.note
                     FROM deliverys as d 
-                    LEFT JOIN customers as c 
-                      ON d.customer_id = c.id 
-                      WHERE d.user_id = ' . $uid . ' ';
+                    LEFT JOIN users as u 
+                        ON d.user_id = u.id 
+                    LEFT JOIN orders as o 
+                        ON d.order_code = o.code
+                            WHERE d.user_id = ' . $uid . '
+                            AND d.order_code = o.code ';
 
         return DB::select($sql);
     }
 
     public static function getupdateOrder($user, $id)
     {
-        $sql = 'SELECT d.id, c.address, c.phone, d.status, d.time_get, d.time_over, d.note
+        $sql = 'SELECT d.id, o.address, o.phone, d.status, d.time_get, d.time_over, d.note
                     FROM deliverys as d 
-                    LEFT JOIN customers as c 
-                      ON d.customer_id = c.id 
-                      WHERE d.user_id = ' . $user . ' AND d.id = ' . $id . '  ';
+                    LEFT JOIN users as u 
+                        ON d.user_id = u.id 
+                    LEFT JOIN orders as o 
+                        ON d.order_code = o.code
+                      WHERE d.user_id = ' . $user . ' AND d.id = ' . $id . '  AND d.order_code = o.code';
 
         return DB::select($sql);
     }

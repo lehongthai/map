@@ -31,7 +31,6 @@ Route::group(['prefix' => 'quan-ly-nhan-vien', 'middleware' => 'auth'], function
     Route::post('/cap-nhat/{id?}', 'Admin\UserController@postUpdate');
     Route::get('/xoa/{id?}', 'Admin\UserController@getDelete');
 
-    Route::get('/info', 'Admin\UserController@getInfo');
 });
 
 Route::group(['prefix' => 'quan-ly-san-pham', 'middleware' => 'auth'], function (){
@@ -52,14 +51,14 @@ Route::group(['prefix' => 'quan-ly-giao-hang', 'middleware' => 'auth'], function
     Route::get('/xoa/{id?}', 'Admin\DeliveryController@getDelete');
 });
 
-Route::group(['prefix' => 'quan-ly-khach-hang', 'middleware' => 'auth'], function (){
-    Route::get('/danh-sach', 'Admin\CustomerController@getList');
-    Route::get('/them-moi', 'Admin\CustomerController@getCreate');
-    Route::post('/them-moi', 'Admin\CustomerController@postCreate');
-    Route::get('/cap-nhat/{id?}', 'Admin\CustomerController@getUpdate');
-    Route::post('/cap-nhat/{id?}', 'Admin\CustomerController@postUpdate');
-    Route::get('/xoa/{id?}', 'Admin\CustomerController@getDelete');
-});
+// Route::group(['prefix' => 'quan-ly-khach-hang', 'middleware' => 'auth'], function (){
+//     Route::get('/danh-sach', 'Admin\CustomerController@getList');
+//     Route::get('/them-moi', 'Admin\CustomerController@getCreate');
+//     Route::post('/them-moi', 'Admin\CustomerController@postCreate');
+//     Route::get('/cap-nhat/{id?}', 'Admin\CustomerController@getUpdate');
+//     Route::post('/cap-nhat/{id?}', 'Admin\CustomerController@postUpdate');
+//     Route::get('/xoa/{id?}', 'Admin\CustomerController@getDelete');
+// });
 
 Route::group(['prefix' => 'quan-ly-cong-ty', 'middleware' => 'auth'], function () {
     Route::get('/danh-sach', 'Admin\CompanyController@getList');
@@ -91,4 +90,10 @@ Route::post('/xem-vi-tri', 'Admin\AdvancedController@postViewLocal');
 
 Route::get('/vi-tri-nhan-vien', 'Web\MapController@display');
 Route::get('/json-nhan-vien', 'Web\MapController@getListUserJson');
+
+Route::group(['prefix' => 'quan-ly-khach-hang', 'middleware' => 'auth'], function (){
+    Route::get('/don-hang', 'Admin\UserController@getOrder');
+    Route::get('/danh-sach', 'Admin\UserController@getListcustomer');
+    Route::get('/thong-tin', 'Admin\UserController@getInfo');
+});
 
