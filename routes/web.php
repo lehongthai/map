@@ -85,6 +85,7 @@ Route::group(['prefix' => 'quan-ly-nang-cao', 'middleware' => 'auth'], function 
     Route::post('/on-off', 'Admin\AdvancedController@postOnOffEmployer');
     Route::get('/on-off', 'Admin\AdvancedController@viewOnOffEmployer');
 });
+
 Route::get('/xem-vi-tri', 'Admin\AdvancedController@advancedViewLocal');
 Route::post('/xem-vi-tri', 'Admin\AdvancedController@postViewLocal');
 
@@ -93,11 +94,12 @@ Route::get('/json-nhan-vien', 'Web\MapController@getListUserJson');
 
 
 Route::group(['prefix' => '/thong-tin-khach-hang', 'middleware' => 'cutomer'], function () {
-    Route::get('/don-hang', 'Admin\UserController@getInfo');
+    Route::get('/don-hang', 'Admin\UserController@getOrder');
+    Route::get('/thong-tin', 'Admin\UserController@getInfo');
+});
 
 Route::group(['prefix' => 'quan-ly-khach-hang', 'middleware' => 'auth'], function (){
-    Route::get('/don-hang', 'Admin\UserController@getOrder');
     Route::get('/danh-sach', 'Admin\UserController@getListcustomer');
-    Route::get('/thong-tin', 'Admin\UserController@getInfo');
+    
 });
 

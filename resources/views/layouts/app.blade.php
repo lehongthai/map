@@ -23,11 +23,7 @@
         <style>
 
             body {
-<<<<<<< HEAD
-                background-image: url('{!! url('') !!}/1.jpg'); 
-=======
                 background-image: url('{!! url('1.jpg') !!}'); 
->>>>>>> 61bbd06073149b07c9745d5e2d5d7650abdd5c95
                 background-repeat: no-repeat;
                 background-attachment: fixed;
                 background-position: center;
@@ -75,7 +71,6 @@
                                 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{!! url('quan-ly-khach-hang/don-hang') !!}">xem đơn hàng</a>
 
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

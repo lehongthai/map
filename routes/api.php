@@ -23,5 +23,9 @@ Route::post('/update', 'Api\UserController@updateLocal');
 
 Route::post('/online', 'Api\UserController@postOnline');
 
-Route::get('/order','Api\OrderController@getOrder');
-Route::get('/update_order','Api\OrderController@update_order');
+
+Route::post('/update_order','Api\OrderController@update_order');
+
+
+Route::get('/listorder','Api\OrderController@getOrder');
+Route::post('/order','Api\OrderController@putOrder');

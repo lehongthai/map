@@ -84,4 +84,47 @@ class OrderController extends Controller
         }
         return $respone;
     }
+
+     public function putOrder(Request $request, ResponseFactory $responseFactory)
+    {
+       
+         $validator = \Validator::make($request->all(), 
+            [
+            'delivery_id' => 'required|exists:deliverys,id',
+            'order_code' => 'required|exists:deliverys,order_code',
+            'token' => 'required|exists:users,mobile_token',
+            'status' => 'required|numeric',
+            'image' =>  'exists:deliverys,image'
+            ],
+            [
+            'token.exists' => 'can\'t find token'
+            ]);
+
+        if ($validator->fails()) {
+            $respone = $responseFactory->json([
+                'error' => true,
+                'error_msg' => $validator->messages()
+            ], 400);
+        } else {
+            $delivery_id = $request->delivery_id;
+            $mobile_token = $request->token;
+            $user = User::where('mobile_token', $mobile_token)->first()->id;
+            $order_code = $request->order_code;
+            $status = $request->status; 
+            $image = $request->image;         
+            $delivery = new Delivery();
+            if ($delivery->onoff($delivery_id,$user,$order_code,$image,$status)) {
+                $respone = $responseFactory->json([
+                    'error' => false,
+                    'error_msg' => null
+                ], 200);
+            } else {
+                $respone = $responseFactory->json([
+                    'error' => true,
+                    'error_msg' => 'update fail'
+                ], 400);
+            }
+        }
+        return $respone;
+    }
 }
