@@ -84,4 +84,21 @@ class OrderController extends Controller
         }
         return $respone;
     }
+
+    public function lastOrder(Request $request, ResponseFactory $responseFactory){
+        $mobile_token = $request->get('token');
+        $user = User::where('mobile_token', $mobile_token)->first();
+        if (!$user){
+            return $responseFactory->json([
+                'error' => true,
+                'error_msg' => 'cna\'t find user'
+            ], 400);
+        }
+        $lastOrder = json_decode(json_encode(Delivery::getLastOrder($user->id)), true);
+        return $responseFactory->json([
+            'error' => false,
+            'error_msg' => null,
+            'orders' => $lastOrder[0]
+        ], 200);
+    }
 }

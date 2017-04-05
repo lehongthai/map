@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers\Api;
+use App\Models\StatusUser;
 use App\User;
 use App\Models\Delivery;
 use Illuminate\Contracts\Routing\ResponseFactory;
@@ -17,11 +18,10 @@ class UserController extends Controller
             if (Auth::attempt(['email' => $email, 'password' => $password])) {
                 $respone = $responseFactory->json([
                     'error' => false,
-                    'error_msg' => null,
+                    'error_msg' => 'null',
                     'user' => [
                         'email' => $email,
                         'name' => Auth::user()->name,
-                        'created_at' => Auth::user()->created_at,
                         'mobile_token' => Auth::user()->mobile_token
                     ]
                 ], 200);
@@ -29,14 +29,14 @@ class UserController extends Controller
                 $respone = $responseFactory->json([
                     'error' => true,
                     'error_msg' => 'login fail',
-                    'user' => null
+                    'user' => 'null'
                 ], 400);
             }
         } else {
             $respone = $responseFactory->json([
                 'error' => true,
                 'error_msg' => 'data not json',
-                'user' => null
+                'user' => 'null'
             ], 400);
         }
         return $respone;
@@ -45,10 +45,10 @@ class UserController extends Controller
     public function updateLocal(Request $request, ResponseFactory $responseFactory)
     {
         $validator = \Validator::make($request->all(), [
-            'did' => 'required|numeric|exists:deliverys,id',
+            'delivery_id' => 'required|numeric|exists:deliverys,id',
             'token' => 'required|exists:users,mobile_token',
-            'latitude' => 'required',
-            'longitude' => 'required'
+            'lat' => 'required',
+            'lng' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -57,11 +57,14 @@ class UserController extends Controller
                 'error_msg' => $validator->messages()
             ], 400);
         } else {
-            $longitude = $request->longitude;
-            $latitude = $request->latitude;
+            $longitude = $request->lng;
+            $latitude = $request->lat;
             $mobile_token = $request->token;
-            $did = $request->did;
+            $did = $request->delivery_id;
+            $timeOff = $request->timeoff;
             $delivery = new Delivery();
+            $statusUser = new StatusUser();
+            $statusUser->updateStatus($timeOff, $mobile_token);
             $user = new User();
             if ($delivery->updateRoutes($did, $longitude, $latitude) && $user->updateLocal($mobile_token, $latitude, $longitude)) {
                 $respone = $responseFactory->json([
@@ -101,7 +104,7 @@ class UserController extends Controller
             if ($user->updateStatus($mobile_token,$online)) {
                 $respone = $responseFactory->json([
                     'error' => false,
-                    'error_msg' => null
+                    'error_msg' => 'null'
                 ], 200);
             } else {
                 $respone = $responseFactory->json([

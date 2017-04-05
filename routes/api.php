@@ -25,3 +25,4 @@ Route::post('/online', 'Api\UserController@postOnline');
 
 Route::get('/order','Api\OrderController@getOrder');
 Route::get('/update_order','Api\OrderController@update_order');
+Route::get('/lastorder', 'Api\OrderController@lastOrder');

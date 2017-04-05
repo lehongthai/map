@@ -53,13 +53,13 @@ class User extends Authenticatable
     {
         $checkAddress = $this->callApiGoogleMap($lng, $lat);
         $dataUpdate = ['lat' => $lat, 'lng' => $lng];
-        $getDistance = $this->callApiGetDistance($lat, $lng);
+        //$getDistance = $this->callApiGetDistance($lat, $lng);
         if ($checkAddress) {
             $dataUpdate['address'] = $checkAddress;
         }
-        if ($getDistance) {
+        /*if ($getDistance) {
             $dataUpdate['distance'] = $getDistance;
-        }
+        }*/
         return User::where('mobile_token', $mobile_token)->update($dataUpdate);
     }
 
@@ -85,13 +85,21 @@ class User extends Authenticatable
         return false;
     }
 
-    /*updat status user
-    */
+    /**
+     * @param $mobile_token
+     * @param $online
+     * @return mixed
+     */
     public function updateStatus($mobile_token, $online)
     {
         return User::where('mobile_token', $mobile_token)->update(['status' => $online]);
     }
 
+    /**
+     * @param $uid
+     * @param $pid
+     * @return bool|string
+     */
     public static function getAdvancedEmployer($uid, $pid)
     {
         $sql = 'SELECT u.address, u.lat, u.lng, u.name, o.name as delivery 
@@ -110,6 +118,11 @@ class User extends Authenticatable
         return false;
     }
 
+    /**
+     * @param $lat string
+     * @param $lng string
+     * @return bool
+     */
     private function callApiGetDistance($lat, $lng)
     {
         $infoCompany = Company::getLngLat();

@@ -142,4 +142,14 @@ class Delivery extends \Illuminate\Database\Eloquent\Model
         return Delivery::where('id', $id)->update(['status' => $status]);
     }
 
+    public static function getLastOrder($uid){
+        $sql = 'SELECT d.id as delivery_id, d.status, d.order_code, o.address, o.phone, d.time_get, d.time_over, d.note  
+                  FROM deliverys as d 
+                  LEFT JOIN orders as o 
+                    ON d.order_code = o.code 
+                  WHERE d.user_id = ' . $uid . ' 
+                  ORDER BY d.id DESC LIMIT 1';
+        return DB::select($sql);
+    }
+
 }
