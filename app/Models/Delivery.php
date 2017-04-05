@@ -137,6 +137,7 @@ class Delivery extends \Illuminate\Database\Eloquent\Model
         return DB::select($sql);
     }
 
+
     public function updateStatus($id, $status)
     {
         return Delivery::where('id', $id)->update(['status' => $status]);
@@ -152,4 +153,8 @@ class Delivery extends \Illuminate\Database\Eloquent\Model
         return DB::select($sql);
     }
 
+    public function onoff($delivery_id, $user, $order_code, $image, $status)
+    {
+        return Delivery::where('id', $delivery_id)->where('user_id', $user)->where('order_code',$order_code)->where('image',$image)->update(['status' => $status]);
+    }
 }

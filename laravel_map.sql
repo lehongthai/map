@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 03, 2017 at 10:59 AM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Generation Time: Apr 04, 2017 at 06:01 PM
+-- Server version: 10.1.10-MariaDB
+-- PHP Version: 7.0.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -72,8 +72,8 @@ CREATE TABLE `deliverys` (
 --
 
 INSERT INTO `deliverys` (`id`, `user_id`, `order_code`, `status`, `note`, `distance`, `routes`, `time_get`, `time_over`, `image`, `date`, `created_at`, `updated_at`) VALUES
-(2, 3, 'IALSQJD6X931', 1, 'Nhanh', '123', '{lat: 10.802662, lng: 106.696442},\n    {lat: 10.803489, lng:106.689815},\n    {lat: 10.803879, lng: 106.686736},\n    {lat: 10.801413, lng: 106.682616}{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},', '2017-04-03 01:43:34', '0000-00-00 00:00:00', '', '2017-03-01', '2017-03-27 00:50:53', '2017-04-03 08:43:34'),
-(9, 3, 'ialsqjd6x1', 0, 'Không có', NULL, NULL, NULL, NULL, NULL, NULL, '2017-04-03 03:51:58', '2017-04-03 03:51:58');
+(2, 3, 'IALSQJD6X931', 1, 'Nhanh', '123', '{lat: 10.802662, lng: 106.696442},\n    {lat: 10.803489, lng:106.689815},\n    {lat: 10.803879, lng: 106.686736},\n    {lat: 10.801413, lng: 106.682616}{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},{lat: 10.797097, lng: 106.689973},', '2017-04-04 11:07:47', '0000-00-00 00:00:00', '', '2017-03-01', '2017-03-27 00:50:53', '2017-04-04 04:07:47'),
+(9, 3, 'ialsqjd6x9', 1, 'Không có', NULL, NULL, '2017-04-04 11:08:36', NULL, NULL, NULL, '2017-04-03 03:51:58', '2017-04-04 04:08:36');
 
 -- --------------------------------------------------------
 
@@ -114,8 +114,8 @@ CREATE TABLE `orders` (
 INSERT INTO `orders` (`id`, `user_id`, `name`, `phone`, `product`, `address`, `status`, `code`, `note`, `created_at`, `updated_at`) VALUES
 (6, 31, 'Lê Thái', '0963256096', '2', 'kí túc xá', 1, 'IALSQJD6X931', 'Không có', '2017-04-03 02:35:40', '2017-04-02 20:13:40'),
 (5, 30, 'Nguyễn Phước', NULL, '2,3', NULL, 1, 'ialsqjd6x9', 'ssss', '2017-04-03 01:04:56', '2017-04-03 03:31:42'),
-(13, 37, 'NetVis Comany', '09632560961', '2,3', 'Khu Công Nghệ Phần Mềm', 0, 'IALSQJD6X937', 'Không có', '2017-04-03 05:31:43', '2017-04-03 05:31:43'),
-(14, 37, 'NetVis Comany', '09632560961', '3', 'Khu Công Nghệ Phần Mềm', 0, 'IALSQJD6X937', 'sssss', '2017-04-03 05:32:07', '2017-04-03 05:32:07'),
+(13, 37, 'NetVis Comany', '09632560961', '2,3', 'Khu Công Nghệ Phần Mềm', 0, 'IALSQJD6X937', 'Không có', '2017-04-03 05:31:43', '2017-04-03 11:47:57'),
+(14, 37, 'NetVis Comany', '09632560961', '3', 'Khu Công Nghệ Phần Mềm', 0, 'IALSQJD6X937', 'sssss', '2017-04-03 05:32:07', '2017-04-03 11:48:02'),
 (15, 40, 'NetVis Comany', '09632560961', '2,3', 'Khu Công Nghệ Phần Mềm', 0, 'FBBAAC2F5A40', 'sssss', '2017-04-03 06:53:53', '2017-04-03 06:53:53');
 
 -- --------------------------------------------------------
@@ -176,12 +176,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `birthday`, `address`, `password`, `level`, `status`, `active`, `banded`, `remember_token`, `mobile_token`, `image`, `lng`, `lat`, `distance`, `created_at`, `updated_at`) VALUES
-(1, 'Lê Hồng Thái', 'lethai.dev01@gmail.com', '1', '2017-03-23', 'Thăng Bình - Quảng Nam', '$2y$10$Y/kiX/Ga.1lrtl6FTYhiduZFDzyVac5ClHVVqqV2lobgbiUxpYCxm', 1, 0, NULL, NULL, 'kNg8FD3zQVn12ffbIqlEV0VoB70lj9Dct0vZpl6uctpogRyWXwf7u2Sex8eP', '8VVJ4hY7aHrUwlN0z7pnn5a01WNH6JsnDPGGd1mfiKPE65GccSW5LAyi4wH1', NULL, '104.89195300', '12.69890200', NULL, '2017-03-22 06:49:54', '2017-03-25 23:30:22'),
-(3, 'Lê Hồng Quốc', 'lethai.dev02@gmail.com', '2', '1994-01-01', '54-75 Hoa Lan, phường 2, Phú Nhuận, Hồ Chí Minh, Vietnam', '$2y$10$p.XEJm49QFpKUApSziFHqe85UfZZBadFbm3T/A2sKlP4DKldzHdJO', 0, 0, '9dae7fd95389eca10fbfc8096198c556', 0, 'O4cIZk7FjXKgqV9HnWLepqovG9vUAOgLoby2kmO0BuMPolexgTPMTHmLVw4x', '5027cbf4a619b6c7d03b2504d075bb27', NULL, '106.689973', '10.797097', NULL, '2017-03-24 07:07:42', '2017-04-03 08:26:39'),
+(1, 'Lê Hồng Thái', 'lethai.dev01@gmail.com', '1', '2017-03-23', 'Thăng Bình - Quảng Nam', '$2y$10$Y/kiX/Ga.1lrtl6FTYhiduZFDzyVac5ClHVVqqV2lobgbiUxpYCxm', 1, 0, NULL, NULL, '0haP0hxs0Zzet5OUqrO5GCNgf4qnTInp8PCkiVlS0ovyUoxFRwUsLhBvRNY5', '8VVJ4hY7aHrUwlN0z7pnn5a01WNH6JsnDPGGd1mfiKPE65GccSW5LAyi4wH1', NULL, '104.89195300', '12.69890200', NULL, '2017-03-22 06:49:54', '2017-03-25 23:30:22'),
+(3, 'Lê Hồng Quốc', 'lethai.dev02@gmail.com', '2', '1994-01-01', '54-75 Hoa Lan, phường 2, Phú Nhuận, Hồ Chí Minh, Vietnam', '$2y$10$p.XEJm49QFpKUApSziFHqe85UfZZBadFbm3T/A2sKlP4DKldzHdJO', 0, 0, '9dae7fd95389eca10fbfc8096198c556', 0, 'hbtSy0h7O5w7TpUCpMzrvpMLCnyeTd4Clh9pv8RvrxIaCMNQ3WTIbTp7mL43', '5027cbf4a619b6c7d03b2504d075bb27', NULL, '106.689973', '10.797097', NULL, '2017-03-24 07:07:42', '2017-04-04 03:13:04'),
 (30, 'NetVis Comany', 'lethai.dev01@gmail.co', '0963256096', NULL, 'Khu Công Nghệ Phần Mềm', '$2y$10$KqKyG8SSElSF7kJsp7yS6.6gayXzF4mkjnKP342KRMFtWcAQlzGri', 3, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, '2017-04-03 01:04:56', '2017-04-03 02:33:27'),
-(31, 'Lê Hồng Thái', 'teamchich26@gmail.com', '1234567890', NULL, 'Kí Túc Xá', '$2y$10$Mhy8DJAZ2XV5dYzMZammOeG6bHEbCDHsxU8z34KylFIE34vlbS4Ea', 3, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, '2017-04-03 02:35:40', '2017-04-03 02:35:40'),
-(37, 'NetVis Comany', 'hongthai0101@gmail.com', '09632560961', NULL, 'Khu Công Nghệ Phần Mềm', '$2y$10$BrkHNFvO27mEY2KkItYgu.J9uM.vTLpQPzIRkv5kyZxWKYw4jKKU.', 3, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, '2017-04-03 05:30:49', '2017-04-03 05:30:49'),
-(40, 'NetVis Comany', 'admin@gmail.com', '09632560961', NULL, 'Khu Công Nghệ Phần Mềm', '$2y$10$ptiw7opWPPgswiwcji3d8.9dCFIjlgkNDTlQIzsJoEOQJ3YkekFcm', 3, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, '2017-04-03 06:53:53', '2017-04-03 06:53:53');
+(31, 'Lê Hồng Thái', 'teamchich26@gmail.com', '1234567890', NULL, 'Kí Túc Xá', '$2y$10$Mhy8DJAZ2XV5dYzMZammOeG6bHEbCDHsxU8z34KylFIE34vlbS4Ea', 3, NULL, NULL, 0, 'WVFWkq3GpuJTx5hgq1d1OaRYdFfDAzkzqnhvbnOZkeEyZh9V9kIiNwSw5ekr', NULL, NULL, NULL, NULL, NULL, '2017-04-03 02:35:40', '2017-04-03 02:35:40'),
+(37, 'NetVis Comany', 'hongthai0101@gmail.com', '09632560961', NULL, 'Khu Công Nghệ Phần Mềm', '$2y$10$BrkHNFvO27mEY2KkItYgu.J9uM.vTLpQPzIRkv5kyZxWKYw4jKKU.', 3, NULL, NULL, 0, 'txY15CKXWSeAuGyyvWbizNF4Dm7wZLyp5Cev63VRefwkBIPyEAl45wt4AvpT', NULL, NULL, NULL, NULL, NULL, '2017-04-03 05:30:49', '2017-04-03 05:30:49'),
+(40, 'NetVis Comany', 'admin@gmail.com', '09632560961', NULL, 'Khu Công Nghệ Phần Mềm', '$2y$10$ptiw7opWPPgswiwcji3d8.9dCFIjlgkNDTlQIzsJoEOQJ3YkekFcm', 3, NULL, NULL, 0, 'RVOLIDGCFBXa44TwgHrFZbPDc29QjkpuPzSSMj1uUCmCQyjj8GeOsuRuL8FL', NULL, NULL, NULL, NULL, NULL, '2017-04-03 06:53:53', '2017-04-03 06:53:53');
 
 -- --------------------------------------------------------
 
@@ -202,10 +202,10 @@ CREATE TABLE `user_status` (
 --
 
 INSERT INTO `user_status` (`id`, `user_id`, `status`, `date`, `created_at`) VALUES
-(1, 3, '[{\"on\":{\"start\":\"16:04:10\",\"end\":\"20:30:50\"}},{\"off\":{\"start\":\"21:04:10\",\"end\":\"23:30:50\"}},{\"on\":{\"start\":\"16:04:10\",\"end\":\"20:30:50\"}}]', '2017-04-01', '2017-04-01'),
-(2, 3, '[{\"on\":{\"start\":\"16:04:10\",\"end\":\"20:30:50\"}},{\"off\":{\"start\":\"21:04:10\",\"end\":\"23:30:50\"}}]', '2017-04-02', '2017-04-01'),
-(3, 3, '[{\"start\":\"16:04:10\",\"end\":\"20:30:50\"},{\"start\":\"21:04:10\",\"end\":\"23:30:50\"}]', '2017-04-03', '2017-04-01'),
-(4, 3, '[{\"start\":\"16:04:10\",\"end\":\"20:30:50\"},{\"start\":\"21:04:10\",\"end\":\"23:30:50\"}]', '2017-04-04', '2017-04-01');
+(1, 3, '[{"on":{"start":"16:04:10","end":"20:30:50"}},{"off":{"start":"21:04:10","end":"23:30:50"}},{"on":{"start":"16:04:10","end":"20:30:50"}}]', '2017-04-01', '2017-04-01'),
+(2, 3, '[{"on":{"start":"16:04:10","end":"20:30:50"}},{"off":{"start":"21:04:10","end":"23:30:50"}}]', '2017-04-02', '2017-04-01'),
+(3, 3, '[{"start":"16:04:10","end":"20:30:50"},{"start":"21:04:10","end":"23:30:50"}]', '2017-04-03', '2017-04-01'),
+(4, 3, '[{"start":"16:04:10","end":"20:30:50"},{"start":"21:04:10","end":"23:30:50"}]', '2017-04-04', '2017-04-01');
 
 --
 -- Indexes for dumped tables
@@ -267,7 +267,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `products`
 --

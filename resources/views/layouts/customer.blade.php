@@ -311,10 +311,10 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="{!! url('quan-ly-khach-hang/don-hang') !!}">Đơn hàng</a>
+                                <a href="{!! url('thong-tin-khach-hang/don-hang') !!}">Đơn hàng</a>
                             </li>
                             <li>
-                                <a href="{!! url('quan-ly-khach-hang/thong-tin') !!}">Thông tin</a>
+                                <a href="{!! url('thong-tin-khach-hang/thong-tin') !!}">Thông tin</a>
                             </li>
                         </ul>
                     </li>
