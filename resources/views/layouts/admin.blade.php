@@ -293,6 +293,7 @@
     </nav>
     <!-- #Top Bar -->
     <section>
+    @if(Auth::user()->level == 1 || Auth::user()->level == 3)
         <!-- Left Sidebar -->
         <aside id="leftsidebar" class="sidebar">
             <!-- User Info -->
@@ -420,6 +421,49 @@
             <!-- #Footer -->
         </aside>
         <!-- #END# Left Sidebar -->
+        @endif
+        @if(Auth::user()->level == 3)
+        <!-- Left Sidebar -->
+        <aside id="leftsidebar" class="sidebar">
+            <!-- User Info -->
+            <!-- #User Info -->
+            <!-- Menu -->
+            <div class="menu">
+                <ul class="list">
+
+                    <li class="active">
+
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">view_list</i>
+                            <span>Khách hàng</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="{!! url('thong-tin-khach-hang/don-hang') !!}">Đơn hàng</a>
+                            </li>
+                            <li>
+                                <a href="{!! url('thong-tin-khach-hang/thong-tin') !!}">Thông tin</a>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                </ul>
+            </div>
+            <!-- #Menu -->
+            <!-- Footer -->
+            <div class="legal">
+                <div class="copyright">
+                    &copy; 2017 <a href="javascript:void(0);">Admin - LeThai Design</a>.
+                </div>
+                <div class="version">
+                    <b>Version: </b> 1.0.0
+                </div>
+            </div>
+            <!-- #Footer -->
+        </aside>
+        @endif
     </section>
 
     <section class="content">

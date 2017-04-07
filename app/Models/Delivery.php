@@ -118,8 +118,7 @@ class Delivery extends \Illuminate\Database\Eloquent\Model
                         ON d.user_id = u.id 
                     LEFT JOIN orders as o 
                         ON d.order_code = o.code
-                            WHERE d.user_id = ' . $uid . '
-                            AND d.order_code = o.code ';
+                    WHERE d.user_id = ' . $uid . ' ';
 
         return DB::select($sql);
     }
@@ -153,8 +152,11 @@ class Delivery extends \Illuminate\Database\Eloquent\Model
         return DB::select($sql);
     }
 
-    public function onoff($delivery_id, $user, $order_code, $image, $status)
+    public function updateStatusOrder($delivery_id, $user, $order_code, $status)
     {
-        return Delivery::where('id', $delivery_id)->where('user_id', $user)->where('order_code',$order_code)->where('image',$image)->update(['status' => $status]);
+        return Delivery::where('id', $delivery_id)
+            ->where('user_id', $user)
+            ->where('order_code',$order_code)
+            ->update(['status' => $status]);
     }
 }

@@ -19,12 +19,8 @@
                 font-weight: 100;
                 height: 100vh;
                 margin: 0;
-            }
-
-            body {
                 background-image: url('{!! url('1.jpg') !!}'); 
                 background-repeat: no-repeat;
-                background-attachment: fixed;
                 background-position: center;
             }
 
@@ -66,10 +62,7 @@
                 text-transform: uppercase;
             }
 
-            .m-b-md {
-                margin-bottom: 30px;
-                color: #1C1C1C;
-            }
+
         </style>
     </head>
     <body>
@@ -86,17 +79,7 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Hệ thống quản lý giao hàng
-                </div>
-
-                {{-- <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div> --}}
+                <h1 style="font-size: 90px; color: green">Hệ thống quản lý giao hàng</h1>
             </div>
         </div>
     </body>

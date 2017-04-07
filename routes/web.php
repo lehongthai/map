@@ -19,7 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-Route::group(['prefix' => 'trang-quan-tri'], function (){
+Route::group(['prefix' => 'trang-quan-tri', 'middleware' => 'auth1'], function (){
     Route::get('/dashboard', 'Admin\DashboardController@index');
 });
 
@@ -85,15 +85,10 @@ Route::get('/json-nhan-vien', 'Web\MapController@getListUserJson');
 
 
 Route::group(['prefix' => '/thong-tin-khach-hang', 'middleware' => 'cutomer'], function () {
-<<<<<<< HEAD
-    Route::get('/don-hang', 'Admin\UserController@getInfo');
-});
-=======
     Route::get('/don-hang', 'Admin\UserController@getOrder');
     Route::get('/thong-tin', 'Admin\UserController@getInfo');
 });
 
->>>>>>> 1bf2d95bae64441ab1febbbc05e6af43f37fc470
 Route::group(['prefix' => 'quan-ly-khach-hang', 'middleware' => 'auth'], function (){
     Route::get('/danh-sach', 'Admin\UserController@getListcustomer');
     

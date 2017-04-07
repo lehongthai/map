@@ -14,6 +14,7 @@ use App\Http\Controllers\Controller;
 class DashboardController extends Controller
 {
     public function index(){
-        return view('admin.dashboard.index');
+    	$title = 'Trang Quản Trị';
+        return view('admin.dashboard.index', compact('title'));
     }
 }

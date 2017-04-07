@@ -36,20 +36,29 @@ class StatusUser extends \Illuminate\Database\Eloquent\Model
     {
         $uid = StatusUser::getIdIdByToken($token);
         if ($timeoff == null) {
-            return true;
+            return false;
         }
         $dateOff = convertStringDate2String($timeoff, 'Y-m-d H:i:s', 'Y-m-d');
         $nowTime = date('Y-m-d');
+        $timeOffStart = convertStringDate2String($timeoff, 'Y-m-d H:i:s', 'H:i:s');
+        $timeOffEnd = date('H:i:s');
+
         if (strtotime($dateOff) < strtotime($nowTime)) {
-            $timeOffStart = convertStringDate2String($timeoff, 'Y-m-d H:i:s', 'H:i:s');
-            $timeOffEnd = '23:59:59';
+            $diff = date_diff(date_create($dateOff), date_create($nowTime));
+            $numberDate = $diff->format("%a");
+            $timeOffEndNewDate = '23:59:59';
             $timeOffStartNewDate = '00:00:00';
-            $timeOffEndNewDate = date('H:i:s');
-            $this->createStatus($dateOff, $timeOffStart, $timeOffEnd, $timeOffStartNewDate, $timeOffEndNewDate, $uid);
-        }else{
-            $timeOffStart = convertStringDate2String($timeoff, 'Y-m-d H:i:s', 'H:i:s');
-            $timeOffEnd = date('H:i:s');
-            $this->createStatus($dateOff, $timeOffStart, $timeOffEnd, null, null, $uid);
+
+            $this->createStatus($dateOff, $timeOffStart, $timeOffEndNewDate, $uid);
+
+            for ($i = 1; $i < $numberDate; $i++) {
+                $dateAdd = date('Y-m-d', strtotime($dateOff . $i . 'day'));
+                $this->createStatus($dateAdd, $timeOffStartNewDate, $timeOffEndNewDate, $uid);
+            }
+
+            $this->createStatus($nowTime, $timeOffStartNewDate, $timeOffEnd, $uid);
+        } else {
+            $this->createStatus($dateOff, $timeOffStart, $timeOffEnd, $uid);
         }
     }
 
@@ -61,13 +70,13 @@ class StatusUser extends \Illuminate\Database\Eloquent\Model
      * @param $timeOffEndNewDate
      * @param $uid
      */
-    private function createStatus($date, $timeOffStart, $timeOffEnd, $timeOffStartNewDate=null, $timeOffEndNewDate=null, $uid)
+    private function createStatus($date, $timeOffStart, $timeOffEnd, $uid)
     {
         $status = StatusUser::where('date', $date)->where('user_id', $uid)->first();
-        $dataTime = $this->getDate($timeOffStart, $timeOffEnd, $timeOffStartNewDate, $timeOffEndNewDate);
+        $dataTime = $this->getDate($timeOffStart, $timeOffEnd);
         if (!$status) {
             $statusNew = new StatusUser();
-            $statusNew-> user_id = $uid;
+            $statusNew->user_id = $uid;
             $statusNew->date = $date;
             $statusNew->status = json_encode($dataTime);
             $statusNew->save();
@@ -95,32 +104,18 @@ class StatusUser extends \Illuminate\Database\Eloquent\Model
      * @param null $timeOffEndNewDate
      * @return array
      */
-    private function getDate($timeOffStart, $timeOffEnd, $timeOffStartNewDate=null, $timeOffEndNewDate=null){
-        if ($timeOffStartNewDate != null && $timeOffEndNewDate != null){
-            $dataTime = [
-                [
-                    'off' => [
-                        'start' => $timeOffStart,
-                        'end' => $timeOffEnd
-                    ]
-                ],
-                [
-                    'off' => [
-                        'start' => $timeOffStartNewDate,
-                        'end' => $timeOffEndNewDate
-                    ]
+    private function getDate($timeOffStart, $timeOffEnd)
+    {
+
+        $dataTime = [
+            [
+                'off' => [
+                    'start' => $timeOffStart,
+                    'end' => $timeOffEnd
                 ]
-            ];
-        }else{
-            $dataTime = [
-                [
-                    'off' => [
-                        'start' => $timeOffStart,
-                        'end' => $timeOffEnd
-                    ]
-                ]
-            ];
-        }
+            ]
+        ];
+
         return $dataTime;
     }
 }
