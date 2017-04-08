@@ -21,7 +21,7 @@ class AdvancedController extends Controller
     public function getStreet(){
         $title = 'Xem Đường Đi Nhân Viên';
         $listUser = Delivery::getListUser();
-        $listProduct = Delivery::getListOrderViewLocal();
+        $listProduct = Delivery::getListOrderViewStreet();
         $listDistance = $uid = $date = $pid = null;
         return view('admin.advanced.test', compact('listDistance', 'title', 'listUser', 'listProduct', 'listCustomer', 'uid', 'date', 'pid'));
     }
@@ -45,7 +45,7 @@ class AdvancedController extends Controller
         }
 
         $listUser = Delivery::getListUser();
-        $listProduct = Delivery::getListOrderViewLocal();
+        $listProduct = Delivery::getListOrderViewStreet();
         return view('admin.advanced.test', compact('listDistance', 'title', 'listUser', 'listProduct', 'uid', 'date', 'pid'));
     }
 

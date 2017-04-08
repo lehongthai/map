@@ -44,12 +44,22 @@ class Delivery extends \Illuminate\Database\Eloquent\Model
 
     public static function getListUser()
     {
-        return User::select('id', 'name')->where('level', '<>', 3)->get();
+        return User::select('id', 'name')->where('level', 2)->get();
     }
 
     public static function getListProduct()
     {
         return Product::select('id', 'name')->get();
+    }
+
+    public static function getListOrderViewStreet(){
+        $sql = 'SELECT name, code 
+                    FROM orders as o 
+                    LEFT JOIN deliverys as d 
+                      ON o.code = d.order_code 
+                    WHERE o.status = 1 
+                    AND d.status = 2 ';
+        return DB::select($sql);
     }
 
     public static function getListOrderViewLocal(){
@@ -58,7 +68,7 @@ class Delivery extends \Illuminate\Database\Eloquent\Model
                     LEFT JOIN deliverys as d 
                       ON o.code = d.order_code 
                     WHERE o.status = 1 
-                    AND d.status = 2 ';
+                    AND d.status = 1 ';
         return DB::select($sql);
     }
 
