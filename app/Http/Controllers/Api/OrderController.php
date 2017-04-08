@@ -34,7 +34,7 @@ class OrderController extends Controller
                 } else {
                     $respone = $responseFactory->json([
                         'error' => false,
-                        'error_msg' => null,
+                        'error_msg' => 'null',
                         'orders' => $orders
                     ], 200);
                 }
@@ -82,7 +82,7 @@ class OrderController extends Controller
                 $orders = $delivery->getupdateOrder($user, $id);
                 $respone = $responseFactory->json([
                     'error' => false,
-                    'error_msg' => null,
+                    'error_msg' => 'null',
                     'orders' => $orders
                 ], 200);
             }
@@ -103,7 +103,7 @@ class OrderController extends Controller
         $lastOrder = json_decode(json_encode(Delivery::getLastOrder($user->id)), true);
         return $responseFactory->json([
             'error' => false,
-            'error_msg' => null,
+            'error_msg' => 'null',
             'orders' => $lastOrder[0]
         ], 200);
     }
@@ -137,7 +137,7 @@ class OrderController extends Controller
             if ($delivery->updateStatusOrder($delivery_id, $user, $order_code, $status)) {
                 $respone = $responseFactory->json([
                     'error' => false,
-                    'error_msg' => null
+                    'error_msg' => 'null'
                 ], 200);
             } else {
                 $respone = $responseFactory->json([

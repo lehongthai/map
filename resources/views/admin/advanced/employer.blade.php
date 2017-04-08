@@ -4,8 +4,8 @@
 @section('content')
 
 <div class="row totalAgency">
-  <div class="col-md-3"><img src="images/totalLocations.png" width="58" height="54"  alt=""/>
-    <strong>{!! $title !!}</strong>
+  <div class="col-md-3">
+  <a class="navbar-brand" href="{!! url('trang-quan-tri/dashboard') !!}">Quản Trị</a>
   </div>
   <div class="col-md-9">
     <p><form action="" method="POST" class="form-inline" role="form">

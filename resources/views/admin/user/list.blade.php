@@ -19,7 +19,7 @@
                                     <tr>
                                         <th>Tên</th>
                                         <th>Địa chỉ email</th>
-                                        <th>Ngày sinh</th>
+                                        <th>Điện thoại</th>
                                         <th>Địa chỉ</th>
                                         <th>Ảnh</th>
                                         <th>Quyền</th>
@@ -31,7 +31,7 @@
                                     <tr>
                                         <th>Tên</th>
                                         <th>Địa chỉ email</th>
-                                        <th>Ngày sinh</th>
+                                        <th>Điện thoại</th>
                                         <th>Địa chỉ</th>
                                         <th>Ảnh</th>
                                         <th>Quyền</th>
@@ -45,7 +45,7 @@
                                     <tr>
                                         <td>{!! $user->name !!}</td>
                                         <td>{!! $user->email !!}</td>
-                                        <td>{!! Carbon\Carbon::parse($user->birthday)->format('d-m-Y') !!}</td>
+                                        <td>{!! $user->phone !!}</td>
                                         <td>{!! $user->address !!}</td>
                                         <td>{!! $user->image !!}</td>
                                         <td>

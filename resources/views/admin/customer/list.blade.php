@@ -20,7 +20,6 @@
                                         <th>Tên</th>
                                         <th>Địa chỉ email</th>
                                         <th>Số điện thoại</th>
-                                        <th>Ngày sinh</th>
                                         <th>Địa chỉ</th>
                                         <th>Ngày tạo</th>
                                         
@@ -31,7 +30,6 @@
                                         <th>Tên</th>
                                         <th>Địa chỉ email</th>
                                         <th>Số điện thoại</th>
-                                        <th>Ngày sinh</th>
                                         <th>Địa chỉ</th>
                                         <th>Ngày tạo</th>
                                         
@@ -44,7 +42,6 @@
                                         <td>{!! $customer->name !!}</td>
                                         <td>{!! $customer->email !!}</td>
                                         <td>{!! $customer->phone !!}</td>
-                                        <td>{!! Carbon\Carbon::parse($customer->birthday)->format('d-m-Y') !!}</td>
                                         <td>{!! $customer->address !!}</td>
                                         <td>{!! Carbon\Carbon::parse($customer->created_at)->format('d-m-Y H:m:s') !!}</td>
                                         

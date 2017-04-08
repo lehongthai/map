@@ -13,6 +13,7 @@ class User extends Authenticatable
 {
     use Notifiable;
     private $keyApi = 'AIzaSyCoYHFhB9SbbUGXJ9jzhmSMihCJOOoQFyY';
+    private $linkApi = 'https://maps.googleapis.com/maps/api/';
     /**
      * The attributes that are mass assignable.
      *
@@ -39,7 +40,7 @@ class User extends Authenticatable
 
     public static function getInfoEmployer()
     {
-        $sql = 'SELECT u.address, u.lat, u.lng, u.name, o.name as delivery 
+        $sql = 'SELECT u.distanceUser, u.minute, u.address, u.lat, u.lng, u.name, o.name as delivery 
                     FROM users as u 
                     LEFT JOIN deliverys as d 
                         ON u.id = d.user_id 
@@ -51,22 +52,20 @@ class User extends Authenticatable
 
     public function updateLocal($mobile_token, $lat, $lng)
     {
-        $checkAddress = $this->callApiGoogleMap($lng, $lat);
         $dataUpdate = ['lat' => $lat, 'lng' => $lng];
-        //$getDistance = $this->callApiGetDistance($lat, $lng);
-        if ($checkAddress) {
-            $dataUpdate['address'] = $checkAddress;
+        $getDistance = $this->callApiGetDistance($lat, $lng);
+        if ($getDistance){
+            $dataUpdate['address'] = $getDistance->destination_addresses[0];
+            $dataUpdate['distanceUser'] = $getDistance->rows[0]->elements[0]->distance->text;
+            $dataUpdate['minute'] = $getDistance->rows[0]->elements[0]->duration->text;
         }
-        /*if ($getDistance) {
-            $dataUpdate['distance'] = $getDistance;
-        }*/
         return User::where('mobile_token', $mobile_token)->update($dataUpdate);
     }
 
     private function callApiGoogleMap($lng, $lat)
     {
         $curl = curl_init();
-        $http = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' . $lat . ',' . $lng . '&sensor=false';
+        $http =  $this->linkApi . 'geocode/json?latlng=' . $lat . ',' . $lng . '&sensor=false';
         curl_setopt_array(
             $curl, array(
                 CURLOPT_RETURNTRANSFER => 1,
@@ -126,30 +125,24 @@ class User extends Authenticatable
     private function callApiGetDistance($lat, $lng)
     {
         $infoCompany = Company::getLngLat();
-        $client = new Client(
-            [
-                'base_uri' => 'https://maps.googleapis.com/maps/api/distancematrix/json'
-            ]
-        );
-        $body = [
-            'query' => [
-                'origins' => $lat . ',' . $lng,
-                'destinations' => $infoCompany->lat . ',' . $infoCompany->lng,
-                'key' => $this->keyApi
-            ]
-        ];
-
+        $client = new Client();
+        $url = $this->linkApi . 'distancematrix/json?';
+        $url .= 'origins=' . $infoCompany->lat . ',' . $infoCompany->lng;
+        $url .= '&destinations=' . $lat . ',' . $lng;
+        $url .= '&key=' . $this->keyApi;
 
         try {
-            $response = $client->request('GET', null, $body);
+            $response = $client->get($url);
             if ($response->getStatusCode() != 200) {
                 return false;
             } else {
-                $dataPoint = \GuzzleHttp\json_decode($response->getBody(), true);
-                pre($dataPoint);
+                $objDistance = \GuzzleHttp\json_decode($response->getBody());
+                if ($objDistance->status == 'OK'){
+                    return $objDistance;
+                }
+                return false;
             }
         } catch (RejectionException $e) {
-            print_r($e->getMessage());
             return false;
         }
     }

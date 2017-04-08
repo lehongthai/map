@@ -112,6 +112,6 @@ function getProduct($strId)
 {
     $listProduct = DB::select('select name from products where id in (' . $strId . ')');
     foreach ($listProduct as $key => $v) {
-        echo $v->name . '<br>';
+        echo $key+1 . '-' . $v->name . '<br>';
     }
 }

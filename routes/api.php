@@ -1,6 +1,37 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Routing\ResponseFactory;
+
+/*
+ * Root API with GET method
+ */
+
+Route::get(
+    '/', function (Request $request,ResponseFactory $response) {
+    return $response->json(
+        [
+            'domain' => 'GiaoHang API',
+            'method' => 'GET'
+        ], 200
+    );
+}
+);
+
+
+/*
+ * Root API with POST method
+ */
+Route::post(
+    '/', function (Request $request,Response $response) {
+    return $response->json(
+        [
+            'domain' => 'GiaoHang API',
+            'method' => 'POST'
+        ], 200
+    );
+}
+);
 
 /*
 |--------------------------------------------------------------------------

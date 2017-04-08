@@ -44,7 +44,7 @@ class Delivery extends \Illuminate\Database\Eloquent\Model
 
     public static function getListUser()
     {
-        return User::select('id', 'name')->where('level', '<>', 3)->get();
+        return User::select('id', 'name')->where('level', 2)->get();
     }
 
     public static function getListProduct()
