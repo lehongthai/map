@@ -44,7 +44,7 @@ class Delivery extends \Illuminate\Database\Eloquent\Model
 
     public static function getListUser()
     {
-        return User::select('id', 'name')->where('level', 2)->get();
+        return User::select('id', 'name')->where('level', '<>', 3)->get();
     }
 
     public static function getListProduct()
@@ -112,7 +112,7 @@ class Delivery extends \Illuminate\Database\Eloquent\Model
 
     public static function getOrder($uid)
     {
-        $sql = 'SELECT d.id, o.address, o.phone, d.status, d.time_get, d.time_over, d.note
+        $sql = 'SELECT d.id as delivery_id, d.order_code as order_id, o.address, o.phone, d.status, d.time_get, d.time_over, d.note
                     FROM deliverys as d 
                     LEFT JOIN users as u 
                         ON d.user_id = u.id 
