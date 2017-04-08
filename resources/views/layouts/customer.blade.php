@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="icon" href="{!! url('public/shopping-cart.png') !!}" type="image/png" sizes="16x16">
 
     <title>@yield('title')</title>
 

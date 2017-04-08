@@ -30,6 +30,13 @@
                                     </div>
                                     <span class="has-error">{!! $errors->first('email') !!}</span>
                                 </div>
+                                <label for="phone_address">Số điện thoại</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" id="phone_address" class="form-control" placeholder="Nhập số điện thoại" name="phone" value="{!! old('phone') !!}">
+                                    </div>
+                                    <span class="has-error">{!! $errors->first('phone') !!}</span>
+                                </div>
                                 <label for="password">Mật khẩu</label>
                                 <div class="form-group">
                                     <div class="form-line">
@@ -45,7 +52,7 @@
                                 <label for="email_address">Ngày sinh</label>
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <input type="date" class="datepicker form-control" placeholder="Chọn ngày..." name="birthday" value="{!! old('birthday') !!}">
+                                            <input type="date" class="form-control" placeholder="Chọn ngày..." name="birthday" value="{!! old('birthday') !!}">
                                         </div>
                                     </div>
                                 <br>

@@ -112,14 +112,13 @@ class Delivery extends \Illuminate\Database\Eloquent\Model
 
     public static function getOrder($uid)
     {
-        $sql = 'SELECT d.id, o.address, o.phone, d.status, d.time_get, d.time_over, d.note
+        $sql = 'SELECT d.id as delivery_id, d.order_code as order_id, o.address, o.phone, d.status, d.time_get, d.time_over, d.note
                     FROM deliverys as d 
                     LEFT JOIN users as u 
                         ON d.user_id = u.id 
                     LEFT JOIN orders as o 
                         ON d.order_code = o.code
-                            WHERE d.user_id = ' . $uid . '
-                            AND d.order_code = o.code ';
+                    WHERE d.user_id = ' . $uid . ' ';
 
         return DB::select($sql);
     }
@@ -153,8 +152,11 @@ class Delivery extends \Illuminate\Database\Eloquent\Model
         return DB::select($sql);
     }
 
-    public function onoff($delivery_id, $user, $order_code, $image, $status)
+    public function updateStatusOrder($delivery_id, $user, $order_code, $status)
     {
-        return Delivery::where('id', $delivery_id)->where('user_id', $user)->where('order_code',$order_code)->where('image',$image)->update(['status' => $status]);
+        return Delivery::where('id', $delivery_id)
+            ->where('user_id', $user)
+            ->where('order_code',$order_code)
+            ->update(['status' => $status]);
     }
 }

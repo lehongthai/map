@@ -19,6 +19,13 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        if (Auth::check() && Auth::user()->level != 1){
+            return redirect()->back();
+        }
+    }
+
     public function getList(){
         $listUser = User::where('level', '<>', 3)->get();
         $title = 'Danh sách thành viên';
@@ -33,15 +40,18 @@ class UserController extends Controller
     public function postCreate(Request $request){
         $this->validate($request, [
             'fullname' => 'required',
-            'email' => 'required|email|unique:users'
+            'email' => 'required|email|unique:users',
+            'phone' => "required|min:9|max:12|alpha_num",
         ]);
 
         $user = new User();
         $user->name = $request->fullname;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
-        $user->birthday = convertStringDate2String($request->birthday, 'd/m/Y', 'Y-m-d');
-        $user->mobile_token = csrf_token();
+        $user->birthday = $request->birthday;
+        $user->mobile_token = csrf_token() . md5(time());
+        $user->level = 2;
+        $user->phone = $request->phone;
         $user->address = $request->address;
         $user->active = md5(uniqid());
 
@@ -66,7 +76,8 @@ class UserController extends Controller
 
     public function postUpdate(Request $request){
         $this->validate($request, [
-            'fullname' => 'required'
+            'fullname' => 'required',
+            'phone' => "required|min:9|max:12|alpha_num",
         ]);
 
         $id = $request->id;
@@ -74,7 +85,8 @@ class UserController extends Controller
         if ($user){
             $user->name = $request->fullname;
             $user->address = $request->address;
-            $user->birthday = convertStringDate2String($request->birthday, 'd/m/Y', 'Y-m-d');
+            $user->birthday = $request->birthday;
+            $user->phone = $request->phone;
             if ($user->save()){
                 $message = ['level' => 'success', 'flash_message' => 'Cập nhật thành công thành viên'];
             }else{
