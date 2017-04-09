@@ -11,7 +11,7 @@
                             <h2>
                                 {!! $title !!}
                             </h2>
-                            <a href="{!! url('quan-ly-nhan-vien/them-moi') !!}" class="btn btn-success header-dropdown m-r--5">Tạo mới</a>
+                         
                         </div>
                         <div class="body">
                             <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
@@ -23,7 +23,7 @@
                                         <th>Địa chỉ</th>
                                         <th>Ảnh</th>
                                         <th>Quyền</th>
-                                        <th>Ngày tạo</th>
+                                        <th>Lần cập nhật cuối cùng</th>
                                         <th>Hành động</th>
                                     </tr>
                                 </thead>
@@ -35,7 +35,7 @@
                                         <th>Địa chỉ</th>
                                         <th>Ảnh</th>
                                         <th>Quyền</th>
-                                        <th>Ngày tạo</th>
+                                        <th>Lần cập nhật cuối cùng</th>
                                         <th>Hành động</th>
                                     </tr>
                                 </tfoot>
@@ -55,7 +55,11 @@
                                             {{"Nhân viên"}}
                                         @endif
                                         </td>
-                                        <td>{!! Carbon\Carbon::parse($user->created_at)->format('d-m-Y H:m:s') !!}</td>
+                                        <td>
+                                            <?php
+                                                echo \Carbon\Carbon::createFromTimeStamp(strtotime($user->updated_at))->diffForHumans();
+                                            ?>
+                                        </td>
                                         <td>
                                             <div class="demo-google-material-icon">
                                                 <a onclick="return confirm_delete('Bạn chắc chắn xóa !')" href="{!! url('quan-ly-nhan-vien/xoa/' . $user->id) !!}">

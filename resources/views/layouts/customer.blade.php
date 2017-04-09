@@ -71,7 +71,7 @@
     <!-- #END# Overlay For Sidebars -->
     <!-- #END# Search Bar -->
     <!-- Top Bar -->
-    <nav class="navbar" style="background-color: #f1c40f">
+    <nav class="navbar" style="background-color: #8BC34A">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
@@ -98,6 +98,17 @@
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
                                 </form>
+                            </li>
+                            <li>
+
+                                <a href="{!! url('trang-quan-tri/doi-mat-khau/'.Auth::user()->id) !!}">             
+                                    Đổi mật khẩu
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{!! url('trang-quan-tri/doi-anh/'.Auth::user()->id) !!}">             
+                                    Đổi ảnh đại diện
+                                </a>
                             </li>
                         </ul>
                     </li>

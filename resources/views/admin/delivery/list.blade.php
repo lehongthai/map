@@ -11,7 +11,7 @@
                             <h2>
                                 {!! $title !!}
                             </h2>
-                            <a href="{!! url('quan-ly-giao-hang/them-moi') !!}" class="btn btn-success header-dropdown m-r--5">Tạo mới</a>
+                        
                         </div>
                         <div class="body">
                             <table class="table table-bordered table-striped table-hover js-basic-example dataTable">

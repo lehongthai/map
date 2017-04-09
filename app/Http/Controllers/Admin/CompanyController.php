@@ -17,7 +17,7 @@ class CompanyController extends Controller
 {
     public function getList(){
     	$listCompany = Company::all();
-        $title = 'Danh sách công ty';
+        $title = 'Thông tin công ty';
         return view('admin.company.list', compact('listCompany', 'title'));
     }
 

@@ -27,10 +27,16 @@ class ProductController extends Controller
     }
 
     public function postCreate(Request $request){
-        $this->validate($request, [
+        $this->validate($request, 
+            [
             'name' => 'required',
             'code' => 'required|unique:products,code'
-        ]);
+            ],
+            [
+            'name.required' => 'Bạn chưa nhập tên',
+            'code.required' => 'Bạn chưa nhập mã sản phẩm',
+            'code.unique' => 'Mã sản phẩm đã bị trùng'
+            ]);
 
         $product = new Product();
         $product->name = $request->name;
@@ -57,10 +63,15 @@ class ProductController extends Controller
     }
 
     public function postUpdate(Request $request){
-        $this->validate($request, [
+        $this->validate($request, 
+            [
             'name' => 'required',
             'code' => 'required'
-        ]);
+            ],
+            [
+             'name.required' => 'Bạn chưa nhập tên',
+            'code.required' => 'Bạn chưa nhập mã sản phẩm'
+            ]);
 
         $id = $request->id;
         $product = product::find($id);
