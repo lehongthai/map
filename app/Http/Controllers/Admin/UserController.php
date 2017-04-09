@@ -152,7 +152,7 @@ class UserController extends Controller
         $title = 'Thông tin';
         return view('admin.customer.info', compact('title'));
     }
-
+    //doi mat khau
     public function getChangePassword()
     {
         $title = 'Đổi mật khẩu';
