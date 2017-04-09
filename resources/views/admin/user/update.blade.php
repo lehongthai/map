@@ -47,7 +47,7 @@
                                 <label for="email_address">Ngày sinh</label>
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <input type="date" class="form-control" placeholder="Chọn ngày..." name="birthday" value="{!! old('birthday', $infoUser['birthday']) !!}">
+                                            <input type="text" class="datepicker form-control" placeholder="Chọn ngày..." name="birthday" value="{!! old('birthday', $infoUser['birthday']) !!}">
                                         </div>
                                     </div>
                                 <br>
