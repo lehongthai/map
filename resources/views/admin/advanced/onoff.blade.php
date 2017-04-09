@@ -17,7 +17,7 @@
                                         @foreach($listUser as $user)
                                         <option value="{!! $user->id !!}" 
                                         @if(old('user_id') == $user->id || $user_id == $user->id) selected @endif>
-                                        -- {!! $user->name !!} --
+                                        {!! $user->name !!}
                                         </option>
                                         @endforeach
                                     </select>
@@ -27,14 +27,14 @@
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <input type="date" name="start" id="input" class="form-control" value="{!! old('start', $start) !!}" placeholder="Start" title="Start">
+                                                <input type="text" name="start" id="input" class="datepicker form-control" value="{!! old('start', $start) !!}" placeholder="Start" title="Start">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <input type="date" name="end" id="input" class="form-control" value="{!! old('end', $end) !!}"  placeholder="End" title="End">
+                                                <input type="text" name="end" id="input" class="datepicker form-control" value="{!! old('end', $end) !!}"  placeholder="End" title="End">
                                             </div>
                                         </div>
                                     </div>
@@ -98,10 +98,15 @@
     <!-- Slimscroll Plugin Js -->
     <script src="{{ asset('public/minovate/plugins/jquery-slimscroll/jquery.slimscroll.js') }}"></script>
     <!-- Waves Effect Plugin Js -->
-    <script src="{{ asset('public/minovate/plugins/node-waves/waves.js') }}"></script>
     <script src="{{ asset('public/minovate/plugins/jquery-datatable/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('public/minovate/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js') }}"></script>
     <script src="{{ asset('public/minovate/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js') }}"></script>
     <script src="{{ asset('public/minovate/js/pages/tables/jquery-datatable.js') }}"></script>
+    <script src="{{ asset('public/minovate/plugins/autosize/autosize.js') }}"></script>
+<script src="{{ asset('public/minovate/plugins/momentjs/moment.js') }}"></script>
+<script src="{{ asset('public/minovate/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script>
+ 
+    <script src="{{ asset('public/minovate/plugins/node-waves/waves.js') }}"></script>
     <script src="{{ asset('public/minovate/js/admin.js') }}"></script>
+    <script src="{{ asset('public/minovate/js/pages/forms/basic-form-elements.js') }}"></script>
 @endsection

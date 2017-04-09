@@ -23,7 +23,7 @@ class AdvancedController extends Controller
         $listUser = Delivery::getListUser();
         $listProduct = Delivery::getListOrderViewStreet();
         $listDistance = $uid = $date = $pid = null;
-        return view('admin.advanced.test', compact('listDistance', 'title', 'listUser', 'listProduct', 'listCustomer', 'uid', 'date', 'pid'));
+        return view('admin.advanced.test_bk', compact('listDistance', 'title', 'listUser', 'listProduct', 'listCustomer', 'uid', 'date', 'pid'));
     }
 
     public function postStreet(Request $request){
@@ -35,7 +35,7 @@ class AdvancedController extends Controller
         $title = "Không tìm thấy dữ liệu";
         $uid = $request->user_id;
         $pid = $request->product_id;
-        $date = $request->date;
+        $date = convertStringDate2String($request->date, 'd-m-Y', 'Y-m-d');
         $listDistance = Delivery::getDistance($uid,$pid,$date);
         if ($listDistance){
             $title = "Vị trí nhân viên";
@@ -56,7 +56,7 @@ class AdvancedController extends Controller
         $infoCompany = Company::getLngLat();
         $uid = $pid = null;
         $local = NULL;
-        return view('admin.advanced.employer', compact('title', 'listUser', 'listProduct', 'uid', 'pid', 'local', 'infoCompany'));
+        return view('admin.advanced.employer_bk', compact('title', 'listUser', 'listProduct', 'uid', 'pid', 'local', 'infoCompany'));
     }
 
     public function postViewLocal(Request $request){
@@ -75,7 +75,7 @@ class AdvancedController extends Controller
         $listUser = Delivery::getListUser();
         $listProduct = Delivery::getListOrderViewLocal();
         $infoCompany = Company::getLngLat();
-        return view('admin.advanced.employer', compact('local', 'title', 'listUser', 'listProduct', 'uid', 'pid', 'infoCompany'));
+        return view('admin.advanced.employer_bk', compact('local', 'title', 'listUser', 'listProduct', 'uid', 'pid', 'infoCompany'));
     }
 
     public function viewOnOffEmployer(){
@@ -92,8 +92,8 @@ class AdvancedController extends Controller
             'end' => 'required|date'
         ]);
         $user_id = $request->user_id;
-        $start = $request->start;
-        $end = $request->end;
+        $start = convertStringDate2String($request->start, 'd-m-Y', 'Y-m-d');
+        $end = convertStringDate2String($request->end, 'd-m-Y', 'Y-m-d');
         $title = 'Trạng thái nhân viên';
         $listUser = Delivery::getListUser();
         $listStatus = StatusUser::getStatusUser($user_id, $start,$end);

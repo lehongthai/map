@@ -57,7 +57,7 @@ class UserController extends Controller
         $user->name = $request->fullname;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
-        $user->birthday = $request->birthday;
+        $user->birthday = convertStringDate2String($request->birthday, 'd-m-Y', 'Y-m-d');
         $user->mobile_token = csrf_token() . md5(time());
         $user->level = 2;
         $user->phone = $request->phone;
@@ -106,7 +106,7 @@ class UserController extends Controller
             $user->name = $request->fullname;
             $user->email = $request->email;
             $user->address = $request->address;
-            $user->birthday = $request->birthday;
+            $user->birthday = convertStringDate2String($request->birthday, 'd-m-Y', 'Y-m-d');
             $user->phone = $request->phone;
             if ($user->save())
             {
