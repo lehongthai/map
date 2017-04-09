@@ -24,7 +24,6 @@
                                         <th>Địa chỉ giao hàng</th>
                                         <th>Trạng thái</th>
                                         <th>Ngày tạo</th>
-                                        <th style="width: 6%">Hành động</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
@@ -36,7 +35,6 @@
                                         <th>Địa chỉ giao hàng</th>
                                         <th>Trạng thái</th>
                                         <th>Ngày tạo</th>
-                                        <th style="width: 6%">Hành động</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
@@ -58,17 +56,6 @@
                                             @endif
                                         </td>
                                         <td>{!! Carbon\Carbon::parse($delivery->created_at)->format('d-m-Y H:m:s') !!}</td>
-                                        <td>
-                                            <div class="demo-google-material-icon">
-                                                <a onclick="return confirm_delete('Bạn chắc chắn xóa !')" href="{!! url('quan-ly-giao-hang/xoa/' . $delivery->id) !!}">
-                                                    <i class="material-icons">delete</i>
-                                                </a>
-                                                <a href="{!! url('quan-ly-giao-hang/cap-nhat/' . $delivery->id) !!}" class="pull-right">
-                                                    <i class="material-icons">mode_edit</i>
-                                                </a>
-                                                
-                                            </div>
-                                        </td>
                                     </tr>
                                     @endforeach
                                 @endif

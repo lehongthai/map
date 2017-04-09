@@ -57,8 +57,7 @@ class Delivery extends \Illuminate\Database\Eloquent\Model
                     FROM orders as o 
                     LEFT JOIN deliverys as d 
                       ON o.code = d.order_code 
-                    WHERE o.status = 1 
-                    AND d.status = 2 ';
+                    WHERE d.status = 2 ';
         return DB::select($sql);
     }
 
@@ -67,8 +66,7 @@ class Delivery extends \Illuminate\Database\Eloquent\Model
                     FROM orders as o 
                     LEFT JOIN deliverys as d 
                       ON o.code = d.order_code 
-                    WHERE o.status = 1 
-                    AND d.status = 1 ';
+                    WHERE d.status = 1 ';
         return DB::select($sql);
     }
 
