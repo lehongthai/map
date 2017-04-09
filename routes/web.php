@@ -74,6 +74,8 @@ Route::group(['prefix' => 'quan-ly-don-hang', 'middleware' => 'auth'], function 
     Route::get('/cap-nhat/{id?}', 'Admin\OrderController@getUpdate');
     Route::post('/cap-nhat/{id?}', 'Admin\OrderController@postUpdate');
     Route::get('/xoa/{id?}', 'Admin\OrderController@getDelete');
+
+    Route::get('/chi-tiet/{id?}', 'Admin\OrderController@getDetail');
 });
 
 Route::group(['prefix' => 'quan-ly-nang-cao', 'middleware' => 'auth'], function (){

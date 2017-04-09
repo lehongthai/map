@@ -19,15 +19,12 @@
                                     <tr>
                                         <th>Mã đơn hàng</th>
                                         <th>Khách hàng</th>
-                                        <th>Email</th>
-                                        <th>Số Điện Thoại</th>
+                                        <th>Địa chỉ email</th>
+                                        <th>Tên người nhận</th>
                                         <th>Địa chỉ giao hàng</th>
                                         <th>Ghi chú</th>                                       
                                         <th>Trạng Thái</th>
                                         <th>Nhân viên giao hàng</th>
-                                        <th>Ngày bốc hàng</th>
-                                        <th>Ngày hoàn tất</th>
-                                        <th>Hình ảnh chứng từ</th>
                                         <th>Hành động</th>
                                     </tr>
                                 </thead>
@@ -35,15 +32,12 @@
                                     <tr>
                                         <th>Mã đơn hàng</th>
                                         <th>Khách hàng</th>
-                                        <th>Email</th>
-                                        <th>Số Điện Thoại</th>
+                                        <th>Địa chỉ email</th>
+                                        <th>Tên người nhận</th>
                                         <th>Địa chỉ giao hàng </th>
                                         <th>Ghi chú</th>
                                         <th>Trạng Thái</th>
-                                        <th>Nhân viên giao hàng</th>
-                                        <th>Ngày bốc hàng</th>
-                                        <th>Ngày hoàn tất</th>
-                                        <th>Hình ảnh chứng từ</th>                                    
+                                        <th>Nhân viên giao hàng</th>                                   
                                         <th>Hành động</th>
                                     </tr>
                                 </tfoot>
@@ -51,11 +45,11 @@
                                 @if($listOrder != NULL)
                                     @foreach($listOrder as $order)
                                     <tr>
-                                        <td>{!! $order->code !!}</td>
+                                        <td><a href="{!! url('quan-ly-don-hang/chi-tiet/' . $order->id) !!}" class="pull-right">{!! $order->code !!}</a></td>
                                         <td>{!! $order->namecustomer !!}</td>
                                         <td>{!! $order->email !!}</td>
-                                        <td>{!! $order->phone !!}</td>
-                                        <td>{!! $order->address !!}</td>
+                                        <td>{!! $order->receiver_name !!}</td>
+                                        <td>{!! $order->receiver_address !!}</td>
                                         <td>{!! $order->note !!}</td>
                                         <td>@if($order->status == 0)
                                             {{"Chưa giao"}}
@@ -65,9 +59,6 @@
                                             {{"Đã giao"}}
                                         @endif</td>
                                         <td>{!! $order->name !!}</td>
-                                        <td>{!! $order->time_get !!}</td>
-                                        <td>{!! $order->time_over !!}</td>
-                                        <td>{!! $order->image !!}</td>
                                         <td>
                                             <div class="demo-google-material-icon">
                                                 <a onclick="return confirm_delete('Bạn chắc chắn xóa !')" href="{!! url('quan-ly-don-hang/xoa/' . $order->id) !!}">

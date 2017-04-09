@@ -182,4 +182,17 @@ class OrderController extends Controller
         if ($user->save()) return $user;
         return false;
     }
+
+    public function getDetail($id = null)
+    {
+        if ($id != NULL) 
+        {
+            $listOrder = Order::getDetail($id);
+            $title = 'Chi tiết đơn hàng';
+            return view('admin.order.detail', compact('listOrder', 'title'));
+        } else {
+            $message = ['level' => 'danger', 'flash_message' => 'Không tìm thấy đơn hàng'];
+        }
+        return redirect('quan-ly-don-hang/danh-sach')->with($message);
+    }
 }

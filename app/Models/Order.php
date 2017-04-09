@@ -20,7 +20,7 @@ class Order extends \Illuminate\Database\Eloquent\Model
     }
 
     public static function getListOrder(){
-        $sql = 'SELECT u.name as namecustomer, u.email, u.phone, u.address, o.code, o.status, o.note, o.created_at, o.id, o.name, d.time_get, d.time_over, d.image 
+        $sql = 'SELECT u.name as namecustomer, u.email, u.phone, u.address, o.code, o.status, o.note, o.created_at, o.id, o.name, d.time_get, d.time_over, d.image, o.user_id, o.receiver_name, o.receiver_phone, o.receiver_address
                     FROM orders as o 
                     LEFT JOIN users as u 
                         ON o.user_id = u.id 
@@ -29,6 +29,18 @@ class Order extends \Illuminate\Database\Eloquent\Model
 
         return DB ::select($sql);
     }
+
+    public static function getDetail($id){
+        $sql = 'SELECT u.name as namecustomer, u.email, u.phone, u.address, o.code, o.status, o.note, o.created_at, o.id, o.name, d.time_get, d.time_over, d.image, o.user_id, o.receiver_name, o.receiver_phone, o.receiver_address
+                    FROM orders as o 
+                    LEFT JOIN users as u 
+                        ON o.user_id = u.id 
+                    LEFT JOIN deliverys as d
+                        ON o.code = d.order_code Where '.$id.' = o.id';
+
+        return DB ::select($sql);
+    }
+
 
     public static function getListDelivery(){
         $sql = 'SELECT c.fullname, c.email, c.phone, c.address, c.product_code, c.status, c.note, c.created_at, p.code as pName
