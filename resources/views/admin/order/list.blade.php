@@ -11,31 +11,39 @@
                             <h2>
                                 {!! $title !!}
                             </h2>
-                            <a href="{!! url('quan-ly-don-hang/them-moi') !!}" class="btn btn-success header-dropdown m-r--5">Tạo mới</a>
+                            
                         </div>
                         <div class="body">
                             <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                 <thead>
                                     <tr>
-                                        <th>Tên</th>
+                                        <th>Mã đơn hàng</th>
+                                        <th>Khách hàng</th>
                                         <th>Email</th>
                                         <th>Số Điện Thoại</th>
-                                        <th>Địa Chỉ</th>
-                                        <th>Mã Đơn Hàng</th>
+                                        <th>Địa chỉ giao hàng</th>
+                                        <th>Ghi chú</th>                                       
                                         <th>Trạng Thái</th>
-                                        <th>Ngày tạo</th>
+                                        <th>Nhân viên giao hàng</th>
+                                        <th>Ngày bốc hàng</th>
+                                        <th>Ngày hoàn tất</th>
+                                        <th>Hình ảnh chứng từ</th>
                                         <th>Hành động</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        <th>Tên</th>
+                                        <th>Mã đơn hàng</th>
+                                        <th>Khách hàng</th>
                                         <th>Email</th>
                                         <th>Số Điện Thoại</th>
-                                        <th>Địa Chỉ</th>
-                                        <th>Mã Đơn Hàng</th>
+                                        <th>Địa chỉ giao hàng </th>
+                                        <th>Ghi chú</th>
                                         <th>Trạng Thái</th>
-                                        <th>Ngày tạo</th>
+                                        <th>Nhân viên giao hàng</th>
+                                        <th>Ngày bốc hàng</th>
+                                        <th>Ngày hoàn tất</th>
+                                        <th>Hình ảnh chứng từ</th>                                    
                                         <th>Hành động</th>
                                     </tr>
                                 </tfoot>
@@ -43,11 +51,12 @@
                                 @if($listOrder != NULL)
                                     @foreach($listOrder as $order)
                                     <tr>
-                                        <td>{!! $order->name !!}</td>
+                                        <td>{!! $order->code !!}</td>
+                                        <td>{!! $order->namecustomer !!}</td>
                                         <td>{!! $order->email !!}</td>
                                         <td>{!! $order->phone !!}</td>
                                         <td>{!! $order->address !!}</td>
-                                        <td>{!! $order->code !!}</td>
+                                        <td>{!! $order->note !!}</td>
                                         <td>@if($order->status == 0)
                                             {{"Chưa giao"}}
                                         @elseif($order->status == 1)
@@ -55,7 +64,10 @@
                                         @else($order->status == 2)
                                             {{"Đã giao"}}
                                         @endif</td>
-                                        <td>{!! Carbon\Carbon::parse($order->created_at)->format('d-m-Y H:m:s') !!}</td>
+                                        <td>{!! $order->name !!}</td>
+                                        <td>{!! $order->time_get !!}</td>
+                                        <td>{!! $order->time_over !!}</td>
+                                        <td>{!! $order->image !!}</td>
                                         <td>
                                             <div class="demo-google-material-icon">
                                                 <a onclick="return confirm_delete('Bạn chắc chắn xóa !')" href="{!! url('quan-ly-don-hang/xoa/' . $order->id) !!}">

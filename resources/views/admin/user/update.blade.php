@@ -27,8 +27,9 @@
                                 <label for="email_address">Địa chỉ email</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" id="email_address" class="form-control" placeholder="Nhập địa chỉ email" name="address" value="{!! old('address', $infoUser['address']) !!}">
+                                        <input type="text" id="email_address" class="form-control" placeholder="Nhập địa chỉ email" name="email" value="{!! old('email', $infoUser['email']) !!}">
                                     </div>
+                                    <span class="has-error">{!! $errors->first('email') !!}</span>
                                 </div>
                                 <label for="phone_address">Số điện thoại</label>
                                 <div class="form-group">
@@ -36,6 +37,12 @@
                                         <input type="text" id="phone_address" class="form-control" placeholder="Nhập số điện thoại" name="phone" value="{!! old('phone', $infoUser['phone']) !!}">
                                     </div>
                                     <span class="has-error">{!! $errors->first('phone') !!}</span>
+                                </div>
+                                <label for="email_address">Địa chỉ</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" id="email_address" class="form-control" placeholder="Nhập địa chỉ" name="address" value="{!! old('address', $infoUser['address']) !!}">
+                                    </div>
                                 </div>
                                 <label for="email_address">Ngày sinh</label>
                                     <div class="form-group">

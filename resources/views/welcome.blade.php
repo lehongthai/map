@@ -20,7 +20,7 @@
                 height: 100vh;
                 margin: 0;
                 background-image: url('{!! url('1.jpg') !!}'); 
-                backgrou-nd-repeat: no-repeat;
+                background-repeat: no-repeat;
                 background-position: center;
             }
 

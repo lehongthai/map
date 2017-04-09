@@ -70,7 +70,7 @@
     <!-- #END# Overlay For Sidebars -->
     <!-- #END# Search Bar -->
     <!-- Top Bar -->
-    <nav class="navbar" style="background-color: #f1c40f">
+    <nav class="navbar" style="background-color: #8BC34A">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
@@ -97,6 +97,16 @@
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
                                 </form>
+                            </li>
+                            <li>
+                                <a href="{!! url('trang-quan-tri/doi-mat-khau') !!}">             
+                                    Đổi mật khẩu
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{!! url('trang-quan-tri/doi-anh') !!}">             
+                                    Đổi ảnh đại diện
+                                </a>
                             </li>
                         </ul>
                     </li>
@@ -305,11 +315,11 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="{!! url('quan-ly-cong-ty/danh-sach') !!}">Danh sách công ty</a>
+                                <a href="{!! url('quan-ly-cong-ty/danh-sach') !!}">Thông tin</a>
                             </li>
-                            <li>
+                           {{--  <li>
                                 <a href="{!! url('quan-ly-cong-ty/them-moi') !!}">Thêm công ty</a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </li>
                     <li>

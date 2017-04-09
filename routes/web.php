@@ -21,6 +21,12 @@ Route::get('/home', 'HomeController@index');
 
 Route::group(['prefix' => 'trang-quan-tri', 'middleware' => 'auth1'], function (){
     Route::get('/dashboard', 'Admin\DashboardController@index');
+
+    Route::get('/doi-mat-khau', 'Admin\UserController@getChangePassword');
+    Route::post('/doi-mat-khau', 'Admin\UserController@postChangePassword');
+
+    Route::get('/doi-anh', 'Admin\UserController@getChangeImage');
+    Route::post('/doi-anh', 'Admin\UserController@postChangeImage');
 });
 
 Route::group(['prefix' => 'quan-ly-nhan-vien', 'middleware' => 'auth'], function (){
@@ -30,6 +36,7 @@ Route::group(['prefix' => 'quan-ly-nhan-vien', 'middleware' => 'auth'], function
     Route::get('/cap-nhat/{id?}', 'Admin\UserController@getUpdate');
     Route::post('/cap-nhat/{id?}', 'Admin\UserController@postUpdate');
     Route::get('/xoa/{id?}', 'Admin\UserController@getDelete');
+    
 });
 
 

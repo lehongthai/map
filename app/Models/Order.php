@@ -20,10 +20,13 @@ class Order extends \Illuminate\Database\Eloquent\Model
     }
 
     public static function getListOrder(){
-        $sql = 'SELECT u.name, u.email, u.phone, u.address, o.code, o.status, o.note, o.created_at, o.id 
+        $sql = 'SELECT u.name as namecustomer, u.email, u.phone, u.address, o.code, o.status, o.note, o.created_at, o.id, o.name, d.time_get, d.time_over, d.image 
                     FROM orders as o 
                     LEFT JOIN users as u 
-                      ON o.user_id = u.id ';
+                        ON o.user_id = u.id 
+                    LEFT JOIN deliverys as d
+                        ON o.code = d.order_code';
+
         return DB ::select($sql);
     }
 

@@ -33,10 +33,15 @@ class DeliveryController extends Controller
 
     public function postCreate(Request $request)
     {
-        $this->validate($request, [
+        $this->validate($request, 
+            [
             'user_id' => 'required|exists:users,id',
             'order_code' => 'required|exists:orders,code'
-        ]);
+            ],
+            [
+            'user_id.required' => 'Bạn chưa chọn nhân viên',
+            'order_code.required' => 'Bạn chưa chọn đơn hàng'
+            ]);
 
         $delivery = new Delivery();
         $delivery->user_id = $request->user_id;
