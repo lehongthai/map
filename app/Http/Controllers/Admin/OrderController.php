@@ -15,6 +15,7 @@ use App\Models\Product;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use App\Models\Delivery;
 
 class OrderController extends Controller
 {
@@ -30,14 +31,16 @@ class OrderController extends Controller
     public function getCreate()
     {
         $title = 'Thêm mới khách hàng';
+        $listUser = Delivery::getListUser();
         $listProduct = Product::all();
-        return view('admin.order.create', compact('title', 'listProduct'));
+        return view('admin.order.create', compact('title', 'listProduct', 'listUser'));
     }
 
     public function postCreate(Request $request)
     {
         $this->validate($request,
             [
+                'user_id' => 'required|exists:users,id',
                 'name' => 'required|min:3',
                 'email' => 'required|email',
                 'phone' => 'required|min:9|max:12|alpha_num',
@@ -61,8 +64,13 @@ class OrderController extends Controller
             $order->code = strtoupper(substr(md5(uniqid()), 0, 10)) . $user->id;
             $order->phone = $request->phone;
             $order->address = $request->address;
+            $order->employee_id = $request->user_id;
             if ($order->save()) {
                 $this->sendMail($user);
+                $delivery = new Delivery();
+                $delivery->user_id = $request->user_id;
+                $delivery->order_code = $order->code;
+                $delivery->save();
                 $message = ['level' => 'success', 'flash_message' => 'Tạo thành công đơn hàng'];
             } else {
                 $message = ['level' => 'danger', 'flash_message' => 'Tạo không thành công đơn hàng'];
@@ -79,10 +87,11 @@ class OrderController extends Controller
         if ($id != NULL) {
             $listProduct = Product::all();
             $infoOrder = Order::find($id);
+            $listUser = Delivery::getListUser();
             if ($infoOrder) {
                 $infoUser = User::find($infoOrder->user_id);
                 $title = 'Cập nhật đơn hàng';
-                return view('admin.order.update', compact('infoOrder', 'title', 'listProduct', 'infoUser'));
+                return view('admin.order.update', compact('infoOrder', 'title', 'listProduct', 'infoUser', 'listUser'));
             }
         } else {
             $message = ['level' => 'danger', 'flash_message' => 'Không tìm thấy đơn hàng'];
@@ -92,12 +101,13 @@ class OrderController extends Controller
 
     public function postUpdate(Request $request)
     {
-        $user_id = $request->user_id;
+        $user_id = $request->user_id_order;
         $this->validate($request,
             [
+                'user_id' => 'required|exists:users,id',
                 'name' => 'required|min:3',
-                'email' => "required|email|unique:users,email,$user_id",
-                'phone' => "required|unique:users,phone,$user_id|min:9|max:12|alpha_num",
+                'email' => "required|email",
+                'phone' => "required|min:9|max:12|alpha_num",
                 'address' => 'required',
             ],
             [
@@ -122,7 +132,9 @@ class OrderController extends Controller
                 $order->name = $request->name;
                 $order->phone = $request->phone;
                 $order->address = $request->address;
-                if ($order->save()) {
+                $delivery = Delivery::where('order_code', $order->code)->first();
+                $delivery->user_id = $request->user_id;
+                if ($order->save() && $delivery->save()) {
                     $message = ['level' => 'success', 'flash_message' => 'Cập nhật thành công đơn hàng'];
                 } else {
                     $message = ['level' => 'danger', 'flash_message' => 'Cập nhật không thành công đơn hàng'];

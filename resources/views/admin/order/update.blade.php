@@ -17,15 +17,28 @@
                             <form method="post" action="{!! url('quan-ly-don-hang/cap-nhat') !!}">
                             <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                             <input type="hidden" name="id" value="{!! $infoOrder->id !!}">
-                            <input type="hidden" name="user_id" value="{!! $infoUser->id !!}">
-                                <label for="fullname">Tên</label>
+                            <input type="hidden" name="user_id_order" value="{!! $infoUser->id !!}">
+                           <label for="user_id">Nhân viên</label>
+                                <div class="form-group">
+                                    <select class="form-control show-tick" id="user_id" name="user_id">
+                                        <option>-- Chọn Nhân Viên --</option>
+                                        @foreach($listUser as $user)
+                                        <option value="{!! $user->id !!}" 
+                                        @if(old('user_id') == $user->id ||  $infoOrder->employee_id == $user->id) selected @endif>
+                                        {!! $user->name !!}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                    <span class="has-error">{!! $errors->first('user_id') !!}</span>
+                                </div>
+                                <label for="fullname">Tên Khách Hàng</label>
                                 <div class="form-group">
                                     <div class="form-line">
                                         <input type="text" id="fullname" class="form-control" placeholder="Nhập họ tên" name="name" value="{!! old('name', $infoUser->name) !!}">
                                     </div>
                                     <span class="has-error">{!! $errors->first('name') !!}</span>
                                 </div>
-                                <label for="email">Địa chỉ email</label>
+                                <label for="email">Email Khách Hàng</label>
                                 <div class="form-group">
                                     <div class="form-line">
                                         <input type="email" id="email" class="form-control" placeholder="Nhập địa chỉ email" name="email" value="{!! old('email', $infoUser->email) !!}">
