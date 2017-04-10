@@ -42,9 +42,13 @@ class OrderController extends Controller
             [
                 'user_id' => 'required|exists:users,id',
                 'name' => 'required|min:3',
+                'product' => 'required',
                 'email' => 'required|email',
                 'phone' => 'required|min:9|max:12|alpha_num',
                 'address' => 'required',
+                'receiver_name' => 'required',
+                'receiver_phone' => 'required|min:9|max:12|alpha_num',
+                'receiver_address' => 'required'
             ],
             [
                 'name.required' => 'Bạn chưa nhập tên người dùng',
@@ -65,6 +69,9 @@ class OrderController extends Controller
             $order->phone = $request->phone;
             $order->address = $request->address;
             $order->employee_id = $request->user_id;
+            $order->receiver_phone = $request->receiver_phone;
+            $order->receiver_address = $request->receiver_address;
+            $order->receiver_name = $request->receiver_name;
             if ($order->save()) {
                 $this->sendMail($user);
                 $delivery = new Delivery();
@@ -110,6 +117,10 @@ class OrderController extends Controller
                 'email' => "required|email",
                 'phone' => "required|min:9|max:12|alpha_num",
                 'address' => 'required',
+                'product' => 'required',
+                'receiver_name' => 'required',
+                'receiver_phone' => 'required|min:9|max:12|alpha_num',
+                'receiver_address' => 'required'
             ],
             [
                 'name.required' => 'Bạn chưa nhập tên người dùng',
@@ -133,6 +144,9 @@ class OrderController extends Controller
                 $order->name = $request->name;
                 $order->phone = $request->phone;
                 $order->address = $request->address;
+                $order->receiver_phone = $request->receiver_phone;
+                $order->receiver_address = $request->receiver_address;
+                $order->receiver_name = $request->receiver_name;
                 $delivery = Delivery::where('order_code', $order->code)->first();
                 $delivery->user_id = $request->user_id;
                 $delivery->note = $request->note;

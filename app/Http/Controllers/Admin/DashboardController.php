@@ -28,7 +28,7 @@ class DashboardController extends Controller
     }
 
     private function getUserOnline(){
-        $sql = 'SELECT count(*) as total FROM users WHERE level <> 3 AND DATE_ADD(NOW(),INTERVAL -5 MINUTE) > updated_at';
-        DB::select($sql)[0]->total;
+        $sql = 'SELECT count(*) as total FROM users WHERE level <> 3 AND DATE_ADD(NOW(),INTERVAL -5 MINUTE) < updated_at';
+        return DB::select($sql)[0]->total;
     }
 }

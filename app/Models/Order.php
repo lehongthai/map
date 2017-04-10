@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 class Order extends \Illuminate\Database\Eloquent\Model
 {
     protected $table = 'orders';
-    protected $fillable = ['name', 'phone', 'address', 'user_id', 'note', 'status', 'code'];
+    protected $fillable = ['name', 'phone', 'address', 'user_id', 'note', 'status', 'code', 'receiver_phone', 'receiver_address', 'receiver_name'];
 
     public function productCustomer(){
         return $this->belongTo('App\Models\Product');

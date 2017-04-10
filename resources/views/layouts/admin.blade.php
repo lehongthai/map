@@ -276,10 +276,7 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="{!! url('quan-ly-giao-hang/danh-sach') !!}">Danh sách đơn hàng</a>
-                            </li>
-                            <li>
-                                <a href="{!! url('quan-ly-giao-hang/them-moi') !!}">Thêm đơn hàng</a>
+                                <a href="{!! url('quan-ly-giao-hang/danh-sach') !!}">Danh sách giao hàng</a>
                             </li>
                         </ul>
                     </li>

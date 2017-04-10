@@ -46,7 +46,7 @@ class AdvancedController extends Controller
 
         $listUser = Delivery::getListUser();
         $listProduct = Delivery::getListOrderViewStreet();
-        return view('admin.advanced.test', compact('listDistance', 'title', 'listUser', 'listProduct', 'uid', 'date', 'pid'));
+        return view('admin.advanced.test_bk', compact('listDistance', 'title', 'listUser', 'listProduct', 'uid', 'date', 'pid'));
     }
 
     public function advancedViewLocal(){

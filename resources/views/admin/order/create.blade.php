@@ -56,6 +56,26 @@
                                         <input type="text" id="address" class="form-control" placeholder="Nhập địa chỉ" name="address" value="{!! old('address') !!}">
                                     </div>
                                 </div>
+                                <label for="receiver_name">Tên Người Nhận</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" id="receiver_name" class="form-control" placeholder="Nhập họ tên" name="receiver_name" value="{!! old('receiver_name') !!}">
+                                    </div>
+                                    <span class="has-error">{!! $errors->first('receiver_name') !!}</span>
+                                </div>
+                                <label for="receiver_phone">Số Điện Thoại Nhận</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" id="receiver_phone" class="form-control" placeholder="Nhập số điện thoại" name="receiver_phone" value="{!! old('receiver_phone') !!}">
+                                    </div>
+                                    <span class="has-error">{!! $errors->first('receiver_phone') !!}</span>
+                                </div>
+                                <label for="receiver_address">Địa Chỉ Nhận</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" id="receiver_address" class="form-control" placeholder="Nhập địa chỉ" name="receiver_address" value="{!! old('receiver_address') !!}">
+                                    </div>
+                                </div>
                                 <label for="product_code">Sản phẩm</label>
                                 <div class="form-group">
                                    <!-- Multi Select -->
