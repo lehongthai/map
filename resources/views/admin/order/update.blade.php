@@ -57,6 +57,7 @@
                                     <div class="form-line">
                                         <input type="text" id="address" class="form-control" placeholder="Nhập địa chỉ" name="address" value="{!! old('address', $infoUser->address) !!}">
                                     </div>
+                                    <span class="has-error">{!! $errors->first('address') !!}</span>
                                 </div>
                                 <label for="receiver_name">Tên Người Nhận</label>
                                 <div class="form-group">
@@ -75,8 +76,9 @@
                                 <label for="receiver_address">Địa Chỉ Nhận</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" id="receiver_address" class="form-control" placeholder="Nhập địa chỉ" name="receiver_address" value="{!! old('receiver_address',$infoOrder->receiver_address) !!}">
+                                        <input type="text" id="receiver_address" class="form-control" placeholder="Nhập địa chỉ người nhận" name="receiver_address" value="{!! old('receiver_address',$infoOrder->receiver_address) !!}">
                                     </div>
+                                    <span class="has-error">{!! $errors->first('receiver_address') !!}</span>
                                 </div>
                                 <label for="product_code">Sản phẩm</label>
                                 <div class="form-group">

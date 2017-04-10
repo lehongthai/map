@@ -40,22 +40,36 @@ class OrderController extends Controller
     {
         $this->validate($request,
             [
-                'user_id' => 'required|exists:users,id',
-                'name' => 'required|min:3',
-                'product' => 'required',
-                'email' => 'required|email',
-                'phone' => 'required|min:9|max:12|alpha_num',
-                'address' => 'required',
-                'receiver_name' => 'required',
-                'receiver_phone' => 'required|min:9|max:12|alpha_num',
-                'receiver_address' => 'required'
+                'user_id'           => 'required|exists:users,id',
+                'name'              => 'required|min:3',
+                'product'           => 'required',
+                'email'             => 'required|email',
+                'phone'             => 'required|min:9|max:12|alpha_num',
+                'address'           => 'required',
+                'receiver_name'     => 'required',
+                'receiver_phone'    => 'required|min:9|max:12|alpha_num',
+                'receiver_address'  => 'required'
             ],
             [
-                'name.required' => 'Bạn chưa nhập tên người dùng',
-                'name.min' => 'Tên người dùng phải ít nhất có 3 kí tự',
-                'email.required' => 'Bạn chưa nhập email',
-                'email.email' => 'Bạn chưa nhập đúng định dạnh email',
-                'email.unique' => 'Email đã tồn tại',
+                'user_id.required'          => 'Bạn chưa chọn nhân viên',
+                'user_id.exists'            => 'Bạn chưa chọn nhân viên',
+                'name.required'             => 'Bạn chưa nhập tên khách hàng',
+                'name.min'                  => 'Tên người dùng phải ít nhất có 3 kí tự',
+                'product.required'          => 'Bạn chưa chọn sản phẩm',
+                'email.required'            => 'Bạn chưa nhập địa chỉ email',
+                'email.email'               => 'Bạn chưa nhập đúng định dạnh email',
+                'email.unique'              => 'Email đã tồn tại',
+                'phone.required'            => 'Bạn chưa nhập số điện thoại',
+                'phone.min'                 => 'Số điện thoại phải từ 9 tới 12 số',
+                'phone.max'                 => 'Số điện thoại phải từ 9 tới 12 số',
+                'phone.alpha_num'           => 'Bạn chỉ được nhập số',
+                'address.required'          => 'Bạn chưa nhập địa chỉ',
+                'receiver_name.required'    => 'Bạn chưa nhập tên người nhận',
+                'receiver_phone.required'   => 'Bạn chưa nhập số điện thoại người nhận',
+                'receiver_phone.min'        => 'Số điện thoại phải từ 9 tới 12 số',
+                'receiver_phone.max'        => 'Số điện thoại phải từ 9 tới 12 số',
+                'receiver_phone.alpha_num'  => 'Bạn chỉ được nhập số',
+                'receiver_address.required' => 'Bạn chưa nhập địa chỉ người nhận'
             ]);
 
         $user = $this->findOrCreateUser($request);
@@ -112,22 +126,35 @@ class OrderController extends Controller
         $user_id = $request->user_id_order;
         $this->validate($request,
             [
-                'user_id' => 'required|exists:users,id',
-                'name' => 'required|min:3',
-                'email' => "required|email",
-                'phone' => "required|min:9|max:12|alpha_num",
-                'address' => 'required',
-                'product' => 'required',
-                'receiver_name' => 'required',
-                'receiver_phone' => 'required|min:9|max:12|alpha_num',
-                'receiver_address' => 'required'
+                'user_id'           => 'required|exists:users,id',
+                'name'              => 'required|min:3',
+                'product'           => 'required',
+                'email'             => 'required|email',
+                'phone'             => 'required|min:9|max:12|alpha_num',
+                'address'           => 'required',
+                'receiver_name'     => 'required',
+                'receiver_phone'    => 'required|min:9|max:12|alpha_num',
+                'receiver_address'  => 'required'
             ],
-            [
-                'name.required' => 'Bạn chưa nhập tên người dùng',
-                'name.min' => 'Tên người dùng phải ít nhất có 3 kí tự',
-                'email.required' => 'Bạn chưa nhập email',
-                'email.email' => 'Bạn chưa nhập đúng định dạnh email',
-                'email.unique' => 'Email đã tồn tại',
+            ['user_id.required'          => 'Bạn chưa chọn nhân viên',
+                'user_id.exists'            => 'Bạn chưa chọn nhân viên',
+                'name.required'             => 'Bạn chưa nhập tên khách hàng',
+                'name.min'                  => 'Tên người dùng phải ít nhất có 3 kí tự',
+                'product.required'          => 'Bạn chưa chọn sản phẩm',
+                'email.required'            => 'Bạn chưa nhập địa chỉ email',
+                'email.email'               => 'Bạn chưa nhập đúng định dạnh email',
+                'email.unique'              => 'Email đã tồn tại',
+                'phone.required'            => 'Bạn chưa nhập số điện thoại',
+                'phone.min'                 => 'Số điện thoại phải từ 9 tới 12 số',
+                'phone.max'                 => 'Số điện thoại phải từ 9 tới 12 số',
+                'phone.alpha_num'           => 'Bạn chỉ được nhập số',
+                'address.required'          => 'Bạn chưa nhập địa chỉ',
+                'receiver_name.required'    => 'Bạn chưa nhập tên người nhận',
+                'receiver_phone.required'   => 'Bạn chưa nhập số điện thoại người nhận',
+                'receiver_phone.min'        => 'Số điện thoại phải từ 9 tới 12 số',
+                'receiver_phone.max'        => 'Số điện thoại phải từ 9 tới 12 số',
+                'receiver_phone.alpha_num'  => 'Bạn chỉ được nhập số',
+                'receiver_address.required' => 'Bạn chưa nhập địa chỉ người nhận'
             ]);
 
         $id = $request->id;

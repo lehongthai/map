@@ -30,15 +30,15 @@ class CustomerController extends Controller
     public function postCreate(Request $request){
        	$this->validate($request,
 			[
-				'fullname' => 'required|min:3',
-				'email' => 'required|email|unique:customers,email',
+				'fullname'  => 'required|min:3',
+				'email'     => 'required|email|unique:customers,email',
 			],
 			[
 				'fullname.required' => 'Bạn chưa nhập tên người dùng',
-				'fullname.min' => 'Tên người dùng phải ít nhất có 3 kí tự',
-				'email.required' => 'Bạn chưa nhập email',
-				'email.email' => 'Bạn chưa nhập đúng định dạnh email',
-				'email.unique' => 'Email đã tồn tại',
+				'fullname.min'      => 'Tên người dùng phải ít nhất có 3 kí tự',
+				'email.required'    => 'Bạn chưa nhập email',
+				'email.email'       => 'Bạn chưa nhập đúng định dạnh email',
+				'email.unique'      => 'Email đã tồn tại',
 			]);
 
         $customer = new Customer();
@@ -73,12 +73,12 @@ class CustomerController extends Controller
     public function postUpdate(Request $request){
        	$this->validate($request,
 			[
-                'product_code' => 'required|exists:products,code',
-				'fullname' => 'required|min:3',
+                'product_code'  => 'required|exists:products,code',
+				'fullname'      => 'required|min:3',
 			],
 			[
 				'fullname.required' => 'Bạn chưa nhập tên người dùng',
-				'fullname.min' => 'Tên người dùng phải ít nhất có 3 kí tự',
+				'fullname.min'      => 'Tên người dùng phải ít nhất có 3 kí tự',
 			]);
 
         $id = $request->id;
