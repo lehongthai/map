@@ -226,7 +226,7 @@
     </nav>
     <!-- #Top Bar -->
     <section>
-    @if(Auth::user()->level == 1 || Auth::user()->level == 3)
+    @if(Auth::user()->level == 1 || Auth::user()->level == 2)
         <!-- Left Sidebar -->
         <aside id="leftsidebar" class="sidebar">
             <!-- User Info -->
