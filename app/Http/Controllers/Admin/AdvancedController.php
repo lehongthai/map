@@ -35,7 +35,7 @@ class AdvancedController extends Controller
         $title = "Không tìm thấy dữ liệu";
         $uid = $request->user_id;
         $pid = $request->product_id;
-        $date = $request->date;
+        $date = convertStringDate2String($request->date, 'd-m-Y', 'Y-m-d');
         $listDistance = Delivery::getDistance($uid,$pid,$date);
         if ($listDistance){
             $title = "Vị trí nhân viên";

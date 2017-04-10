@@ -8,6 +8,8 @@
 
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 		 <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -67,10 +69,10 @@
                                     <br>
                                     <span class="has-error">{!! $errors->first('product_id') !!}</span>
                                 </div>
-                                <label for="phone_receiver">Chọn Ngày</label>
+                                <label for="datepicker">Chọn Ngày</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="date" id="phone_receiver" class="form-control" placeholder="Enter your phone receiver" name="date" value="{!! old('date', $date) !!}">
+                                        <input type="text" id="datepicker" class="form-control" placeholder="Enter your date" name="date" value="{!! old('date', $date) !!}">
                                     </div>
                                     <span class="has-error">{!! $errors->first('date') !!}</span>
                                 </div>
@@ -115,5 +117,17 @@
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoYHFhB9SbbUGXJ9jzhmSMihCJOOoQFyY&callback=initMap">
     </script>
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#datepicker" ).datepicker({
+      changeMonth: true,
+    changeYear: true,
+    showButtonPanel: true,
+    dateFormat : 'dd-mm-yy'
+    });
+  } );
+  </script>
 	</body>
 </html>
