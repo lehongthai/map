@@ -35,7 +35,7 @@ class ProductController extends Controller
             [
             'name.required' => 'Bạn chưa nhập tên',
             'code.required' => 'Bạn chưa nhập mã sản phẩm',
-            'code.unique' => 'Mã sản phẩm đã bị trùng'
+            'code.unique'   => 'Mã sản phẩm đã bị trùng'
             ]);
 
         $product = new Product();
@@ -69,7 +69,7 @@ class ProductController extends Controller
             'code' => 'required'
             ],
             [
-             'name.required' => 'Bạn chưa nhập tên',
+            'name.required' => 'Bạn chưa nhập tên',
             'code.required' => 'Bạn chưa nhập mã sản phẩm'
             ]);
 

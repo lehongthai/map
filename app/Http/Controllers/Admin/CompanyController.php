@@ -61,9 +61,13 @@ class CompanyController extends Controller
     }
 
     public function postUpdate(Request $request){
-       	$this->validate($request, [
+       	$this->validate($request, 
+            [
             'name' => 'required'
-        ]);
+            ],
+            [
+            'name.required' => 'Bạn chưa nhập tên công ty'
+            ]);
 
         $id = $request->id;
         $company = Company::find($id);

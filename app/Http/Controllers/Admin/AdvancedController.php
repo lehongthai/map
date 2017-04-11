@@ -27,11 +27,19 @@ class AdvancedController extends Controller
     }
 
     public function postStreet(Request $request){
-        $this->validate($request,[
-            'user_id' => 'required|exists:users,id',
-            'product_id' => 'required|exists:orders,code',
-            'date' => 'required|date'
-        ]);
+        $this->validate($request,
+            [
+            'user_id'       => 'required|exists:users,id',
+            'product_id'    => 'required|exists:orders,code',
+            'date'          => 'required|date'
+            ],
+            [
+            'user_id.required'      => 'Bạn chưa chọn nhân viên',
+            'user_id.exists'        => 'Bạn chưa chọn nhân viên',
+            'product_id.required'   => 'Bạn chưa chọn đơn hàng',
+            'product_id.exists'     => 'Bạn chưa chọn đơn hàng',
+            'date.required'         => 'Bạn chưa chọn ngày'
+            ]);
         $title = "Không tìm thấy dữ liệu";
         $uid = $request->user_id;
         $pid = $request->product_id;
@@ -60,10 +68,17 @@ class AdvancedController extends Controller
     }
 
     public function postViewLocal(Request $request){
-        $this->validate($request,[
-            'user_id' => 'required|exists:users,id',
-            'product_id' => 'required|exists:orders,code',
-        ]);
+        $this->validate($request,
+            [
+            'user_id'       => 'required|exists:users,id',
+            'product_id'    => 'required|exists:orders,code',
+            ],
+            [
+            'user_id.required'      => 'Bạn chưa chọn nhân viên',
+            'user_id.exists'        => 'Bạn chưa chọn nhân viên',
+            'product_id.required'   => 'Bạn chưa chọn đơn hàng',
+            'product_id.exists'     => 'Bạn chưa chọn đơn hàng'
+            ]);
         $uid = $request->user_id;
         $pid = $request->product_id;
         $local = User::getAdvancedEmployer($uid,$pid);
@@ -86,11 +101,18 @@ class AdvancedController extends Controller
     }
 
     public function postOnOffEmployer(Request $request){
-        $this->validate($request,[
-            'user_id' => 'required|exists:users,id',
-            'start' => 'required|date',
-            'end' => 'required|date'
-        ]);
+        $this->validate($request,
+            [
+            'user_id'   => 'required|exists:users,id',
+            'start'     => 'required|date',
+            'end'       => 'required|date'
+            ],
+            [
+            'user_id.required'  => 'Bạn chưa chọn nhân viên',
+            'user_id.exists'    => 'Bạn chưa chọn nhân viên',
+            'start.required'    => 'Bạn chưa chọn ngày',
+            'end.required'      => 'Bạn chưa chọn ngày'
+            ]);
         $user_id = $request->user_id;
         $start = convertStringDate2String($request->start, 'd-m-Y', 'Y-m-d');
         $end = convertStringDate2String($request->end, 'd-m-Y', 'Y-m-d');

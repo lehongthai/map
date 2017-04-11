@@ -35,12 +35,12 @@ class DeliveryController extends Controller
     {
         $this->validate($request, 
             [
-            'user_id' => 'required|exists:users,id',
-            'order_code' => 'required|exists:orders,code'
+            'user_id'       => 'required|exists:users,id',
+            'order_code'    => 'required|exists:orders,code'
             ],
             [
-            'user_id.required' => 'Bạn chưa chọn nhân viên',
-            'order_code.required' => 'Bạn chưa chọn đơn hàng'
+            'user_id.required'      => 'Bạn chưa chọn nhân viên',
+            'order_code.required'   => 'Bạn chưa chọn đơn hàng'
             ]);
 
         $delivery = new Delivery();
@@ -76,10 +76,15 @@ class DeliveryController extends Controller
 
     public function postUpdate(Request $request)
     {
-        $this->validate($request, [
-            'user_id' => 'required|exists:users,id',
-            'order_code' => 'required|exists:orders,code'
-        ]);
+        $this->validate($request, 
+            [
+            'user_id'       => 'required',
+            'order_code'    => 'required'
+            ],
+            [
+            'user_id.required'      => 'Bạn chưa chọn nhân viên',
+            'order_code.required'   => 'Bạn chưa chọn đơn hàng'
+            ]);
 
         $id = $request->id;
         $delivery = Delivery::find($id);

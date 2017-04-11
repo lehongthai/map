@@ -40,17 +40,18 @@ class UserController extends Controller
     public function postCreate(Request $request){
         $this->validate($request, 
             [
-            'fullname' => 'required',
-            'email' => 'required|email|unique:users',
-            'phone' => "required|min:9|max:12|alpha_num",
+            'fullname'  => 'required',
+            'email'     => 'required|email|unique:users',
+            'phone'     => "required|min:9|max:12|alpha_num",
             ],
             [
             'fullname.required' => 'Bạn chưa nhập tên',
-            'phone.required' => 'Bạn chưa nhập số điện thoại',
-            'phone.min' => 'Số điện thoại phải từ 9 tới 12 số',
-            'phone.max' => 'Số điện thoại phải từ 9 tới 12 số',
-            'email.required' => 'Bạn chưa nhập email',
-            'email.email' => 'Bạn chưa nhập đúng định dạng email'
+            'phone.required'    => 'Bạn chưa nhập số điện thoại',
+            'phone.min'         => 'Số điện thoại phải từ 9 tới 12 số',
+            'phone.max'         => 'Số điện thoại phải từ 9 tới 12 số',
+            'email.required'    => 'Bạn chưa nhập email',
+            'email.email'       => 'Bạn chưa nhập đúng định dạng email',
+            'email.unique'      => 'Email này đã tồn tại'
             ]);
 
         $user = new User();
@@ -86,17 +87,18 @@ class UserController extends Controller
     public function postUpdate(Request $request){
         $this->validate($request, 
             [
-            'fullname' => 'required',
-            'phone' => "required|min:9|max:12|alpha_num",
-            'email' => 'required|email'
+            'fullname'  => 'required',
+            'phone'     => "required|min:9|max:12|alpha_num",
+            'email'     => 'required|email'
             ],
             [
             'fullname.required' => 'Bạn chưa nhập tên',
-            'phone.required' => 'Bạn chưa nhập số điện thoại',
-            'phone.min' => 'Số điện thoại phải từ 9 tới 12 số',
-            'phone.max' => 'Số điện thoại phải từ 9 tới 12 số',
-            'email.required' => 'Bạn chưa nhập email',
-            'email.email' => 'Bạn chưa nhập đúng định dạng email'
+            'phone.required'    => 'Bạn chưa nhập số điện thoại',
+            'phone.min'         => 'Số điện thoại phải từ 9 tới 12 số',
+            'phone.max'         => 'Số điện thoại phải từ 9 tới 12 số',
+            'phone.alpha_num'   => 'Bạn chỉ được nhập số',
+            'email.required'    => 'Bạn chưa nhập email',
+            'email.email'       => 'Bạn chưa nhập đúng định dạng email'
             ]);
 
         $id = $request->id;
@@ -163,17 +165,17 @@ class UserController extends Controller
     {
         $this->validate($request,
             [
-                'password' => 'required',
-                'newpassword' => 'required|min:3|max:32',
-                'repassword' => 'required|same:newpassword'
+                'password'      => 'required',
+                'newpassword'   => 'required|min:3|max:32',
+                'repassword'    => 'required|same:newpassword'
             ],
             [
-                'password.required' => 'Bạn chưa nhập mật khẩu cũ',
-                'newpassword.required' => 'Bạn chưa nhập mật khẩu',
-                'newpassword.min' => 'Mật khẩu phải có ít nhất 3 kí tự',
-                'newpassword.max' => 'Mật khẩu chỉ được tối đa 32 kí tự',
-                'repassword.required' => 'Bạn chưa nhập lại mật khẩu',
-                'repassword.same' => 'Mật khẩu nhập lại chưa đúng'
+                'password.required'     => 'Bạn chưa nhập mật khẩu cũ',
+                'newpassword.required'  => 'Bạn chưa nhập mật khẩu',
+                'newpassword.min'       => 'Mật khẩu phải có ít nhất 3 kí tự',
+                'newpassword.max'       => 'Mật khẩu chỉ được tối đa 32 kí tự',
+                'repassword.required'   => 'Bạn chưa nhập lại mật khẩu',
+                'repassword.same'       => 'Mật khẩu nhập lại chưa đúng'
             ]);
         
         $user = User::find(Auth::user()->id);
