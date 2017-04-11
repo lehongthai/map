@@ -135,7 +135,7 @@ function displayUpdateUser($str){
             echo '<span style="background-color: #ff9100">' . $str . '</span>';
             break;
         default:
-            echo '<span style="background-color: maroon>' . $str . '</span>';
+            echo '<span style="background-color: maroon">' . $str . '</span>';
             break;
     }
 }

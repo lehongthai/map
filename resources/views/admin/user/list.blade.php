@@ -51,7 +51,7 @@
                                         <td>
                                         @if($user->level == 1)
                                             {{"Admin"}}
-                                        @else
+                                        @elseif($user->level == 2)
                                             {{"Nhân viên"}}
                                         @endif
                                         </td>

@@ -114,11 +114,13 @@ class AdvancedController extends Controller
             'end.required'      => 'Bạn chưa chọn ngày'
             ]);
         $user_id = $request->user_id;
-        $start = convertStringDate2String($request->start, 'd-m-Y', 'Y-m-d');
-        $end = convertStringDate2String($request->end, 'd-m-Y', 'Y-m-d');
+        $startA = convertStringDate2String($request->start, 'd-m-Y', 'Y-m-d');
+        $endA = convertStringDate2String($request->end, 'd-m-Y', 'Y-m-d');
         $title = 'Trạng thái nhân viên';
         $listUser = Delivery::getListUser();
-        $listStatus = StatusUser::getStatusUser($user_id, $start,$end);
+        $listStatus = StatusUser::getStatusUser($user_id, $startA, $endA);
+        $start = $request->start;
+        $end = $request->end;
         return view('admin.advanced.onoff', compact('listStatus', 'title', 'listUser', 'user_id', 'start', 'end'));
     }
 }
