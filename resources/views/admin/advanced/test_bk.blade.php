@@ -5,7 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>{!! $title !!}</title>
-
+    <link rel="icon" href="{!! url('public/shopping-cart.png') !!}" type="image/png" sizes="16x16">
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -49,20 +49,20 @@
                                         @foreach($listUser as $user)
                                         <option value="{!! $user->id !!}" 
                                         @if(old('user_id') == $user->id || $uid == $user->id) selected @endif>
-                                        -- {!! $user->name !!} --
+                                        {!! $user->name !!}
                                         </option>
                                         @endforeach
                                     </select><br>
                                     <span class="has-error">{!! $errors->first('user_id') !!}</span>
                                 </div>
-                                <label for="product_id">Chọn Sản Phẩm</label>
+                                <label for="product_id">Chọn Đơn Hàng</label>
                                 <div class="form-group">
                                     <select class="form-control show-tick" id="product_id" name="product_id">
                                         <option>-- Chọn Đơn Hàng --</option>
                                         @foreach($listProduct as $product)
                                         <option value="{!! $product->code !!}" 
                                         @if(old('product_id') == $product->code || $pid == $product->code) selected @endif>
-                                        {!! $product->name !!}
+                                        {!! $product->code !!}
                                         </option>
                                         @endforeach
                                     </select>

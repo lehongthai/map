@@ -243,60 +243,41 @@
                     </li>
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">view_list</i>
+                                    <div class="demo-google-material-icon"> <i class="material-icons">supervisor_account</i>
+                                </div>
                             <span>Nhân viên</span>
                         </a>
                         <ul class="ml-menu">
                             <li>
                                 <a href="{!! url('quan-ly-nhan-vien/danh-sach') !!}">Danh sách nhân viên</a>
                             </li>
-                            <li>
-                                <a href="{!! url('quan-ly-nhan-vien/them-moi') !!}">Thêm nhân viên</a>
-                            </li>
                         </ul>
                     </li>
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">view_list</i>
+                            <i class="material-icons">devices_other</i>
                             <span>Sản phẩm</span>
                         </a>
                         <ul class="ml-menu">
                             <li>
                                 <a href="{!! url('quan-ly-san-pham/danh-sach') !!}">Danh sách sản phẩm</a>
                             </li>
-                            <li>
-                                <a href="{!! url('quan-ly-san-pham/them-moi') !!}">Thêm sản phẩm</a>
-                            </li>
                         </ul>
                     </li>
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">view_list</i>
-                            <span>Giao hàng</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="{!! url('quan-ly-giao-hang/danh-sach') !!}">Danh sách giao hàng</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">view_list</i>
+                            <i class="material-icons">add_shopping_cart</i>
                             <span>Đơn hàng</span>
                         </a>
                         <ul class="ml-menu">
                             <li>
                                 <a href="{!! url('quan-ly-don-hang/danh-sach') !!}">Danh sách đơn hàng</a>
                             </li>
-                            <li>
-                                <a href="{!! url('quan-ly-don-hang/them-moi') !!}">Thêm đơn hàng</a>
-                            </li>
                         </ul>
                     </li>
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">view_list</i>
+                            <i class="material-icons">person_outline</i>
                             <span>Khách hàng</span>
                         </a>
                         <ul class="ml-menu">
@@ -307,21 +288,18 @@
                     </li>
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">view_list</i>
+                            <i class="material-icons">spa</i>
                             <span>Công ty</span>
                         </a>
                         <ul class="ml-menu">
                             <li>
                                 <a href="{!! url('quan-ly-cong-ty/danh-sach') !!}">Thông tin</a>
                             </li>
-                           {{--  <li>
-                                <a href="{!! url('quan-ly-cong-ty/them-moi') !!}">Thêm công ty</a>
-                            </li> --}}
                         </ul>
                     </li>
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">view_list</i>
+                            <i class="material-icons">brightness_low</i>
                             <span>Nâng Cao</span>
                         </a>
                         <ul class="ml-menu">

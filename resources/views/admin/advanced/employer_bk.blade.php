@@ -31,7 +31,7 @@
                                         @foreach($listProduct as $product)
                                         <option value="{!! $product->code !!}" 
                                         @if(old(' ') == $product->code || $pid == $product->code) selected @endif>
-                                        {!! $product->name !!}
+                                        {!! $product->code !!}
                                         </option>
                                         @endforeach
                                     </select>

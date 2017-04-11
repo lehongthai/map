@@ -115,3 +115,27 @@ function getProduct($strId)
         echo $key+1 . '-' . $v->name . '<br>';
     }
 }
+
+function displayUpdateUser($str){
+    $key = explode(' ', $str)[1];
+    switch ($key){
+        case 'minutes':
+            echo '<span style="background-color: yellowgreen">' . $str . '</span>';
+            break;
+        case 'hours';
+            echo '<span style="background-color: #00A6C7">' . $str . '</span>';
+            break;
+        case 'day';
+            echo '<span style="background-color: fuchsia">' . $str . '</span>';
+            break;
+        case 'week';
+            echo '<span style="background-color: burlywood">' . $str . '</span>';
+            break;
+        case 'months';
+            echo '<span style="background-color: #ff9100">' . $str . '</span>';
+            break;
+        default:
+            echo '<span style="background-color: maroon>' . $str . '</span>';
+            break;
+    }
+}

@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Models\Delivery;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
@@ -20,7 +21,8 @@ class DashboardController extends Controller
         $orderByStatus1 = $this->getOrderByStatus(1);
         $orderByStatus2 = $this->getOrderByStatus(2);
         $userOnline = $this->getUserOnline();
-        return view('admin.dashboard.index', compact('title', 'orderByStatus0', 'orderByStatus1', 'orderByStatus2', 'userOnline'));
+        $listDelivery = Delivery::getListDelivery();
+        return view('admin.dashboard.index', compact('title', 'orderByStatus0', 'orderByStatus1', 'orderByStatus2', 'listDelivery', 'userOnline'));
     }
     private function getOrderByStatus($status=0){
         $sql = 'SELECT count(*) as total FROM deliverys WHERE status = ' . $status;

@@ -11,7 +11,7 @@
                             <h2>
                                 {!! $title !!}
                             </h2>
-                         
+                            <a href="{!! url('quan-ly-nhan-vien/them-moi') !!}" class="btn btn-success header-dropdown m-r--5">Tạo mới</a>
                         </div>
                         <div class="body">
                             <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
@@ -23,7 +23,7 @@
                                         <th>Địa chỉ</th>
                                         <th>Ảnh</th>
                                         <th>Quyền</th>
-                                        <th>Lần cập nhật cuối cùng</th>
+                                        <th>Cập nhật cuối</th>
                                         <th>Hành động</th>
                                     </tr>
                                 </thead>
@@ -35,7 +35,7 @@
                                         <th>Địa chỉ</th>
                                         <th>Ảnh</th>
                                         <th>Quyền</th>
-                                        <th>Lần cập nhật cuối cùng</th>
+                                        <th>Cập nhật cuối</th>
                                         <th>Hành động</th>
                                     </tr>
                                 </tfoot>
@@ -57,7 +57,8 @@
                                         </td>
                                         <td>
                                             <?php
-                                                echo \Carbon\Carbon::createFromTimeStamp(strtotime($user->updated_at))->diffForHumans();
+                                                $a =\Carbon\Carbon::createFromTimeStamp(strtotime($user->updated_at))->diffForHumans();
+                                                displayUpdateUser($a);
                                             ?>
                                         </td>
                                         <td>

@@ -78,6 +78,7 @@ class OrderController extends Controller
                 $delivery->user_id = $request->user_id;
                 $delivery->order_code = $order->code;
                 $delivery->note = $request->note;
+                $delivery->date = date('Y-m-d');
                 $delivery->save();
                 $message = ['level' => 'success', 'flash_message' => 'Tạo thành công đơn hàng'];
             } else {
@@ -150,6 +151,7 @@ class OrderController extends Controller
                 $delivery = Delivery::where('order_code', $order->code)->first();
                 $delivery->user_id = $request->user_id;
                 $delivery->note = $request->note;
+                $delivery->date = date('Y-m-d');
                 if ($order->save() && $delivery->save()) {
                     $message = ['level' => 'success', 'flash_message' => 'Cập nhật thành công đơn hàng'];
                 } else {

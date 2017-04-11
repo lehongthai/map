@@ -59,10 +59,73 @@
                 </div>
             </div>
             <!-- #END# Widgets -->
+             <!-- Vertical Layout -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                               Danh Sách Giao Hàng
+                            </h2>
+                        
+                        </div>
+                        <div class="body">
+                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                <thead>
+                                    <tr>
+                                        <th>Nhân viên</th>                           
+                                        <th>SDT nhân viên</th>
+                                        <th>Khách hàng</th>
+                                        <th>SDT khách</th>
+                                        <th>Địa chỉ giao hàng</th>
+                                        <th>Trạng thái</th>
+                                        <th>Ngày tạo</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>Nhân viên</th>                           
+                                        <th>SDT nhân viên</th>
+                                        <th>Khách hàng</th>
+                                        <th>SDT khách</th>
+                                        <th>Địa chỉ giao hàng</th>
+                                        <th>Trạng thái</th>
+                                        <th>Ngày tạo</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                @if($listDelivery != NULL)
+                                    @foreach($listDelivery as $delivery)
+                                    <tr>
+                                        <td>{!! $delivery->name !!}</td>
+                                        <td>{!! $delivery->phone !!}</td>
+                                        <td>{!! $delivery->oName !!}</td>
+                                        <td>{!! $delivery->oPhone !!}</td>              
+                                        <td>{!! $delivery->address !!}</td>
+                                        <td>
+                                            @if($delivery->status == 0)
+                                            Chưa giao
+                                            @elseif($delivery->status == 1)
+                                            Đang giao
+                                            @else
+                                            Đã giao
+                                            @endif
+                                        </td>
+                                        <td>{!! Carbon\Carbon::parse($delivery->created_at)->format('d-m-Y H:m:s') !!}</td>
+                                    </tr>
+                                    @endforeach
+                                @endif
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 @endsection
 
 @section('javascript')
+    
     <!-- Select Plugin Js -->
     <script src="{{ asset('public/minovate/plugins/bootstrap-select/js/bootstrap-select.js') }}"></script>
 
@@ -85,11 +148,10 @@
     <script src="{{ asset('public/minovate//plugins/chartjs/Chart.bundle.js') }}"></script>
 
     <!-- Flot Charts Plugin Js -->
-    <script src="{{ asset('public/minovate/plugins/flot-charts/jquery.flot.js') }}"></script>
-    <script src="{{ asset('public/minovate/plugins/flot-charts/jquery.flot.resize.js') }}"></script>
-    <script src="{{ asset('public/minovate/plugins/flot-charts/jquery.flot.pie.js') }}"></script>
-    <script src="{{ asset('public/minovate/plugins/flot-charts/jquery.flot.categories.js') }}"></script>
-    <script src="{{ asset('public/minovate/plugins/flot-charts/jquery.flot.time.js') }}"></script>
+    <script src="{{ asset('public/minovate/plugins/jquery-datatable/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('public/minovate/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js') }}"></script>
+    <script src="{{ asset('public/minovate/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('public/minovate/js/pages/tables/jquery-datatable.js') }}"></script>
 
     <!-- Sparkline Chart Plugin Js -->
     <script src="{{ asset('public/minovate/plugins/jquery-sparkline/jquery.sparkline.js') }}"></script>

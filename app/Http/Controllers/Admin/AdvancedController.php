@@ -35,15 +35,15 @@ class AdvancedController extends Controller
         $title = "Không tìm thấy dữ liệu";
         $uid = $request->user_id;
         $pid = $request->product_id;
-        $date = convertStringDate2String($request->date, 'd-m-Y', 'Y-m-d');
-        $listDistance = Delivery::getDistance($uid,$pid,$date);
+        $dateA = convertStringDate2String($request->date, 'd-m-Y', 'Y-m-d');
+        $listDistance = Delivery::getDistance($uid,$pid,$dateA);
         if ($listDistance){
             $title = "Vị trí nhân viên";
             $listDistance = $listDistance[0];
         }else{
             $listDistance = NULL;
         }
-
+        $date = $request->date;
         $listUser = Delivery::getListUser();
         $listProduct = Delivery::getListOrderViewStreet();
         return view('admin.advanced.test_bk', compact('listDistance', 'title', 'listUser', 'listProduct', 'uid', 'date', 'pid'));

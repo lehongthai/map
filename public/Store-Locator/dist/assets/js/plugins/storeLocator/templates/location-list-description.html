@@ -4,7 +4,7 @@
 	<div class="list-details">
 		<div class="list-content">
 			<div class="loc-name">{{name}}</div>
-			<strong>Khoản cách: </strong>{{distanceUser}}<br>
+			<strong>Khoảng cách: </strong>{{distanceUser}}<br>
 			<strong>Thời gian: </strong>{{minute}}<br>
 			<strong>Đơn hàng: </strong>{{delivery}}<br>
 			<div class="loc-addr">{{address}}</div> 
@@ -12,8 +12,8 @@
 			<div class="loc-addr3">{{city}}{{#if city}},{{/if}} {{state}} {{postal}}</div>
 			<div class="loc-phone">{{phone}}</div>
 			<div class="loc-web"><a href="{{web}}" target="_blank">{{niceURL web}}</a></div>
-			{{#if distance}}
-				<div class="loc-dist">{{distance}} {{length}}</div>
+			{{#if distanceUser}}
+				<div class="loc-dist">{{distanceUser}}</div>
 				<div class="loc-directions"><a href="https://maps.google.com/maps?saddr={{origin}}&amp;daddr={{address}} {{address2}} {{city}}, {{state}} {{postal}}" target="_blank">Directions</a></div>
 			{{/if}}
 		</div>
